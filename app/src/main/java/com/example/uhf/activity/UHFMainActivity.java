@@ -56,6 +56,7 @@ import org.ksoap2.transport.HttpsTransportSE;
 import org.xmlpull.v1.XmlPullParserException;
 
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.FragmentManager;
@@ -67,6 +68,7 @@ import androidx.fragment.app.Fragment;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import android.content.Context;
 
 import android.support.v4.app.INotificationSideChannel;
@@ -100,14 +102,13 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
     public String TiempoLectura;
     public String MY_CHANNEL_ID = "my_channel_id";
 
-    EditText Et_ArtEsp;
+    TextView Et_ArtEsp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         creaciondecanal();
-        Et_ArtEsp = (EditText) findViewById(R.id.Et_ArtEsp);
         Log.e("zp_add", "-------UHFMainActivity  1--------");
         if (BuildConfig.DEBUG) {
             setTitle(String.format("%s(v%s-debug)", getString(R.string.app_name), BuildConfig.VERSION_NAME));
@@ -131,7 +132,7 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
         ///Configurar AlarmManager para ejecutar la aplicacion al iniciar el dispositivo
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent1 = new Intent(this, BootReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent1, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent1, PendingIntent.FLAG_MUTABLE);
 
         //Configurar el tiempo en el que se deseas se ejecute la accion
         long tiempoEnMilisegundos = System.currentTimeMillis() + 2000;
@@ -169,13 +170,15 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
         free();
         super.onDestroy();
     }
+
     private void free() {
         if (mReader != null) {
             mReader.free();
         }
 
     }
-    public  void mensajes(){
+
+    public void mensajes() {
 
         Toast.makeText(UHFMainActivity.this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
 
@@ -192,6 +195,16 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
                 .setSound(sonido)   //Sonido de la notificacion
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         notificationManager.notify(notificationID, constructor.build());
     }
 
