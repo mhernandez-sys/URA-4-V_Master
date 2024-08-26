@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">174683883295</string>
+    <string name="google_api_key" translatable="false">AIzaSyBvVXlj-yx5ac1a02M-Qx9e1AAht1FQmDo</string>
+    <string name="google_app_id" translatable="false">1:174683883295:android:d229d14e571733a2a2d22a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBvVXlj-yx5ac1a02M-Qx9e1AAht1FQmDo</string>
+    <string name="google_storage_bucket" translatable="false">proyecto-estral.appspot.com</string>
+    <string name="project_id" translatable="false">proyecto-estral</string>
+</resources>

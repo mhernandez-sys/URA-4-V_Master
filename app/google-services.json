@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "174683883295",
+    "project_id": "proyecto-estral",
+    "storage_bucket": "proyecto-estral.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174683883295:android:d229d14e571733a2a2d22a",
+        "android_client_info": {
+          "package_name": "com.example.uhf"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvVXlj-yx5ac1a02M-Qx9e1AAht1FQmDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174683883295:android:ac07d1cf5cde73eca2d22a",
+        "android_client_info": {
+          "package_name": "com.example.uhf.activity"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvVXlj-yx5ac1a02M-Qx9e1AAht1FQmDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

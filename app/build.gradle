@@ -1,0 +1,77 @@
+plugins {
+    id("com.android.application")
+    id 'com.google.gms.google-services'
+}
+android {
+    compileSdk 34
+    ndkVersion '21.3.6528147'
+
+    defaultConfig {
+        applicationId "com.example.uhf"
+        minSdkVersion 22
+        targetSdk 34
+        versionCode 4
+        versionName "1.6.8"
+    }
+
+    signingConfigs {
+        debug {
+            File strFile = new File("/uhf-A4_release.jks")
+            storeFile file(strFile)
+            storePassword "123456"
+            keyPassword "123456"
+            keyAlias "uhf-A8-key"
+        }
+        release {
+            File strFile = new File("/uhf-A4_release.jks")
+            storeFile file(strFile)
+            storePassword "123456"
+            keyPassword "123456"
+            keyAlias "uhf-A8-key"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        // 自定义apk名称q
+        android.applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "Estral_vMaestr2.1${defaultConfig.versionName}.apk"
+            }
+        }
+    }
+    namespace 'com.example.uhf'
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+    buildFeatures {
+        buildConfig true
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.*'])
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation fileTree(dir: 'C:\\Users\\MANUEL\\AndroidStudioProjects\\AstralFase2\\uhf-a4-demo\\app\\libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.core:core:1.12.0'
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:32.7.2')
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-messaging:23.4.1'
+    implementation( "com.google.firebase:firebase-core:21.1.1")
+    implementation 'com.android.volley:volley:1.2.1'
+
+}

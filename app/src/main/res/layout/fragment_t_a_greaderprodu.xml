@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/RgInventory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <RadioButton
+                android:id="@+id/RbInventoryLoop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="@string/rbInventoryLoop"
+                android:textColor="@drawable/check_text_color2"
+                android:textSize="15sp"
+                android:visibility="gone"/>
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/layout_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_bg"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/LinearLayoutEmbarque">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Embarque :"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    />
+
+                <TextView
+                    android:id="@+id/TxtEmbarque"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/blue"
+                    android:text=""
+                    android:layout_weight="2"
+                    android:gravity="left"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bodega:"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="8dp"
+                    android:gravity="right"/>
+
+                <TextView
+                    android:id="@+id/Et_Bodegas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="left"
+                    android:text="" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Art.Embarque:"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:gravity="right|center_vertical"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/Et_ArtEsp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"
+                    android:gravity="left"
+                    android:text="" />
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:layout_marginTop="8dp"
+                android:id="@+id/LinearLayoutarticulo">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Pedidos:"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:gravity="right|center_vertical"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/Et_Pedidos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"
+                    android:layout_marginRight="8dp"
+                    android:text="" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/Partidas"
+                    android:textSize="18sp"
+                    android:layout_marginRight="8dp"
+                    android:textColor="@color/black"
+                    android:gravity="right|center_vertical"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/Et_Partidas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"
+                    android:text="" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Art.Encontrados:"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="12dp"
+                    android:gravity="right"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/TXTART_ENC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"
+                    android:text=""
+                    android:visibility="gone"/>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/MSAlertaActivo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/green"
+                    android:gravity="center"
+                    android:text="TODOS LOS ARTICULOS ENCONTRADOS"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/baseline_check_circle_24"
+                    android:drawableRight="@drawable/baseline_check_circle_24"
+                    android:textSize="18sp"
+                    android:layout_marginTop="4dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/MSAlertaincompletos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#EFEB04"
+                    android:gravity="center"
+                    android:text="ARTICULOS INCOMPLETOS"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:drawableLeft="@android:drawable/stat_notify_error"
+                    android:drawableRight="@android:drawable/stat_notify_error"
+                    android:textSize="18sp"
+                    android:layout_marginTop="4dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
+
+
+                <TextView
+                    android:id="@+id/MSAlerta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/red"
+                    android:gravity="center"
+                    android:text="ARTICULO DESCONOCIDO"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/alto"
+                    android:drawableRight="@drawable/alto"
+                    android:textSize="18sp"
+                    android:layout_marginTop="4dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Articulos encontrados:"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone"/>
+
+            <ProgressBar
+                android:id="@+id/PB_Ariculos"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:max="100"
+                android:min="0"
+                android:progress="0"
+                android:progressBackgroundTint="@color/black1"
+                android:progressTint="#1AFF00"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/layout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="6dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="0"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_totalNum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.6"
+                android:text="0"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="0s"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tvTagLen"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/tvTagCount"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="RSSI"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/ant"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/LvTags"
+            android:layout_width="match_parent"
+            android:layout_height="130dp" />
+
+        <LinearLayout
+            android:id="@+id/layout12"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <Button
+                android:id="@+id/BtInventory1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@color/txtblue"
+                android:text="@string/btInventory"
+                android:onClick="lanzarNotificacion"
+                android:textColor="@color/white"/>
+
+            <Button
+                android:id="@+id/BtClear1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@color/txtblue"
+                android:text="@string/btClear"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

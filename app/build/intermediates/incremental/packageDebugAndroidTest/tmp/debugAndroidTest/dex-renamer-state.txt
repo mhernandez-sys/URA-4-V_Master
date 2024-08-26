@@ -1,0 +1,7 @@
+#Wed Apr 10 09:21:46 CST 2024
+base.0=C\:\\Users\\MANUEL\\AndroidStudioProjects\\Estral4.3\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
+base.1=C\:\\Users\\MANUEL\\AndroidStudioProjects\\Estral4.3\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\7\\classes.dex
+path.0=0/classes.dex
+path.1=7/classes.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
