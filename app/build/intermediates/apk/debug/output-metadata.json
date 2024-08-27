@@ -16,5 +16,6 @@
       "outputFile": "Estral_vMaestr2.11.6.8.apk"
     }
   ],
-  "elementType": "File"
+  "elementType": "File",
+  "minSdkVersionForDexing": 24
 }

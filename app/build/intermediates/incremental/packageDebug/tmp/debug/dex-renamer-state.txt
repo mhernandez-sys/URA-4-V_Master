@@ -1,14 +1,14 @@
-#Wed Apr 10 09:35:29 CST 2024
-base.0=C\:\\Users\\MANUEL\\AndroidStudioProjects\\Estral4.3\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\MANUEL\\AndroidStudioProjects\\Estral4.3\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\Users\\MANUEL\\AndroidStudioProjects\\Estral4.3\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
-base.3=C\:\\Users\\MANUEL\\AndroidStudioProjects\\Estral4.3\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
-base.4=C\:\\Users\\MANUEL\\AndroidStudioProjects\\Estral4.3\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
-base.5=C\:\\Users\\MANUEL\\AndroidStudioProjects\\Estral4.3\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
-base.6=C\:\\Users\\MANUEL\\AndroidStudioProjects\\Estral4.3\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
-base.7=C\:\\Users\\MANUEL\\AndroidStudioProjects\\Estral4.3\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
-base.8=C\:\\Users\\MANUEL\\AndroidStudioProjects\\Estral4.3\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\9\\classes.dex
-base.9=C\:\\Users\\MANUEL\\AndroidStudioProjects\\Estral4.3\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+#Tue Aug 27 11:32:29 CST 2024
+base.0=C\:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
+base.3=C\:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
+base.4=C\:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
+base.5=C\:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
+base.6=C\:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
+base.7=C\:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
+base.8=C\:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\9\\classes.dex
+base.9=C\:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=11/classes.dex

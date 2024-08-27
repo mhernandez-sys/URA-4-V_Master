@@ -39,6 +39,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.uhf.R;
+import com.example.uhf.WebServiceManager;
 import com.example.uhf.activity.Enviar;
 import com.example.uhf.activity.UHFMainActivity;
 import com.example.uhf.activity.VMDatos;
@@ -93,6 +94,7 @@ public class TAGreaderprodu extends KeyDownFragment {
     private String URL = "";
     private String METHOD_NAME = "";
     private String SOAP_ACTION = "";
+    private WebServiceManager webServiceManager;
 
     SimpleAdapter adapter;
     Button BtClear;
@@ -183,6 +185,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         MSAlerta.setVisibility(View.GONE);
         MSAlertaincompletos.setVisibility(View.GONE);
         MSAlertaActivo.setVisibility(View.GONE);
+        webServiceManager = new WebServiceManager(requireContext());
 
         Thread gpioThread = new Thread(new Runnable() {
             @Override
@@ -358,7 +361,6 @@ public class TAGreaderprodu extends KeyDownFragment {
         tv_count.setText("0");
         tv_totalNum.setText("0");
         tv_time.setText("0s");
-
         tagList.clear();
         tempDatas.clear();
         adapter.notifyDataSetChanged();
@@ -390,12 +392,6 @@ public class TAGreaderprodu extends KeyDownFragment {
         adapter.notifyDataSetChanged();
     }
 
-    public void MostrarProgressBar(final String MAX, final String encontrados) {
-        int progresoActual = Integer.parseInt(encontrados);
-        progresoActual++;
-        PB_Ariculos.setProgress(0);
-    }
-
     public class RgInventoryCheckedListener implements RadioGroup.OnCheckedChangeListener {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -420,6 +416,7 @@ public class TAGreaderprodu extends KeyDownFragment {
             //enviarNotificacion();
             mensajesocket();
             ///ProgressBar("E28011606000020EB7OC5DBB+001804BA0460B527A68B52F4+E28011606000020EB70C4CB3+");
+            ProgressBar2("E28011606000020EB7OC5DBB+001804BA0460B527A68B52F4+E28011606000020EB70C4CB3");
         }
     }
 
@@ -472,8 +469,6 @@ public class TAGreaderprodu extends KeyDownFragment {
                         setViewEnabled(false);
                         mStartTime = System.currentTimeMillis();
                         new TagThread().start();
-
-
                     } else {
                         mContext.mReader.stopInventory();
                         UIHelper.ToastMessage(mContext, R.string.uhf_msg_inventory_open_fail);
@@ -484,7 +479,6 @@ public class TAGreaderprodu extends KeyDownFragment {
                     break;
             }
         } else {// detener el reconocimiento
-
             stopInventory();
             //    setTotalTime();
         }
@@ -630,14 +624,13 @@ public class TAGreaderprodu extends KeyDownFragment {
     public void ProgressBar(final String EPCTag) {
 
         String res = "";
-        if(EPCTag.equals("")){
+        if(EPCTag.isEmpty()){
             mensajes("No se detecto ningun TAG \n" +
                     "Realizar una comprobacion de TAGS");
             return;
         }
         String ultimocaracter = EPCTag.substring(0,EPCTag.length() - 1);
         String Tags = ultimocaracter;
-        String[] Tags1 = Tags.split("\\+");
         Thread nt = new Thread(new Runnable() {
 
             @Override
@@ -964,6 +957,19 @@ public class TAGreaderprodu extends KeyDownFragment {
             }
         });
         nuevoHilo.start();
+    }
+
+    private void ProgressBar2(String EPCTAG){
+        Map<String, String> propeties = new HashMap<>();
+        propeties.put("EPCTag", EPCTAG);
+
+        webServiceManager.callWebService("ProcesarTAGS", propeties, new WebServiceManager.WebServiceCallback() {
+            @Override
+            public void onWebServiceCallComplete(String result) {
+                Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 }

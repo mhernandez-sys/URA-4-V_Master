@@ -26,12 +26,11 @@ public class WebServiceManager {
         new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... voids) {
-                String NAMESPACE = "http://tempuri.org/";
-                String URL = "http://192.168.1.6/WebServices1.1/Procedimientos.asmx";
+                String NAMESPACE = "http://Estral.org/";
+                String URL = "http://192.168.1.11/Embarques/EmbarquesWS.asmx";
                 String SOAP_ACTION = NAMESPACE + METHOD_NAME;
                 String res = "";
                 int timeout = 5000; // 5000 milisegundos (5 segundos)
-
 
                 try {
                     SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
