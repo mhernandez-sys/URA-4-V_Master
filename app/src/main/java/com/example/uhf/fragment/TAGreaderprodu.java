@@ -54,6 +54,7 @@ import com.rscja.deviceapi.entity.GPIStateEntity;
 import com.rscja.deviceapi.entity.UHFTAGInfo;
 import com.example.uhf.fragment.UHFSetFragment;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.ksoap2.SoapEnvelope;
@@ -62,6 +63,7 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -73,19 +75,14 @@ import java.util.concurrent.Semaphore;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.rscja.deviceapi.exception.ConfigurationException;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TAGreaderprodu//#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TAGreaderprodu extends KeyDownFragment {
 
     // Declarar una variable booleana para controlar el estado del hilo
     private boolean hiloActivo = true;
     // Variable para almacenar el estado anterior del GPIO
     private int previousState = -1; // Inicializar con un valor que no puede ser un estado válido
-    RFIDWithUHFA4 rfidWithUHFA4=null;
-    private final Semaphore semaphore = new Semaphore(1);
+    RFIDWithUHFA4 rfidWithUHFA4 = null;
+    //    private final Semaphore semaphore = new Semaphore(1);
     private static String TAG = "UHFReadTagFragment";
     private boolean loopFlag = false;
     private int inventoryFlag = 1;
@@ -102,19 +99,15 @@ public class TAGreaderprodu extends KeyDownFragment {
     RadioGroup RgInventory;
     RadioButton RbInventorySingle;
     RadioButton RbInventoryLoop;
-    Spinner SP_timer;
     TextView Et_ArtEsp, Et_Pedidos, TXTART_ENC, Et_Partidas, Et_Bodegas, TxtEmbarque;
     //EditText etTime;
     ProgressBar PB_Ariculos;
-    ImageView IVAlerta;
-    TextView MSAlerta,MSAlertaActivo,MSAlertaincompletos;
+    TextView MSAlerta, MSAlertaActivo, MSAlertaincompletos;
     Button BtInventory;
     ListView LvTags;
     private UHFMainActivity mContext;
     private HashMap<String, String> map;
-
     private CheckBox cbFilter;
-    private ViewGroup layout_filter;
 
     public static final String TAG_EPCAndTidUser = "TAG_EPCAndTidUser";
     public static final String TAG_EPC = "tagEpc";
@@ -125,11 +118,10 @@ public class TAGreaderprodu extends KeyDownFragment {
     public static final String TAG_RSSI = "tagRssi";
     public static final String TAG_ANT = "tagAnt";
     public String CadenaEPCS = "";
-    public String BodegaSelect = "";
-    public String OrdenCompraSelect = "";
+    //    public String BodegaSelect = "";
+//    public String OrdenCompraSelect = "";
     private int totalNum;
     private List<String> tempDatas;
-    private Button btnSetFilter;
 
     ExecutorService executorService = null;
     boolean isStop = false;
@@ -163,11 +155,10 @@ public class TAGreaderprodu extends KeyDownFragment {
         Log.i(TAG, "UHFReadTagFragmentProductos.onActivityCreated");
         super.onActivityCreated(savedInstanceState);
         try {
-            rfidWithUHFA4=RFIDWithUHFA4.getInstance();
+            rfidWithUHFA4 = RFIDWithUHFA4.getInstance();
         } catch (ConfigurationException e) {
             e.printStackTrace();
         }
-        suscribirATema();
         mContext = (UHFMainActivity) getActivity();
         executorService = Executors.newFixedThreadPool(20);
         Et_ArtEsp = (TextView) getView().findViewById(R.id.Et_ArtEsp);
@@ -196,7 +187,6 @@ public class TAGreaderprodu extends KeyDownFragment {
         gpioThread.start();
     }
 
-
     private void inits(View view) {
         BtClear = (Button) view.findViewById(R.id.BtClear1);
         tv_count = (TextView) view.findViewById(R.id.tv_count);
@@ -207,7 +197,6 @@ public class TAGreaderprodu extends KeyDownFragment {
 
         RbInventorySingle = (RadioButton) view.findViewById(R.id.RbInventorySingle);
         RbInventoryLoop = (RadioButton) view.findViewById(R.id.RbInventoryLoop);
-
         tagList = new ArrayList<>();
         tempDatas = new ArrayList<>();
         BtInventory = (Button) view.findViewById(R.id.BtInventory1);
@@ -216,11 +205,9 @@ public class TAGreaderprodu extends KeyDownFragment {
                 new String[]{TAG_EPC, TAG_LEN, TAG_COUNT, TAG_RSSI, TAG_ANT},
                 new int[]{R.id.TvTagUii, R.id.TvTagLen, R.id.TvTagCount, R.id.TvTagRssi, R.id.TvAnt});
         LvTags.setAdapter(adapter);
-
         BtClear.setOnClickListener(new TAGreaderprodu.BtClearClickListener());
         //RgInventory.setOnCheckedChangeListener(new TAGreaderprodu.RgInventoryCheckedListener());
         BtInventory.setOnClickListener(new TAGreaderprodu.BtInventoryClickListener());
-
         //initFilter(view); // 初始化过滤
         clearData();
     }
@@ -250,11 +237,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         mContext.currentFragment = null;
     }
 
-    /**
-     * 添加EPC到列表中
-     *
-     * @param
-     */
+    ///Agregar EPC a la lista
     private void addDataToList(String tidAndEPCUser, String Epc, String Tid, String User, String rssi, String ant) {
         if (StringUtils.isNotEmpty(Epc)) {
             int index = checkIsExist(tidAndEPCUser);
@@ -288,58 +271,20 @@ public class TAGreaderprodu extends KeyDownFragment {
 
     private void setTotalTime() {///En esta parte se mandara a llamar a la funcion que imprimira las variables y que detanga la lectura
         if (loopFlag) {
-            String Tiempo= "";
-            String timer1 = "";
-
             float useTime = (System.currentTimeMillis() - mStartTime) / 1000.0F;
             double dTime = NumberTool.getPointDouble(1, useTime);
             tv_time.setText(dTime + "s");
             //String strTime = etTime.getText().toString();
             //int time = 9999999; //Valor original
-
             //Se recupera el valor almacenado en el dispositivo
             int timer;
             timer = 10;
-
-            //Tiempo =  mContext.TiempoLectura;
-            /*
-            if (Tiempo.equals(" 15s       ")){
-                timer = 15;
-            } else if (Tiempo.equals(" 30s       ")) {
-                timer = 30;
-            } else if (Tiempo.equals(" 40s       ")) {
-                timer = 40;
-            } else if (Tiempo.equals(" 50s       ")) {
-                timer = 50;
-            } else if (Tiempo.equals(" 1min       ")) {
-                timer = 60;
-            } else if (Tiempo.equals(" 1:10min       ")) {
-                timer = 70;
-            } else if (Tiempo.equals(" 1:20min       ")) {
-                timer = 80;
-            } else if (Tiempo.equals(" 1:30min       ")) {
-                timer = 90;
-            } else if (Tiempo.equals(" 1:40min       ")) {
-                timer = 100;
-            } else{
-                mensajes("Valor predeterminado 10s");
-                timer = 10;
-            }
-*/
-
-            /*
-            if (!TextUtils.isEmpty(strTime)) {
-                time = Integer.parseInt(strTime);
-
-            }
-            */
-
             if (dTime >= timer) {
                 //String valorembarque = TxtEmbarque.getSelectedItem().toString();
                 stopInventory();
                 String contador = tv_count.getText().toString();
                 ProgressBar(CadenaEPCS);
-                if( map == null) {
+                if (map == null) {
                     LimpiarValores();
                     reanudarHilo();
                 }
@@ -367,8 +312,6 @@ public class TAGreaderprodu extends KeyDownFragment {
     }
 
     private void LimpiarValores() {
-
-        String valorEmbarque = "";
         totalNum = 0;
         TxtEmbarque.setText("");
         tv_count.setText("");
@@ -396,12 +339,12 @@ public class TAGreaderprodu extends KeyDownFragment {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             if (checkedId == RbInventorySingle.getId()) {
-                // 单步识别
+                // Identificación de un solo paso
                 inventoryFlag = 0;
                 cbFilter.setChecked(false);
                 cbFilter.setVisibility(View.INVISIBLE);
             } else if (checkedId == RbInventoryLoop.getId()) {
-                // 单标签循环识别
+                // Identificación de bucle de etiqueta única
                 inventoryFlag = 1;
                 cbFilter.setVisibility(View.VISIBLE);
             }
@@ -424,20 +367,6 @@ public class TAGreaderprodu extends KeyDownFragment {
     private void mensajesocket() {
         Enviar enviar = new Enviar();
         enviar.execute("Estral ejecutar programa");
-    }
-
-    private void suscribirATema() {
-        FirebaseMessaging.getInstance().subscribeToTopic("notificaciones")
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d("FCM", "Suscrito al tema 'notificaciones'");
-                        } else {
-                            Log.e("FCM", "Error al suscribirse al tema 'notificaciones'", task.getException());
-                        }
-                    }
-                });
     }
 
     private void readTag() {
@@ -525,7 +454,6 @@ public class TAGreaderprodu extends KeyDownFragment {
                     }
                 }
             });
-
         }
     }
 
@@ -616,20 +544,18 @@ public class TAGreaderprodu extends KeyDownFragment {
 
     @Override
     public void myOnKeyDwon() {
-
         readTag();
-
     }
 
     public void ProgressBar(final String EPCTag) {
 
         String res = "";
-        if(EPCTag.isEmpty()){
-            mensajes("No se detecto ningun TAG \n" +
+        if (EPCTag.isEmpty()) {
+            mostrarToast("No se detecto ningun TAG \n" +
                     "Realizar una comprobacion de TAGS");
             return;
         }
-        String ultimocaracter = EPCTag.substring(0,EPCTag.length() - 1);
+        String ultimocaracter = EPCTag.substring(0, EPCTag.length() - 1);
         String Tags = ultimocaracter;
         Thread nt = new Thread(new Runnable() {
 
@@ -678,7 +604,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                                 String cadena = partes[2];
                                 String[] caracter1 = cadena.split("\\?");
                                 String numpiezas = partes[3];
-                                String[] caracter2 =  numpiezas.split("\\¿");
+                                String[] caracter2 = numpiezas.split("\\¿");
                                 String embarque = partes[4];
                                 String etiqueta = partes[5];
                                 String pedidos = partes[6];
@@ -723,10 +649,8 @@ public class TAGreaderprodu extends KeyDownFragment {
                             }
 
 
-
-
                             //Termina el else
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                             //mensajes("");
                         }
@@ -750,7 +674,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         String cadenaSinCaracter = respuesta.replace(String.valueOf(caracterAEliminar), "");
         String cadenaSinCaracter2 = cadenaSinCaracter.replace(String.valueOf(caracterAEliminar2), "");
 
-        String[] caracter2 =  cadenaSinCaracter2.split("\\-");
+        String[] caracter2 = cadenaSinCaracter2.split("\\-");
 
 
         String pedidos = caracter2[0];
@@ -781,9 +705,9 @@ public class TAGreaderprodu extends KeyDownFragment {
     }
 
     public static String procesartextos(String nombre, int pedido) {
-        String resultado= "";
+        String resultado = "";
 
-        if(pedido == 1 ) {
+        if (pedido == 1) {
             String[] Matriz = nombre.split(",");
 
             for (int i = 0; i < Matriz.length; i++) {
@@ -795,10 +719,10 @@ public class TAGreaderprodu extends KeyDownFragment {
                 String variable2 = String.join("", partes2);
                 resultado += variable2 + ",";
             }
-            String ultimocaracter = resultado.substring(0,resultado.length() - 1);
+            String ultimocaracter = resultado.substring(0, resultado.length() - 1);
             resultado = ultimocaracter;
 
-        } else if(pedido == 2) {
+        } else if (pedido == 2) {
             String variable = nombre;
             String[] partes1 = variable.split(":");
             String variable1 = partes1[1];
@@ -854,7 +778,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                 mContext.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mensajes(finalRes);
+                        mostrarToast(finalRes);
                     }
                 });
             }
@@ -868,7 +792,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         parpadeo.setDuration(500); // Duración de cada fase del parpadeo en milisegundos
         parpadeo.setRepeatMode(Animation.REVERSE);
         parpadeo.setRepeatCount(Animation.INFINITE);
-        if(Activacion == 1) {
+        if (Activacion == 1) {
             ///Activar la etiqueta de embarque completo
             MSAlertaActivo.setVisibility(View.VISIBLE);
             // Asignar la animación al ImageView
@@ -878,7 +802,7 @@ public class TAGreaderprodu extends KeyDownFragment {
             MSAlertaincompletos.setVisibility(View.VISIBLE);
             // Asignar la animación al ImageView
             MSAlertaincompletos.startAnimation(parpadeo);
-        }else{
+        } else {
             MSAlerta.setVisibility(View.VISIBLE);
             // Asignar la animación al ImageView
             MSAlerta.startAnimation(parpadeo);
@@ -886,15 +810,11 @@ public class TAGreaderprodu extends KeyDownFragment {
 
     }
 
-    public void mensajes(final String cadena){
-        Toast.makeText(mContext, cadena, Toast.LENGTH_LONG).show();
-
-    }
-
     public void monitorizarCambiosGPIO() {
         while (hiloActivo) {
             GPIO_estatus();
             // Esperar un tiempo antes de la próxima verificación
+
             try {
                 Thread.sleep(1000); // Puedes ajustar el tiempo según sea necesario
 
@@ -918,7 +838,7 @@ public class TAGreaderprodu extends KeyDownFragment {
             int currentState = list.get(0).getGpiState();
 
             // Comparar con el estado anterior
-            if (currentState != previousState ) {
+            if (currentState != previousState) {
                 // Si hay un cambio, mostrar el mensaje
                 mostrarToast("Cambio detectado en GPIO: " + currentState);
                 String valor = tv_time.getText().toString();
@@ -946,6 +866,7 @@ public class TAGreaderprodu extends KeyDownFragment {
     private void detenerHilo() {
         hiloActivo = false;
     }
+
     // Método para reanudar el hilo
     private void reanudarHilo() {
         hiloActivo = true;
@@ -959,17 +880,82 @@ public class TAGreaderprodu extends KeyDownFragment {
         nuevoHilo.start();
     }
 
-    private void ProgressBar2(String EPCTAG){
-        Map<String, String> propeties = new HashMap<>();
-        propeties.put("EPCTag", EPCTAG);
+    private void ProgressBar2(String EPCTAG) {
 
-        webServiceManager.callWebService("ProcesarTAGS", propeties, new WebServiceManager.WebServiceCallback() {
+        // Crear el mapa de propiedades para enviar
+        Map<String, String> properties = new HashMap<>();
+        properties.put("EPCTag", EPCTAG);
+
+        // Llamar al web service utilizando WebServiceManager
+        webServiceManager.callWebService("ProcesarTAGS", properties, new WebServiceManager.WebServiceCallback() {
             @Override
             public void onWebServiceCallComplete(String result) {
+
+                //Mostrar el resultado como toas
                 Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+
+                //Procesar la respuesta JSON
+                try {
+                    JSONArray jsonArray = new JSONArray(result);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String receivedEPCTag = jsonObject.getString("EPCTag");
+
+                        // Supongamos que tienes un TextView llamado txtEPCTag en tu layout
+                        TextView txtEPCTag = getView().findViewById(R.id.tvID);
+                        txtEPCTag.setText(receivedEPCTag);
+
+                        // Supongamos que tienes una lista llamada epcTagList que se muestra en un RecyclerView
+                        epcTagList.add(receivedEPCTag);
+                        adapter.notifyDataSetChanged();
+
+                        // Realizar alguna acción específica con el EPCTag recibido
+                        procesarEPCTag(receivedEPCTag);
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    throw new RuntimeException(e);
+
+                }
             }
         });
-
     }
 
+    //Declaración de epcTagList fuera de progressbar2
+    private List<String> epcTagList = new ArrayList<>();
+
+    private void procesarEPCTag(String epcTag) {
+        // Aquí agregas la lógica específica para manejar el EPCTag
+        if (epcTag.startsWith("ABC")) {
+            iniciarAnimacionParpadeo(1);
+        } else if (epcTag.startsWith("XYZ")) {
+            iniciarAnimacionParpadeo(2);
+        } else {
+            iniciarAnimacionParpadeo(3);
+        }
+    }
 }
+//       Map<String, String> propeties = new HashMap<>();
+//        propeties.put("EPCTag", EPCTAG);
+//
+//        webServiceManager.callWebService("ProcesarTAGS", propeties, new WebServiceManager.WebServiceCallback() {
+//            @Override
+//            public void onWebServiceCallComplete(String result) {
+//                Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+//                try {
+//                    JSONArray jsonArray = new JSONArray(result);
+//                    for (int i = 0; i < jsonArray.length(); i++) {
+//                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+//                        String EPCTag = jsonObject.getString("EPCTag");
+//
+//                    }
+//
+//                } catch (JSONException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
+//        });
+//    }
+//
+//}
