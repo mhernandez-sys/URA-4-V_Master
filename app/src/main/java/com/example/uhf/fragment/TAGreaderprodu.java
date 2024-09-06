@@ -59,7 +59,7 @@ public class TAGreaderprodu extends KeyDownFragment {
     private int previousState = -1; // Inicializar con un valor que no puede ser un estado válido
     RFIDWithUHFA4 rfidWithUHFA4 = null;
     //    private final Semaphore semaphore = new Semaphore(1);
-    private static String TAG = "UHFReadTagFragment";
+    private static final String TAG = "UHFReadTagFragment";
     private boolean loopFlag = false;
     private int inventoryFlag = 1;
     public ArrayList<HashMap<String, String>> tagList;
@@ -864,14 +864,4 @@ public class TAGreaderprodu extends KeyDownFragment {
         });
     }
 
-    private void procesarEPCTag(String epcTag) {
-        // Aquí agregas la lógica específica para manejar el EPCTag
-        if (epcTag.startsWith("ABC")) {
-            iniciarAnimacionParpadeo(1);
-        } else if (epcTag.startsWith("XYZ")) {
-            iniciarAnimacionParpadeo(2);
-        } else {
-            iniciarAnimacionParpadeo(3);
-        }
-    }
 }
