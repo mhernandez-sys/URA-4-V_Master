@@ -333,7 +333,7 @@ public class TAGreaderprodu extends KeyDownFragment {
             //enviarNotificacion();
             mensajesocket();
             ///ProgressBar("E28011606000020EB7OC5DBB+001804BA0460B527A68B52F4+E28011606000020EB70C4CB3+");
-            ProgressBar2("E28011606000020EB7OC5DBB+001804BA0460B527A68B52F4+E28011606000020EB70C4CB3");
+            ProgressBar2("'1111222233334444924145E2','E280116060000208EBCEA56E', 'E280116060000209924145E4', 'E280116060000209924145E5'");
         }
     }
 
@@ -608,7 +608,9 @@ public class TAGreaderprodu extends KeyDownFragment {
                                     int index = checkIsExist(variable);
                                     map = new HashMap<>();
                                     map.put(TAG_EPC, variable); //Este es el EPC que se imprime en la pantalla
-                                    map.put(TAG_COUNT, variable1);
+                                    map.put(TAG_COUNT, variable1); //Esta es para el conteo de los productoas
+                                    //map.put(TAG_RSSI, rssi); //Estos dos son para el numero de paquete
+                                    //map.put(TAG_ANT, ant);
                                     //El index determina si el epc ha sido leido, si no lo imprime y en caso contrario lo salta
                                     if (index == -1) {
                                         ///En esta funcion se le debe  deagregar los epcs y almacenarlos en una variable publica para posteriormente mandar la al web service
@@ -616,13 +618,10 @@ public class TAGreaderprodu extends KeyDownFragment {
                                         tempDatas.add(variable);
                                         tv_count.setText(String.valueOf(adapter.getCount()));///En esta parte se le agrega el epc que no han sido leidos
                                     }
-
                                 }
                                 tv_totalNum.setText(art_encontrados);
                                 adapter.notifyDataSetChanged();
                             }
-
-
                             //Termina el else
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -758,7 +757,6 @@ public class TAGreaderprodu extends KeyDownFragment {
             }
         });
         nt.start();
-
     }
 
     private void iniciarAnimacionParpadeo(final int Activacion) {
@@ -781,14 +779,12 @@ public class TAGreaderprodu extends KeyDownFragment {
             // Asignar la animación al ImageView
             MSAlerta.startAnimation(parpadeo);
         }
-
     }
 
     public void monitorizarCambiosGPIO() {
         while (hiloActivo) {
             GPIO_estatus();
             // Esperar un tiempo antes de la próxima verificación
-
             try {
                 Thread.sleep(1000); // Puedes ajustar el tiempo según sea necesario
 
@@ -845,37 +841,45 @@ public class TAGreaderprodu extends KeyDownFragment {
     private void reanudarHilo() {
         hiloActivo = true;
         // Crear y comenzar un nuevo hilo para la monitorización
-        Thread nuevoHilo = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                monitorizarCambiosGPIO();
-            }
-        });
+        Thread nuevoHilo = new Thread(this::monitorizarCambiosGPIO);
         nuevoHilo.start();
     }
 
     private void ProgressBar2(String EPCTAG) {
-
         // Crear el mapa de propiedades para enviar
         Map<String, String> properties = new HashMap<>();
-        properties.put("EPCTag", EPCTAG);
+        properties.put("EPCTAG", EPCTAG);
 
         // Llamar al web service utilizando WebServiceManager
-        webServiceManager.callWebService("ProcesarTAGS", properties, new WebServiceManager.WebServiceCallback() {
-            @Override
-            public void onWebServiceCallComplete(String result) {
-                //Procesar la respuesta JSON
-                try {
-                    JSONArray jsonArray = new JSONArray(result);
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String receivedEPCTag = jsonObject.getString("EPCTag");
+        webServiceManager.callWebService("ProcesarGuia", properties, result -> {
+            JSONArray jsonArray = new JSONArray(result);
 
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    throw new RuntimeException(e);
+            //Limpiar las listas antes de agregar los nuevos datos
+            tagList.clear();
+            tempDatas.clear();
+            adapter.notifyDataSetChanged();
 
+            //Recorrer cada objeto del array JSON
+            for (int i = 0; i<jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                //Extraer valores individuales
+                String k_Guia = jsonObject.optString("K_Guia","");
+                String NumPaquete = jsonObject.optString("NumPaquete","");
+                String EPC = jsonObject.optString("EPC", "");
+                String Partida_Estral = jsonObject.optString("Partida_Estral", "");
+                String Descripcion = jsonObject.optString("Descripcion", "");
+                String Cantidad  = jsonObject.optString("Cantidad", "");
+
+                //Comprobar si el objeto actual tiene los valores adicionales
+                if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")){
+                    String CantidadEncontrada = jsonObject.optString("CantidadEncontrada", "0");
+                    String art_esperados = jsonObject.optString("art_esperados", "0");
+                    String Guia = jsonObject.optString("k_Guia", "0");
+
+                    String mensajes = "Guía:" + Guia + " / Encontrados: " + CantidadEncontrada + " / Esperados: " + art_esperados;
+                    //Mensaje que visuliza los resultados
+                    Toast.makeText(getContext(), mensajes, Toast.LENGTH_SHORT).show();
                 }
             }
         });

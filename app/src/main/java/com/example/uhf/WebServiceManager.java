@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONException;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
@@ -27,7 +28,7 @@ public class WebServiceManager {
             @Override
             protected String doInBackground(Void... voids) {
                 String NAMESPACE = "http://Estral.org/";
-                String URL = "http://192.168.1.11/Embarques/EmbarquesWS.asmx";
+                String URL = "http://192.168.1.21/Embarques/EmbarquesWS.asmx";
                 String SOAP_ACTION = NAMESPACE + METHOD_NAME;
                 String res = "";
                 int timeout = 5000; // 5000 milisegundos (5 segundos)
@@ -60,13 +61,17 @@ public class WebServiceManager {
             protected void onPostExecute(String result) {
                 Log.d("WebServiceManager", "WebService Result: " + result);
                 if (callback != null) {
-                    callback.onWebServiceCallComplete(result);
+                    try {
+                        callback.onWebServiceCallComplete(result);
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         }.execute();
     }
 
     public interface WebServiceCallback {
-        void onWebServiceCallComplete(String result);
+        void onWebServiceCallComplete(String result) throws JSONException;
     }
 }
