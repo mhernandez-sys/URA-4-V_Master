@@ -229,7 +229,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                 tagList.add(map);
                 tempDatas.add(tidAndEPCUser);
                 tv_count.setText(String.valueOf(adapter.getCount()));///En esta parte se le agrega el epc que no han sido leidos
-                CadenaEPCS += Epc + "+";
+                CadenaEPCS += "'" + Epc + "',";
 
             } else {
                 int tagCount = Integer.parseInt(tagList.get(index).get(TAG_COUNT), 10) + 1; //En esta parte se le agreaga el contador de tag +1
@@ -257,7 +257,11 @@ public class TAGreaderprodu extends KeyDownFragment {
                 //String valorembarque = TxtEmbarque.getSelectedItem().toString();
                 stopInventory();
                 String contador = tv_count.getText().toString();
-                ProgressBar(CadenaEPCS);
+                // Remover la última coma
+                if (CadenaEPCS.length() > 0) {
+                    CadenaEPCS = CadenaEPCS.substring(0, CadenaEPCS.length() - 1);
+                }
+                ProgressBar2(CadenaEPCS);
                 if (map == null) {
                     LimpiarValores();
                     reanudarHilo();
@@ -397,7 +401,7 @@ public class TAGreaderprodu extends KeyDownFragment {
     }
 
     /**
-     * 停止识别
+     * detener el reconocimiento
      */
     private synchronized void stopInventory() {
         if (loopFlag && !isStop) {
@@ -648,8 +652,6 @@ public class TAGreaderprodu extends KeyDownFragment {
         String cadenaSinCaracter2 = cadenaSinCaracter.replace(String.valueOf(caracterAEliminar2), "");
 
         String[] caracter2 = cadenaSinCaracter2.split("\\-");
-
-
         String pedidos = caracter2[0];
         String bodegas = caracter2[1];
         String partidas = caracter2[2];
@@ -705,58 +707,6 @@ public class TAGreaderprodu extends KeyDownFragment {
             resultado = variable2;
         }
         return resultado;
-
-
-    }
-
-
-    public void Reiniciar(final String Embarque) {
-        final String finalRes = "";
-        String res = "";
-
-        Thread nt = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                NAMESPACE = "http://tag_android.org/";
-                URL = "http://192.168.1.73/TAGSSERver.asmx";
-                METHOD_NAME = "Reiniciar";
-                SOAP_ACTION = NAMESPACE + METHOD_NAME;
-                String res = "";
-
-                try {
-                    //Se crea el objeto SOAP
-                    SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-                    //Se gregan las propiedades que se van a enviar
-                    request.addProperty("Embarque", Embarque);
-
-                    SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-                    envelope.dotNet = true;
-                    envelope.setOutputSoapObject(request);
-
-                    HttpTransportSE transporte = new HttpTransportSE(URL);
-                    transporte.call(SOAP_ACTION, envelope);
-
-                    SoapPrimitive resultado_xml = (SoapPrimitive) envelope.getResponse();
-                    res = resultado_xml.toString();
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    res = "Error: " + e.getMessage();
-                }
-
-                final String finalRes = res;
-
-                mContext.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mostrarToast(finalRes);
-                    }
-                });
-            }
-        });
-        nt.start();
     }
 
     private void iniciarAnimacionParpadeo(final int Activacion) {
@@ -852,57 +802,65 @@ public class TAGreaderprodu extends KeyDownFragment {
 
         // Llamar al web service utilizando WebServiceManager
         webServiceManager.callWebService("ProcesarGuia", properties, result -> {
-           try {
-               JSONArray jsonArray = new JSONArray(result);
+            if (result.equals("[]") || result.contains("Error") || result.contains("Time out") || result.contains("Failed to connect to")) {
+                //Mensaje que visuliza los resultados
+                Toast.makeText(getContext(), "Tags no reconocidos, se reinicia el conteo", Toast.LENGTH_SHORT).show();
+                reanudarHilo();
+                LimpiarValores();
+            }else {
+                String Encontrados = "";
+                String Esperados = "";
+                String Guia = "";
+                try {
+                    JSONArray jsonArray = new JSONArray(result);
 
-               //Limpiar las listas antes de agregar los nuevos datos
-               tagList.clear();
-               tempDatas.clear();
-               adapter.notifyDataSetChanged();
+                    //Limpiar las listas antes de agregar los nuevos datos
+                    tagList.clear();
+                    tempDatas.clear();
+                    adapter.notifyDataSetChanged();
 
-               //Recorrer cada objeto del array JSON
-               for (int i = 0; i < jsonArray.length(); i++) {
-                   JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    //Recorrer cada objeto del array JSON
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                   //Extraer valores individuales
-                   String k_Guia = jsonObject.optString("K_Guia", "");
-                   String NumPaquete = jsonObject.optString("NumPaquete", "");
-                   String EPC = jsonObject.optString("EPC", "");
-                   String Partida_Estral = jsonObject.optString("Partida_Estral", "");
-                   String Descripcion = jsonObject.optString("Descripcion", "");
-                   String Cantidad = jsonObject.optString("Cantidad", "");
+                        //Extraer valores individuales
+                        String k_Guia = jsonObject.optString("K_Guia", "");
+                        String NumPaquete = jsonObject.optString("NumPaquete", "");
+                        String EPC = jsonObject.optString("EPC", "");
+                        String Partida_Estral = jsonObject.optString("Partida_Estral", "");
+                        String Descripcion = jsonObject.optString("Descripcion", "");
+                        String Cantidad = jsonObject.optString("Cantidad", "");
 
-                   //Comprobar si el objeto actual tiene los valores adicionales
-                   if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
-                       String CantidadEncontrada = jsonObject.optString("CantidadEncontrada", "0");
-                       String art_esperados = jsonObject.optString("art_esperados", "0");
-                       String Guia = jsonObject.optString("k_Guia", "0");
-
-                       String mensajes = "Guía:" + Guia + " / Encontrados: " + CantidadEncontrada + " / Esperados: " + art_esperados;
-                       //Mensaje que visuliza los resultados
-                       Toast.makeText(getContext(), mensajes, Toast.LENGTH_SHORT).show();
-                   }
-
-                   // Crear un mapa con los valores procesados y agregarlo a las listas
-                   map = new HashMap<>();
-                   map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
-                   map.put(TAG_COUNT, Cantidad);
-                   map.put(TAG_RSSI, k_Guia); //Estos dos son para el numero de paquete
-                   // Añadir los datos a la lista de tags si el EPC es válido
-                   if (!EPC.isEmpty()) {
-                       tagList.add(map);
-                       tempDatas.add(Descripcion);
-                       tv_count.setText(String.valueOf(adapter.getCount()));///En esta parte se le agrega el epc que no han sido leidos
-                   }
-                   // Actualizar el adaptador para reflejar los cambios
-                   adapter.notifyDataSetChanged();
-               }
-               // Actualizar el adaptador para reflejar los cambios
-               adapter.notifyDataSetChanged();
-           }catch (JSONException e){
-               e.printStackTrace();
-               throw new RuntimeException(e);
-           }
+                        //Comprobar si el objeto actual tiene los valores adicionales
+                        if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
+                            Encontrados = jsonObject.optString("CantidadEncontrada", "0");
+                            Esperados = jsonObject.optString("art_esperados", "0");
+                            Guia = jsonObject.optString("k_Guia", "0");
+                            String mensajes = "Guía:" + Guia + " / Encontrados: " + Encontrados + " / Esperados: " + Esperados;
+                            Et_ArtEsp.setText(Esperados);
+                            TXTART_ENC.setText(Encontrados);
+                            TxtEmbarque.setText(Guia);
+                        }
+                        // Crear un mapa con los valores procesados y agregarlo a las listas
+                        map = new HashMap<>();
+                        map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
+                        map.put(TAG_COUNT, Cantidad);
+                        map.put(TAG_RSSI, k_Guia); //Estos dos son para el numero de paquete
+                        // Añadir los datos a la lista de tags si el EPC es válido
+                        if (!EPC.isEmpty()) {
+                            tagList.add(map);
+                            tempDatas.add(Descripcion);
+                            tv_count.setText(String.valueOf(adapter.getCount()));///En esta parte se le agrega el epc que no han sido leidos
+                        }
+                    }
+                    // Actualizar el adaptador para reflejar los cambios
+                    adapter.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    LimpiarValores();
+                    reanudarHilo();
+                }
+            }
         });
     }
 
