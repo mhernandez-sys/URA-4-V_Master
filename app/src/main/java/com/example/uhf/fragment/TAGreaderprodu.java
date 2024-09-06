@@ -852,36 +852,57 @@ public class TAGreaderprodu extends KeyDownFragment {
 
         // Llamar al web service utilizando WebServiceManager
         webServiceManager.callWebService("ProcesarGuia", properties, result -> {
-            JSONArray jsonArray = new JSONArray(result);
+           try {
+               JSONArray jsonArray = new JSONArray(result);
 
-            //Limpiar las listas antes de agregar los nuevos datos
-            tagList.clear();
-            tempDatas.clear();
-            adapter.notifyDataSetChanged();
+               //Limpiar las listas antes de agregar los nuevos datos
+               tagList.clear();
+               tempDatas.clear();
+               adapter.notifyDataSetChanged();
 
-            //Recorrer cada objeto del array JSON
-            for (int i = 0; i<jsonArray.length(); i++){
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
+               //Recorrer cada objeto del array JSON
+               for (int i = 0; i < jsonArray.length(); i++) {
+                   JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                //Extraer valores individuales
-                String k_Guia = jsonObject.optString("K_Guia","");
-                String NumPaquete = jsonObject.optString("NumPaquete","");
-                String EPC = jsonObject.optString("EPC", "");
-                String Partida_Estral = jsonObject.optString("Partida_Estral", "");
-                String Descripcion = jsonObject.optString("Descripcion", "");
-                String Cantidad  = jsonObject.optString("Cantidad", "");
+                   //Extraer valores individuales
+                   String k_Guia = jsonObject.optString("K_Guia", "");
+                   String NumPaquete = jsonObject.optString("NumPaquete", "");
+                   String EPC = jsonObject.optString("EPC", "");
+                   String Partida_Estral = jsonObject.optString("Partida_Estral", "");
+                   String Descripcion = jsonObject.optString("Descripcion", "");
+                   String Cantidad = jsonObject.optString("Cantidad", "");
 
-                //Comprobar si el objeto actual tiene los valores adicionales
-                if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")){
-                    String CantidadEncontrada = jsonObject.optString("CantidadEncontrada", "0");
-                    String art_esperados = jsonObject.optString("art_esperados", "0");
-                    String Guia = jsonObject.optString("k_Guia", "0");
+                   //Comprobar si el objeto actual tiene los valores adicionales
+                   if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
+                       String CantidadEncontrada = jsonObject.optString("CantidadEncontrada", "0");
+                       String art_esperados = jsonObject.optString("art_esperados", "0");
+                       String Guia = jsonObject.optString("k_Guia", "0");
 
-                    String mensajes = "Guía:" + Guia + " / Encontrados: " + CantidadEncontrada + " / Esperados: " + art_esperados;
-                    //Mensaje que visuliza los resultados
-                    Toast.makeText(getContext(), mensajes, Toast.LENGTH_SHORT).show();
-                }
-            }
+                       String mensajes = "Guía:" + Guia + " / Encontrados: " + CantidadEncontrada + " / Esperados: " + art_esperados;
+                       //Mensaje que visuliza los resultados
+                       Toast.makeText(getContext(), mensajes, Toast.LENGTH_SHORT).show();
+                   }
+
+                   // Crear un mapa con los valores procesados y agregarlo a las listas
+                   map = new HashMap<>();
+                   map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
+                   map.put(TAG_COUNT, Cantidad);
+                   map.put(TAG_RSSI, k_Guia); //Estos dos son para el numero de paquete
+                   // Añadir los datos a la lista de tags si el EPC es válido
+                   if (!EPC.isEmpty()) {
+                       tagList.add(map);
+                       tempDatas.add(Descripcion);
+                       tv_count.setText(String.valueOf(adapter.getCount()));///En esta parte se le agrega el epc que no han sido leidos
+                   }
+                   // Actualizar el adaptador para reflejar los cambios
+                   adapter.notifyDataSetChanged();
+               }
+               // Actualizar el adaptador para reflejar los cambios
+               adapter.notifyDataSetChanged();
+           }catch (JSONException e){
+               e.printStackTrace();
+               throw new RuntimeException(e);
+           }
         });
     }
 
