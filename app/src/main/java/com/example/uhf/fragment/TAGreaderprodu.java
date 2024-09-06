@@ -1,5 +1,6 @@
 package com.example.uhf.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -796,12 +797,23 @@ public class TAGreaderprodu extends KeyDownFragment {
     }
 
     private void ProgressBar2(String EPCTAG) {
+
+        // Crea y muestra el ProgresDialog
+        ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Procesando...");
+        progressDialog.setCancelable(false); // Evita que el usuario pueda cancelar el diálogo
+        progressDialog.show();
+
         // Crear el mapa de propiedades para enviar
         Map<String, String> properties = new HashMap<>();
         properties.put("EPCTAG", EPCTAG);
 
         // Llamar al web service utilizando WebServiceManager
         webServiceManager.callWebService("ProcesarGuia", properties, result -> {
+
+          // Ocultar el ProgresDialog
+            progressDialog.dismiss();
+
             if (result.equals("[]") || result.contains("Error") || result.contains("Time out") || result.contains("Failed to connect to")) {
                 //Mensaje que visuliza los resultados
                 Toast.makeText(getContext(), "Tags no reconocidos, se reinicia el conteo", Toast.LENGTH_SHORT).show();
