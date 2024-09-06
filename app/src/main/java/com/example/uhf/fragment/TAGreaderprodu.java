@@ -763,9 +763,9 @@ public class TAGreaderprodu extends KeyDownFragment {
 
     private void iniciarAnimacionParpadeo(final int Activacion) {
         AlphaAnimation parpadeo = new AlphaAnimation(1f, 0f); // De totalmente visible a totalmente invisible
-        parpadeo.setDuration(500); // Duración de cada fase del parpadeo en milisegundos
+        parpadeo.setDuration(1000); // Duración de cada fase del parpadeo en milisegundos
         parpadeo.setRepeatMode(Animation.REVERSE);
-        parpadeo.setRepeatCount(Animation.INFINITE);
+        parpadeo.setRepeatCount(3);
         if (Activacion == 1) {
             ///Activar la etiqueta de embarque completo
             MSAlertaActivo.setVisibility(View.VISIBLE);
