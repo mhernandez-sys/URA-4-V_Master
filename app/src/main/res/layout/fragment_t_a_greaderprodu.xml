@@ -130,7 +130,7 @@
                     android:textColor="@color/black"
                     android:gravity="right|center_vertical"
                     android:layout_marginRight="8dp"
-                    />
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/Et_Pedidos"
@@ -140,7 +140,8 @@
                     android:textColor="@color/blue"
                     android:textSize="20sp"
                     android:layout_marginRight="8dp"
-                    android:text="" />
+                    android:text=""
+                    android:visibility="gone"/>
 
                 <TextView
                     android:layout_width="wrap_content"
