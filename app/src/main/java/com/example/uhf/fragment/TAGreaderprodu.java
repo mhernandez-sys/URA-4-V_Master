@@ -49,6 +49,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicReference;
+
 import com.rscja.deviceapi.exception.ConfigurationException;
 
 public class TAGreaderprodu extends KeyDownFragment {
@@ -847,8 +849,14 @@ public class TAGreaderprodu extends KeyDownFragment {
 
     private void ProgressBar2(String EPCTAG) {
         // Crear el mapa de propiedades para enviar
+
+        AtomicReference<String> Encontrados = new AtomicReference<>("");
+        String Esperados = "";
+        String Guia = "";
+
         Map<String, String> properties = new HashMap<>();
         properties.put("EPCTAG", EPCTAG);
+
 
         // Llamar al web service utilizando WebServiceManager
         webServiceManager.callWebService("ProcesarGuia", properties, result -> {
@@ -874,13 +882,14 @@ public class TAGreaderprodu extends KeyDownFragment {
 
                    //Comprobar si el objeto actual tiene los valores adicionales
                    if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
-                       String CantidadEncontrada = jsonObject.optString("CantidadEncontrada", "0");
-                       String art_esperados = jsonObject.optString("art_esperados", "0");
-                       String Guia = jsonObject.optString("k_Guia", "0");
+                       Encontrados.set(jsonObject.optString("CantidadEncontrada", "0"));
+                       Esperados = set(jsonObject.optString("art_esperados", "0");
+                       Guia = jsonObject.optString("k_Guia", "0");
 
-                       String mensajes = "Guía:" + Guia + " / Encontrados: " + CantidadEncontrada + " / Esperados: " + art_esperados;
+                       String mensajes = "Guía:" + Guia + " / Encontrados: " + Encontrados + " / Esperados: " + Esperados;
                        //Mensaje que visuliza los resultados
                        Toast.makeText(getContext(), mensajes, Toast.LENGTH_SHORT).show();
+
                    }
 
                    // Crear un mapa con los valores procesados y agregarlo a las listas
@@ -893,6 +902,8 @@ public class TAGreaderprodu extends KeyDownFragment {
                        tagList.add(map);
                        tempDatas.add(Descripcion);
                        tv_count.setText(String.valueOf(adapter.getCount()));///En esta parte se le agrega el epc que no han sido leidos
+
+
                    }
                    // Actualizar el adaptador para reflejar los cambios
                    adapter.notifyDataSetChanged();

@@ -28,12 +28,12 @@
         "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\drawable-xhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\drawable_rectangle_bg.xml.flat",
-        "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\drawable\\rectangle_bg.xml"
-    },
-    {
         "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\drawable_va_usuario.xml.flat",
         "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\drawable\\va_usuario.xml"
+    },
+    {
+        "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\drawable_rectangle_bg.xml.flat",
+        "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\drawable\\rectangle_bg.xml"
     },
     {
         "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\mipmap-mdpi_estral_round.webp.flat",
@@ -44,12 +44,12 @@
         "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\mipmap-mdpi\\estral_foreground.webp"
     },
     {
-        "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\drawable_card_normal.xml.flat",
-        "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\drawable\\card_normal.xml"
-    },
-    {
         "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\drawable_notificacion.xml.flat",
         "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\drawable\\notificacion.xml"
+    },
+    {
+        "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\drawable_card_normal.xml.flat",
+        "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\drawable\\card_normal.xml"
     },
     {
         "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\layout_fragment_t_a_greaderprodu.xml.flat",
@@ -68,6 +68,10 @@
         "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\mipmap-hdpi\\ic_launcher_foreground.webp"
     },
     {
+        "merged": "com.example.uhf.app-debug-34:/layout_listtag_items.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/listtag_items.xml"
+    },
+    {
         "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\drawable_estral2.png.flat",
         "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\drawable\\estral2.png"
     },
@@ -80,12 +84,12 @@
         "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\drawable_password.xml.flat",
-        "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\drawable\\password.xml"
-    },
-    {
         "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\anim_slide_left_in.xml.flat",
         "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\anim\\slide_left_in.xml"
+    },
+    {
+        "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\drawable_password.xml.flat",
+        "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\drawable\\password.xml"
     },
     {
         "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\drawable_item_list_goods_show_list_bg.9.png.flat",
@@ -286,10 +290,6 @@
     {
         "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\mipmap-xxxhdpi_estral_foreground.webp.flat",
         "source": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-main-36:\\mipmap-xxxhdpi\\estral_foreground.webp"
-    },
-    {
-        "merged": "com.example.uhf.app-debug-34:/layout_fragment_t_a_greaderprodu.xml.flat",
-        "source": "com.example.uhf.app-main-36:/layout/fragment_t_a_greaderprodu.xml"
     },
     {
         "merged": "C:\\Users\\emanu\\.gradle\\daemon\\8.7\\com.example.uhf.app-debug-34:\\raw_serror.ogg.flat",
