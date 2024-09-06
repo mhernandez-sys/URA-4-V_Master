@@ -28,7 +28,8 @@
         android:layout_weight="1"
         android:textStyle="bold"
         android:paddingTop="3dp"
-        android:paddingBottom="2dp" />
+        android:paddingBottom="2dp"
+        android:textAlignment="center"/>
     
     <TextView
         android:id="@+id/TvTagRssi"
@@ -37,7 +38,8 @@
         android:layout_weight="1"
         android:paddingTop="3dp"
         android:textStyle="bold"
-        android:paddingBottom="2dp" />
+        android:paddingBottom="2dp"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/TvAnt"
@@ -47,6 +49,7 @@
         android:paddingTop="3dp"
         android:textStyle="bold"
         android:paddingBottom="2dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:visibility="gone"/>
 
 </LinearLayout>

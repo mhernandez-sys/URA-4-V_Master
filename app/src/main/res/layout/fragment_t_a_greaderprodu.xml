@@ -47,7 +47,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Embarque :"
+                    android:text="Guía :"
                     android:textSize="18sp"
                     android:textColor="@color/black"
                     android:layout_marginRight="6dp"
@@ -68,7 +68,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bodega:"
+                    android:text="Encontrados:"
                     android:textSize="18sp"
                     android:textColor="@color/black"
                     android:layout_marginLeft="8dp"
@@ -90,7 +90,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Art.Embarque:"
+                    android:text="Esperados:"
                     android:textSize="18sp"
                     android:textColor="@color/black"
                     android:gravity="right|center_vertical"
@@ -125,13 +125,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Pedidos:"
+                    android:text="Num Paquetes"
                     android:textSize="18sp"
                     android:textColor="@color/black"
                     android:gravity="right|center_vertical"
                     android:layout_marginRight="8dp"
-                    android:layout_gravity="right"
-                    android:layout_weight="1"/>
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/Et_Pedidos"
@@ -141,7 +140,8 @@
                     android:textColor="@color/blue"
                     android:textSize="20sp"
                     android:layout_marginRight="8dp"
-                    android:text="" />
+                    android:text=""
+                    android:visibility="gone"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -152,7 +152,8 @@
                     android:textColor="@color/black"
                     android:gravity="right|center_vertical"
                     android:layout_gravity="right"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/Et_Partidas"
@@ -161,7 +162,8 @@
                     android:layout_weight="2"
                     android:textColor="@color/blue"
                     android:textSize="20sp"
-                    android:text="" />
+                    android:text=""
+                    android:visibility="gone"/>
 
 
                 <TextView

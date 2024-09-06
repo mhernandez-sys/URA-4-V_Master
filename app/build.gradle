@@ -65,4 +65,5 @@ dependencies {
     implementation 'androidx.core:core:1.13.1'
     implementation("com.google.code.gson:gson:2.8.9")
     implementation fileTree(dir: 'C:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation fileTree(dir: 'C:\\Users\\emanu\\GIT URA4\\URA-4-V_Master\\app\\libs', include: ['*.aar', '*.jar'], exclude: [])
 }

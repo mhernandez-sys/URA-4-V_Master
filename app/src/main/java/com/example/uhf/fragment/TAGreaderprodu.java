@@ -713,7 +713,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         AlphaAnimation parpadeo = new AlphaAnimation(1f, 0f); // De totalmente visible a totalmente invisible
         parpadeo.setDuration(500); // Duración de cada fase del parpadeo en milisegundos
         parpadeo.setRepeatMode(Animation.REVERSE);
-        parpadeo.setRepeatCount(Animation.INFINITE);
+        parpadeo.setRepeatCount(5);
         if (Activacion == 1) {
             ///Activar la etiqueta de embarque completo
             MSAlertaActivo.setVisibility(View.VISIBLE);
@@ -811,6 +811,8 @@ public class TAGreaderprodu extends KeyDownFragment {
                 String Encontrados = "";
                 String Esperados = "";
                 String Guia = "";
+                String BanderaDes ="";
+                StringBuilder Num_Paquete= new StringBuilder();
                 try {
                     JSONArray jsonArray = new JSONArray(result);
 
@@ -825,11 +827,17 @@ public class TAGreaderprodu extends KeyDownFragment {
 
                         //Extraer valores individuales
                         String k_Guia = jsonObject.optString("K_Guia", "");
-                        String NumPaquete = jsonObject.optString("NumPaquete", "");
+                        String NPaquete = jsonObject.optString("NumPaquete", "");
                         String EPC = jsonObject.optString("EPC", "");
                         String Partida_Estral = jsonObject.optString("Partida_Estral", "");
                         String Descripcion = jsonObject.optString("Descripcion", "");
                         String Cantidad = jsonObject.optString("Cantidad", "");
+                        Num_Paquete.append(NPaquete).append(",");
+
+
+                        if (Descripcion.contains("Articulo no reconocido"))  {
+                         BanderaDes = "1";
+                        }
 
                         //Comprobar si el objeto actual tiene los valores adicionales
                         if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
@@ -837,9 +845,9 @@ public class TAGreaderprodu extends KeyDownFragment {
                             Esperados = jsonObject.optString("art_esperados", "0");
                             Guia = jsonObject.optString("k_Guia", "0");
                             String mensajes = "Guía:" + Guia + " / Encontrados: " + Encontrados + " / Esperados: " + Esperados;
-                            Et_ArtEsp.setText(Esperados);
-                            TXTART_ENC.setText(Encontrados);
+                            Et_ArtEsp.setText(Encontrados);
                             TxtEmbarque.setText(Guia);
+                            Et_Bodegas.setText(Esperados);
                         }
                         // Crear un mapa con los valores procesados y agregarlo a las listas
                         map = new HashMap<>();
@@ -855,6 +863,19 @@ public class TAGreaderprodu extends KeyDownFragment {
                     }
                     // Actualizar el adaptador para reflejar los cambios
                     adapter.notifyDataSetChanged();
+                    Et_Pedidos.setText(Num_Paquete);
+
+
+                    int dato1 = Integer.parseInt(Encontrados);
+                    int dato2 = Integer.parseInt(Esperados);
+                    if (dato1 == dato2 && !BanderaDes.equals("1")) {
+                        iniciarAnimacionParpadeo(1);
+                    } else if (dato1 < dato2) {
+                        iniciarAnimacionParpadeo(2);
+                    } else if (BanderaDes.equals("1")) {
+                        iniciarAnimacionParpadeo(3);
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     LimpiarValores();
