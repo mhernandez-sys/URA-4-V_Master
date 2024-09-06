@@ -35,411 +35,191 @@
 19    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 19-->[DeviceAPI_ver20230228_release.aar] C:\Users\vamaf\.gradle\caches\transforms-4\a63e74ac170604992beb58bc612d1ddf\transformed\jetified-DeviceAPI_ver20230228_release\AndroidManifest.xml:14:5-76
 19-->[DeviceAPI_ver20230228_release.aar] C:\Users\vamaf\.gradle\caches\transforms-4\a63e74ac170604992beb58bc612d1ddf\transformed\jetified-DeviceAPI_ver20230228_release\AndroidManifest.xml:14:22-73
-20    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-20-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:23:5-77
-20-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:23:22-74
-21    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
-21-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:24:5-68
-21-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:24:22-65
-22    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-22-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:26:5-82
-22-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:26:22-79
-23    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
-23-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:26:5-110
-23-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:26:22-107
-24    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
-24-->[com.google.android.gms:play-services-measurement-impl:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\ea458c1bac996c5e64966c75a99a6b2d\transformed\jetified-play-services-measurement-impl-21.5.1\AndroidManifest.xml:27:5-79
-24-->[com.google.android.gms:play-services-measurement-impl:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\ea458c1bac996c5e64966c75a99a6b2d\transformed\jetified-play-services-measurement-impl-21.5.1\AndroidManifest.xml:27:22-76
-25    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION" />
-25-->[com.google.android.gms:play-services-measurement-api:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\92bcfb2445f9fdc9ec94ba6ac539b102\transformed\jetified-play-services-measurement-api-21.5.1\AndroidManifest.xml:26:5-88
-25-->[com.google.android.gms:play-services-measurement-api:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\92bcfb2445f9fdc9ec94ba6ac539b102\transformed\jetified-play-services-measurement-api-21.5.1\AndroidManifest.xml:26:22-85
-26    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_AD_ID" />
-26-->[com.google.android.gms:play-services-measurement-api:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\92bcfb2445f9fdc9ec94ba6ac539b102\transformed\jetified-play-services-measurement-api-21.5.1\AndroidManifest.xml:27:5-82
-26-->[com.google.android.gms:play-services-measurement-api:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\92bcfb2445f9fdc9ec94ba6ac539b102\transformed\jetified-play-services-measurement-api-21.5.1\AndroidManifest.xml:27:22-79
-27
-28    <permission
-28-->[androidx.core:core:1.12.0] C:\Users\vamaf\.gradle\caches\transforms-4\d8f92cc6c6f1a96f74862901cbc68fb5\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
-29        android:name="com.example.uhf.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-29-->[androidx.core:core:1.12.0] C:\Users\vamaf\.gradle\caches\transforms-4\d8f92cc6c6f1a96f74862901cbc68fb5\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
-30        android:protectionLevel="signature" />
-30-->[androidx.core:core:1.12.0] C:\Users\vamaf\.gradle\caches\transforms-4\d8f92cc6c6f1a96f74862901cbc68fb5\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
-31
-32    <uses-permission android:name="com.example.uhf.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-32-->[androidx.core:core:1.12.0] C:\Users\vamaf\.gradle\caches\transforms-4\d8f92cc6c6f1a96f74862901cbc68fb5\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
-32-->[androidx.core:core:1.12.0] C:\Users\vamaf\.gradle\caches\transforms-4\d8f92cc6c6f1a96f74862901cbc68fb5\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
-33
-34    <application
-34-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:13:5-74:19
-35        android:allowBackup="true"
-35-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:14:9-35
-36        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-36-->[androidx.core:core:1.12.0] C:\Users\vamaf\.gradle\caches\transforms-4\d8f92cc6c6f1a96f74862901cbc68fb5\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
-37        android:debuggable="true"
-38        android:extractNativeLibs="true"
-39        android:icon="@drawable/ic_launcher"
-39-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:15:9-45
-40        android:label="@string/app_name"
-40-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:16:9-41
-41        android:theme="@style/CustomTheme"
-41-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:17:9-43
-42        android:usesCleartextTraffic="true" >
-42-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:18:9-44
-43        <activity
-43-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:21:9-28:16
-44            android:name="com.example.uhf.activity.LoginActivity"
-44-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:22:13-51
-45            android:configChanges="orientation|screenSize"
-45-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:24:13-59
-46            android:exported="true"
-46-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:23:13-36
-47            android:label="@string/app_name"
-47-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:25:13-45
-48            android:screenOrientation="landscape" >
-48-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:26:13-50
-49        </activity>
-50        <activity
-50-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:30:9-43:20
-51            android:name="com.example.uhf.activity.UHFMainActivity"
-51-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:30:19-59
-52            android:allowBackup="true"
-52-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:31:13-39
-53            android:exported="true"
-53-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:34:13-36
-54            android:icon="@drawable/ic_launcher"
-54-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:32:13-49
-55            android:label="@string/app_name"
-55-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:33:13-45
-56            android:screenOrientation="landscape"
-56-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:37:13-50
-57            android:theme="@style/CustomTheme"
-57-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:35:13-47
-58            android:usesCleartextTraffic="true" >
-58-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:36:13-48
-59            <intent-filter>
-59-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:38:13-42:29
-60                <action android:name="android.intent.action.MAIN" />
-60-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:39:17-69
-60-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:39:25-66
-61
-62                <category android:name="android.intent.category.LAUNCHER" />
-62-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:41:17-77
-62-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:41:27-74
-63            </intent-filter>
-64        </activity>
-65
-66        <!-- <receiver android:name="com.example.uhf.receiver.BootBroadcastReceiver"> -->
-67        <!-- <intent-filter android:priority="1000"> -->
-68        <!-- <action android:name="android.intent.action.BOOT_COMPLETED" /> -->
-69        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-70<!--  </intent-filter> -->
-71        <!-- </receiver> -->
-72        <activity android:name="com.example.uhf.filebrowser.FileManagerActivity" />
-72-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:52:9-69
-72-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:52:19-66
-73
-74        <service
-74-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:54:9-60:19
-75            android:name="com.example.uhf.activity.token"
-75-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:55:13-43
-76            android:exported="false" >
-76-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:56:13-37
-77            <intent-filter> <!-- El intente filter agrega una accion especifica -->
-77-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:57:13-59:29
-78                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-78-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:58:17-78
-78-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:58:25-75
-79            </intent-filter>
-80        </service>
-81
-82        <receiver
-82-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:62:9-70:20
-83            android:name="com.example.uhf.activity.BootReceiver"
-83-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:63:13-50
-84            android:enabled="true"
-84-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:64:13-35
-85            android:exported="false" >
-85-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:65:13-37
-86            <intent-filter>
-86-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:66:13-69:29
-87                <action android:name="android.intent.action.BOOT_COMPLETED" />
-87-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:67:17-78
-87-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:67:25-76
+20
+21    <permission
+21-->[androidx.core:core:1.13.1] C:\Users\vamaf\.gradle\caches\transforms-4\31f79945dc5728530cb47319111dd858\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+22        android:name="com.example.uhf.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+22-->[androidx.core:core:1.13.1] C:\Users\vamaf\.gradle\caches\transforms-4\31f79945dc5728530cb47319111dd858\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+23        android:protectionLevel="signature" />
+23-->[androidx.core:core:1.13.1] C:\Users\vamaf\.gradle\caches\transforms-4\31f79945dc5728530cb47319111dd858\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+24
+25    <uses-permission android:name="com.example.uhf.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+25-->[androidx.core:core:1.13.1] C:\Users\vamaf\.gradle\caches\transforms-4\31f79945dc5728530cb47319111dd858\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+25-->[androidx.core:core:1.13.1] C:\Users\vamaf\.gradle\caches\transforms-4\31f79945dc5728530cb47319111dd858\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+26
+27    <application
+27-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:13:5-74:19
+28        android:allowBackup="true"
+28-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:14:9-35
+29        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+29-->[androidx.core:core:1.13.1] C:\Users\vamaf\.gradle\caches\transforms-4\31f79945dc5728530cb47319111dd858\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
+30        android:debuggable="true"
+31        android:extractNativeLibs="true"
+32        android:icon="@drawable/ic_launcher"
+32-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:15:9-45
+33        android:label="@string/app_name"
+33-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:16:9-41
+34        android:testOnly="true"
+35        android:theme="@style/CustomTheme"
+35-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:17:9-43
+36        android:usesCleartextTraffic="true" >
+36-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:18:9-44
+37        <activity
+37-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:21:9-28:16
+38            android:name="com.example.uhf.activity.LoginActivity"
+38-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:22:13-51
+39            android:configChanges="orientation|screenSize"
+39-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:24:13-59
+40            android:exported="true"
+40-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:23:13-36
+41            android:label="@string/app_name"
+41-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:25:13-45
+42            android:screenOrientation="landscape" >
+42-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:26:13-50
+43        </activity>
+44        <activity
+44-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:30:9-43:20
+45            android:name="com.example.uhf.activity.UHFMainActivity"
+45-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:30:19-59
+46            android:allowBackup="true"
+46-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:31:13-39
+47            android:exported="true"
+47-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:34:13-36
+48            android:icon="@drawable/ic_launcher"
+48-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:32:13-49
+49            android:label="@string/app_name"
+49-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:33:13-45
+50            android:screenOrientation="landscape"
+50-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:37:13-50
+51            android:theme="@style/CustomTheme"
+51-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:35:13-47
+52            android:usesCleartextTraffic="true" >
+52-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:36:13-48
+53            <intent-filter>
+53-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:38:13-42:29
+54                <action android:name="android.intent.action.MAIN" />
+54-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:39:17-69
+54-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:39:25-66
+55
+56                <category android:name="android.intent.category.LAUNCHER" />
+56-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:41:17-77
+56-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:41:27-74
+57            </intent-filter>
+58        </activity>
+59
+60        <!-- <receiver android:name="com.example.uhf.receiver.BootBroadcastReceiver"> -->
+61        <!-- <intent-filter android:priority="1000"> -->
+62        <!-- <action android:name="android.intent.action.BOOT_COMPLETED" /> -->
+63        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+64<!--  </intent-filter> -->
+65        <!-- </receiver> -->
+66        <activity android:name="com.example.uhf.filebrowser.FileManagerActivity" />
+66-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:52:9-69
+66-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:52:19-66
+67
+68        <service
+68-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:54:9-60:19
+69            android:name="com.example.uhf.activity.token"
+69-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:55:13-43
+70            android:exported="false" >
+70-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:56:13-37
+71            <intent-filter> <!-- El intente filter agrega una accion especifica -->
+71-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:57:13-59:29
+72                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+72-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:58:17-78
+72-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:58:25-75
+73            </intent-filter>
+74        </service>
+75
+76        <receiver
+76-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:62:9-70:20
+77            android:name="com.example.uhf.activity.BootReceiver"
+77-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:63:13-50
+78            android:enabled="true"
+78-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:64:13-35
+79            android:exported="false" >
+79-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:65:13-37
+80            <intent-filter>
+80-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:66:13-69:29
+81                <action android:name="android.intent.action.BOOT_COMPLETED" />
+81-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:67:17-78
+81-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:67:25-76
+82
+83                <category android:name="android.intent.category.DEFAULT" />
+83-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:68:17-75
+83-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:68:27-73
+84            </intent-filter>
+85        </receiver>
+86
+87        <service android:name="com.example.uhf.activity.MyServerFrame" />
+87-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:72:9-58
+87-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:72:18-56
 88
-89                <category android:name="android.intent.category.DEFAULT" />
-89-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:68:17-75
-89-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:68:27-73
-90            </intent-filter>
-91        </receiver>
-92
-93        <service android:name="com.example.uhf.activity.MyServerFrame" />
-93-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:72:9-58
-93-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:72:18-56
-94
-95        <provider
-95-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vamaf\.gradle\caches\transforms-4\f21447cbf61a2f15cf24b40b1e1c81ec\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-96            android:name="androidx.startup.InitializationProvider"
-96-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vamaf\.gradle\caches\transforms-4\f21447cbf61a2f15cf24b40b1e1c81ec\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
-97            android:authorities="com.example.uhf.androidx-startup"
-97-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vamaf\.gradle\caches\transforms-4\f21447cbf61a2f15cf24b40b1e1c81ec\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
-98            android:exported="false" >
-98-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vamaf\.gradle\caches\transforms-4\f21447cbf61a2f15cf24b40b1e1c81ec\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+89        <provider
+89-->[androidx.emoji2:emoji2:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\da86583de97947863bae2c3b7936c0e6\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+90            android:name="androidx.startup.InitializationProvider"
+90-->[androidx.emoji2:emoji2:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\da86583de97947863bae2c3b7936c0e6\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:25:13-67
+91            android:authorities="com.example.uhf.androidx-startup"
+91-->[androidx.emoji2:emoji2:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\da86583de97947863bae2c3b7936c0e6\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:26:13-68
+92            android:exported="false" >
+92-->[androidx.emoji2:emoji2:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\da86583de97947863bae2c3b7936c0e6\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:27:13-37
+93            <meta-data
+93-->[androidx.emoji2:emoji2:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\da86583de97947863bae2c3b7936c0e6\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+94                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+94-->[androidx.emoji2:emoji2:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\da86583de97947863bae2c3b7936c0e6\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:30:17-75
+95                android:value="androidx.startup" />
+95-->[androidx.emoji2:emoji2:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\da86583de97947863bae2c3b7936c0e6\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:31:17-49
+96            <meta-data
+96-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\vamaf\.gradle\caches\transforms-4\c4724f2a6b36c8f62c8685de574a55e9\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+97                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+97-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\vamaf\.gradle\caches\transforms-4\c4724f2a6b36c8f62c8685de574a55e9\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+98                android:value="androidx.startup" />
+98-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\vamaf\.gradle\caches\transforms-4\c4724f2a6b36c8f62c8685de574a55e9\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
 99            <meta-data
-99-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vamaf\.gradle\caches\transforms-4\f21447cbf61a2f15cf24b40b1e1c81ec\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-100                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-100-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vamaf\.gradle\caches\transforms-4\f21447cbf61a2f15cf24b40b1e1c81ec\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+100                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
 101                android:value="androidx.startup" />
-101-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vamaf\.gradle\caches\transforms-4\f21447cbf61a2f15cf24b40b1e1c81ec\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
-102            <meta-data
-102-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\vamaf\.gradle\caches\transforms-4\c47eb07060c6fad04bc7f9995bde1ff1\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
-103                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-103-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\vamaf\.gradle\caches\transforms-4\c47eb07060c6fad04bc7f9995bde1ff1\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
-104                android:value="androidx.startup" />
-104-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\vamaf\.gradle\caches\transforms-4\c47eb07060c6fad04bc7f9995bde1ff1\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
-105            <meta-data
-105-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
-106                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-106-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
-107                android:value="androidx.startup" />
-107-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
-108        </provider>
-109
-110        <receiver
-110-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:29:9-40:20
-111            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-111-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:30:13-78
-112            android:exported="true"
-112-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:31:13-36
-113            android:permission="com.google.android.c2dm.permission.SEND" >
-113-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:32:13-73
-114            <intent-filter>
-114-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:33:13-35:29
-115                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-115-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:34:17-81
-115-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:34:25-78
-116            </intent-filter>
-117
-118            <meta-data
-118-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:37:13-39:40
-119                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
-119-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:38:17-92
-120                android:value="true" />
-120-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:39:17-37
-121        </receiver>
-122        <!--
-123             FirebaseMessagingService performs security checks at runtime,
-124             but set to not exported to explicitly avoid allowing another app to call it.
-125        -->
-126        <service
-126-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:46:9-53:19
-127            android:name="com.google.firebase.messaging.FirebaseMessagingService"
-127-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:47:13-82
-128            android:directBootAware="true"
-128-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:48:13-43
-129            android:exported="false" >
-129-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:49:13-37
-130            <intent-filter android:priority="-500" >
-130-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:57:13-59:29
-131                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-131-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:58:17-78
-131-->C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\AndroidManifest.xml:58:25-75
-132            </intent-filter>
-133        </service>
-134        <service
-134-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:54:9-63:19
-135            android:name="com.google.firebase.components.ComponentDiscoveryService"
-135-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:55:13-84
-136            android:directBootAware="true"
-136-->[com.google.firebase:firebase-common:20.4.2] C:\Users\vamaf\.gradle\caches\transforms-4\33f8c066a86366badb021071e75c445b\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:32:13-43
-137            android:exported="false" >
-137-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:56:13-37
-138            <meta-data
-138-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:57:13-59:85
-139                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
-139-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:58:17-122
-140                android:value="com.google.firebase.components.ComponentRegistrar" />
-140-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:59:17-82
-141            <meta-data
-141-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:60:13-62:85
-142                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
-142-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:61:17-119
-143                android:value="com.google.firebase.components.ComponentRegistrar" />
-143-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\vamaf\.gradle\caches\transforms-4\4a35354b7530738b335ee552d2f8b2ae\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:62:17-82
-144            <meta-data
-144-->[com.google.android.gms:play-services-measurement-api:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\92bcfb2445f9fdc9ec94ba6ac539b102\transformed\jetified-play-services-measurement-api-21.5.1\AndroidManifest.xml:37:13-39:85
-145                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-145-->[com.google.android.gms:play-services-measurement-api:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\92bcfb2445f9fdc9ec94ba6ac539b102\transformed\jetified-play-services-measurement-api-21.5.1\AndroidManifest.xml:38:17-139
-146                android:value="com.google.firebase.components.ComponentRegistrar" />
-146-->[com.google.android.gms:play-services-measurement-api:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\92bcfb2445f9fdc9ec94ba6ac539b102\transformed\jetified-play-services-measurement-api-21.5.1\AndroidManifest.xml:39:17-82
-147            <meta-data
-147-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\vamaf\.gradle\caches\transforms-4\f8ebba3f7f621f51869b5dcf5df44000\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:15:13-17:85
-148                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
-148-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\vamaf\.gradle\caches\transforms-4\f8ebba3f7f621f51869b5dcf5df44000\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:16:17-130
-149                android:value="com.google.firebase.components.ComponentRegistrar" />
-149-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\vamaf\.gradle\caches\transforms-4\f8ebba3f7f621f51869b5dcf5df44000\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:17:17-82
-150            <meta-data
-150-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\vamaf\.gradle\caches\transforms-4\f8ebba3f7f621f51869b5dcf5df44000\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:18:13-20:85
-151                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-151-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\vamaf\.gradle\caches\transforms-4\f8ebba3f7f621f51869b5dcf5df44000\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:19:17-127
-152                android:value="com.google.firebase.components.ComponentRegistrar" />
-152-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\vamaf\.gradle\caches\transforms-4\f8ebba3f7f621f51869b5dcf5df44000\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:20:17-82
-153            <meta-data
-153-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\vamaf\.gradle\caches\transforms-4\1433af93d5fc9c643cbf30306f7f87b3\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:12:13-14:85
-154                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
-154-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\vamaf\.gradle\caches\transforms-4\1433af93d5fc9c643cbf30306f7f87b3\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:13:17-116
-155                android:value="com.google.firebase.components.ComponentRegistrar" />
-155-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\vamaf\.gradle\caches\transforms-4\1433af93d5fc9c643cbf30306f7f87b3\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:14:17-82
-156            <meta-data
-156-->[com.google.firebase:firebase-common:20.4.2] C:\Users\vamaf\.gradle\caches\transforms-4\33f8c066a86366badb021071e75c445b\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:35:13-37:85
-157                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
-157-->[com.google.firebase:firebase-common:20.4.2] C:\Users\vamaf\.gradle\caches\transforms-4\33f8c066a86366badb021071e75c445b\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:36:17-109
-158                android:value="com.google.firebase.components.ComponentRegistrar" />
-158-->[com.google.firebase:firebase-common:20.4.2] C:\Users\vamaf\.gradle\caches\transforms-4\33f8c066a86366badb021071e75c445b\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:37:17-82
-159            <meta-data
-159-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\vamaf\.gradle\caches\transforms-4\74936f0b2f6fa77e16e2ef4c4c539da0\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:27:13-29:85
-160                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
-160-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\vamaf\.gradle\caches\transforms-4\74936f0b2f6fa77e16e2ef4c4c539da0\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:28:17-115
-161                android:value="com.google.firebase.components.ComponentRegistrar" />
-161-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\vamaf\.gradle\caches\transforms-4\74936f0b2f6fa77e16e2ef4c4c539da0\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:29:17-82
-162        </service>
-163
-164        <activity
-164-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\vamaf\.gradle\caches\transforms-4\c398d612dfc038dd04e0093a097e84b2\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
-165            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-165-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\vamaf\.gradle\caches\transforms-4\c398d612dfc038dd04e0093a097e84b2\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
-166            android:exported="false"
-166-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\vamaf\.gradle\caches\transforms-4\c398d612dfc038dd04e0093a097e84b2\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
-167            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-167-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\vamaf\.gradle\caches\transforms-4\c398d612dfc038dd04e0093a097e84b2\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
-168
-169        <receiver
-169-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:29:9-33:20
-170            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-170-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:30:13-85
-171            android:enabled="true"
-171-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:31:13-35
-172            android:exported="false" >
-172-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:32:13-37
-173        </receiver>
-174
-175        <service
-175-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:35:9-38:40
-176            android:name="com.google.android.gms.measurement.AppMeasurementService"
-176-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:36:13-84
-177            android:enabled="true"
-177-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:37:13-35
-178            android:exported="false" />
-178-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:38:13-37
-179        <service
-179-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:39:9-43:72
-180            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-180-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:40:13-87
-181            android:enabled="true"
-181-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:41:13-35
-182            android:exported="false"
-182-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:42:13-37
-183            android:permission="android.permission.BIND_JOB_SERVICE" />
-183-->[com.google.android.gms:play-services-measurement:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\7df56d5713dba1fa5597671c49364915\transformed\jetified-play-services-measurement-21.5.1\AndroidManifest.xml:43:13-69
-184
-185        <property
-185-->[com.google.android.gms:play-services-measurement-api:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\92bcfb2445f9fdc9ec94ba6ac539b102\transformed\jetified-play-services-measurement-api-21.5.1\AndroidManifest.xml:30:9-32:61
-186            android:name="android.adservices.AD_SERVICES_CONFIG"
-186-->[com.google.android.gms:play-services-measurement-api:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\92bcfb2445f9fdc9ec94ba6ac539b102\transformed\jetified-play-services-measurement-api-21.5.1\AndroidManifest.xml:31:13-65
-187            android:resource="@xml/ga_ad_services_config" />
-187-->[com.google.android.gms:play-services-measurement-api:21.5.1] C:\Users\vamaf\.gradle\caches\transforms-4\92bcfb2445f9fdc9ec94ba6ac539b102\transformed\jetified-play-services-measurement-api-21.5.1\AndroidManifest.xml:32:13-58
-188
-189        <provider
-189-->[com.google.firebase:firebase-common:20.4.2] C:\Users\vamaf\.gradle\caches\transforms-4\33f8c066a86366badb021071e75c445b\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:23:9-28:39
-190            android:name="com.google.firebase.provider.FirebaseInitProvider"
-190-->[com.google.firebase:firebase-common:20.4.2] C:\Users\vamaf\.gradle\caches\transforms-4\33f8c066a86366badb021071e75c445b\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:24:13-77
-191            android:authorities="com.example.uhf.firebaseinitprovider"
-191-->[com.google.firebase:firebase-common:20.4.2] C:\Users\vamaf\.gradle\caches\transforms-4\33f8c066a86366badb021071e75c445b\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:25:13-72
-192            android:directBootAware="true"
-192-->[com.google.firebase:firebase-common:20.4.2] C:\Users\vamaf\.gradle\caches\transforms-4\33f8c066a86366badb021071e75c445b\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:26:13-43
-193            android:exported="false"
-193-->[com.google.firebase:firebase-common:20.4.2] C:\Users\vamaf\.gradle\caches\transforms-4\33f8c066a86366badb021071e75c445b\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:27:13-37
-194            android:initOrder="100" />
-194-->[com.google.firebase:firebase-common:20.4.2] C:\Users\vamaf\.gradle\caches\transforms-4\33f8c066a86366badb021071e75c445b\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:28:13-36
-195
-196        <uses-library
-196-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] C:\Users\vamaf\.gradle\caches\transforms-4\06c944b34d9ed4737f17e554592f2470\transformed\jetified-ads-adservices-1.0.0-beta05\AndroidManifest.xml:23:9-25:40
-197            android:name="android.ext.adservices"
-197-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] C:\Users\vamaf\.gradle\caches\transforms-4\06c944b34d9ed4737f17e554592f2470\transformed\jetified-ads-adservices-1.0.0-beta05\AndroidManifest.xml:24:13-50
-198            android:required="false" />
-198-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] C:\Users\vamaf\.gradle\caches\transforms-4\06c944b34d9ed4737f17e554592f2470\transformed\jetified-ads-adservices-1.0.0-beta05\AndroidManifest.xml:25:13-37
-199
-200        <meta-data
-200-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\vamaf\.gradle\caches\transforms-4\0be48bf45464eeb8d182c879a57dbe1b\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
-201            android:name="com.google.android.gms.version"
-201-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\vamaf\.gradle\caches\transforms-4\0be48bf45464eeb8d182c879a57dbe1b\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
-202            android:value="@integer/google_play_services_version" />
-202-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\vamaf\.gradle\caches\transforms-4\0be48bf45464eeb8d182c879a57dbe1b\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
-203
-204        <service
-204-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\vamaf\.gradle\caches\transforms-4\bf9165764dccb90d5bc6b4fb8b77109b\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:28:9-34:19
-205            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-205-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\vamaf\.gradle\caches\transforms-4\bf9165764dccb90d5bc6b4fb8b77109b\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:29:13-103
-206            android:exported="false" >
-206-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\vamaf\.gradle\caches\transforms-4\bf9165764dccb90d5bc6b4fb8b77109b\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:30:13-37
-207            <meta-data
-207-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\vamaf\.gradle\caches\transforms-4\bf9165764dccb90d5bc6b4fb8b77109b\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:31:13-33:39
-208                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-208-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\vamaf\.gradle\caches\transforms-4\bf9165764dccb90d5bc6b4fb8b77109b\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:32:17-94
-209                android:value="cct" />
-209-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\vamaf\.gradle\caches\transforms-4\bf9165764dccb90d5bc6b4fb8b77109b\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:33:17-36
-210        </service>
-211        <service
-211-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\vamaf\.gradle\caches\transforms-4\b3eef6c090b70a3e59a497e03e9c248b\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:26:9-30:19
-212            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-212-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\vamaf\.gradle\caches\transforms-4\b3eef6c090b70a3e59a497e03e9c248b\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:27:13-117
-213            android:exported="false"
-213-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\vamaf\.gradle\caches\transforms-4\b3eef6c090b70a3e59a497e03e9c248b\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:28:13-37
-214            android:permission="android.permission.BIND_JOB_SERVICE" >
-214-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\vamaf\.gradle\caches\transforms-4\b3eef6c090b70a3e59a497e03e9c248b\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:29:13-69
-215        </service>
-216
-217        <receiver
-217-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\vamaf\.gradle\caches\transforms-4\b3eef6c090b70a3e59a497e03e9c248b\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:32:9-34:40
-218            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-218-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\vamaf\.gradle\caches\transforms-4\b3eef6c090b70a3e59a497e03e9c248b\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:33:13-132
-219            android:exported="false" />
-219-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\vamaf\.gradle\caches\transforms-4\b3eef6c090b70a3e59a497e03e9c248b\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:34:13-37
-220        <receiver
-220-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
-221            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-221-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
-222            android:directBootAware="false"
-222-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
-223            android:enabled="true"
-223-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
-224            android:exported="true"
-224-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
-225            android:permission="android.permission.DUMP" >
-225-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
-226            <intent-filter>
-226-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
-227                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-227-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
-227-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
-228            </intent-filter>
-229            <intent-filter>
-229-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
-230                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-230-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
-230-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
-231            </intent-filter>
-232            <intent-filter>
-232-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
-233                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-233-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
-233-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
-234            </intent-filter>
-235            <intent-filter>
-235-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
-236                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-236-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
-236-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vamaf\.gradle\caches\transforms-4\ca05d6c5d853a85099a44ffa6b692c49\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
-237            </intent-filter>
-238        </receiver>
-239    </application>
-240
-241</manifest>
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+102        </provider>
+103
+104        <receiver
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+105            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+106            android:directBootAware="false"
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+107            android:enabled="true"
+107-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+108            android:exported="true"
+108-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+109            android:permission="android.permission.DUMP" >
+109-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+110            <intent-filter>
+110-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+111                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+111-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+111-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+112            </intent-filter>
+113            <intent-filter>
+113-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+114                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+115            </intent-filter>
+116            <intent-filter>
+116-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+117                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+117-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+117-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+118            </intent-filter>
+119            <intent-filter>
+119-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+120                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+120-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+120-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+121            </intent-filter>
+122        </receiver>
+123    </application>
+124
+125</manifest>

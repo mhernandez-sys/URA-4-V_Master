@@ -1,12 +1,6 @@
 package com.example.uhf.fragment;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -19,40 +13,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.uhf.R;
 import com.example.uhf.WebServiceManager;
 import com.example.uhf.activity.Enviar;
 import com.example.uhf.activity.UHFMainActivity;
-import com.example.uhf.activity.VMDatos;
 import com.example.uhf.tools.NumberTool;
 import com.example.uhf.tools.StringUtils;
 import com.example.uhf.tools.UIHelper;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.messaging.RemoteMessage;
 import com.rscja.deviceapi.RFIDWithUHFA4;
 import com.rscja.deviceapi.entity.GPIStateEntity;
 import com.rscja.deviceapi.entity.UHFTAGInfo;
-import com.example.uhf.fragment.UHFSetFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,16 +43,12 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
-
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.rscja.deviceapi.exception.ConfigurationException;
 
 public class TAGreaderprodu extends KeyDownFragment {
@@ -118,8 +94,6 @@ public class TAGreaderprodu extends KeyDownFragment {
     public static final String TAG_RSSI = "tagRssi";
     public static final String TAG_ANT = "tagAnt";
     public String CadenaEPCS = "";
-    //    public String BodegaSelect = "";
-//    public String OrdenCompraSelect = "";
     private int totalNum;
     private List<String> tempDatas;
 
@@ -637,7 +611,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                                     map.put(TAG_COUNT, variable1);
                                     //El index determina si el epc ha sido leido, si no lo imprime y en caso contrario lo salta
                                     if (index == -1) {
-                                        ///En esta funcion se le debe de agregar los epcs y almacenarlos en una variable publica para posteriormente mandar la al web service
+                                        ///En esta funcion se le debe  deagregar los epcs y almacenarlos en una variable publica para posteriormente mandar la al web service
                                         tagList.add(map);
                                         tempDatas.add(variable);
                                         tv_count.setText(String.valueOf(adapter.getCount()));///En esta parte se le agrega el epc que no han sido leidos
@@ -890,27 +864,12 @@ public class TAGreaderprodu extends KeyDownFragment {
         webServiceManager.callWebService("ProcesarTAGS", properties, new WebServiceManager.WebServiceCallback() {
             @Override
             public void onWebServiceCallComplete(String result) {
-
-                //Mostrar el resultado como toas
-                Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
-
                 //Procesar la respuesta JSON
                 try {
                     JSONArray jsonArray = new JSONArray(result);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String receivedEPCTag = jsonObject.getString("EPCTag");
-
-                        // Supongamos que tienes un TextView llamado txtEPCTag en tu layout
-                        TextView txtEPCTag = getView().findViewById(R.id.tvID);
-                        txtEPCTag.setText(receivedEPCTag);
-
-                        // Supongamos que tienes una lista llamada epcTagList que se muestra en un RecyclerView
-                        epcTagList.add(receivedEPCTag);
-                        adapter.notifyDataSetChanged();
-
-                        // Realizar alguna acción específica con el EPCTag recibido
-                        procesarEPCTag(receivedEPCTag);
 
                     }
                 } catch (JSONException e) {
@@ -921,9 +880,6 @@ public class TAGreaderprodu extends KeyDownFragment {
             }
         });
     }
-
-    //Declaración de epcTagList fuera de progressbar2
-    private List<String> epcTagList = new ArrayList<>();
 
     private void procesarEPCTag(String epcTag) {
         // Aquí agregas la lógica específica para manejar el EPCTag
@@ -936,26 +892,3 @@ public class TAGreaderprodu extends KeyDownFragment {
         }
     }
 }
-//       Map<String, String> propeties = new HashMap<>();
-//        propeties.put("EPCTag", EPCTAG);
-//
-//        webServiceManager.callWebService("ProcesarTAGS", propeties, new WebServiceManager.WebServiceCallback() {
-//            @Override
-//            public void onWebServiceCallComplete(String result) {
-//                Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
-//                try {
-//                    JSONArray jsonArray = new JSONArray(result);
-//                    for (int i = 0; i < jsonArray.length(); i++) {
-//                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-//                        String EPCTag = jsonObject.getString("EPCTag");
-//
-//                    }
-//
-//                } catch (JSONException e) {
-//                    throw new RuntimeException(e);
-//                }
-//            }
-//        });
-//    }
-//
-//}

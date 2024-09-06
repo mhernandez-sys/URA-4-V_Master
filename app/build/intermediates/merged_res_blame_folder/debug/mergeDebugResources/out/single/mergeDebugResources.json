@@ -1,450 +1,450 @@
 [
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_button_bg2.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/button_bg2.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_fragment_blank.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/fragment_blank.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable-mdpi_packed.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-mdpi/packed.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_uhf_kill_fragment.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/uhf_kill_fragment.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xxhdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_va_usuario.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/va_usuario.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_gradiant.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/gradiant.xml"
+        "merged": "com.example.uhf.app-debug-34:/layout_uhf_lock_fragment.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/uhf_lock_fragment.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_fragment_block_permalock.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/fragment_block_permalock.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-mdpi_estral.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-mdpi/estral.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-hdpi/ic_launcher_foreground.webp"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-mdpi_folder.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-mdpi/folder.png"
+        "merged": "com.example.uhf.app-debug-34:/drawable-xhdpi_ic_launcher.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-hdpi_estral_round.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-hdpi/estral_round.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xxhdpi_estral_round.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xxhdpi/estral_round.webp"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xxhdpi_estral.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xxhdpi/estral.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_baseline_add_alert_24.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/baseline_add_alert_24.xml"
+        "merged": "com.example.uhf.app-debug-34:/layout_activity_login.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/activity_login.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-mdpi_estral.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-mdpi/estral.webp"
+        "merged": "com.example.uhf.app-debug-34:/menu_main.xml.flat",
+        "source": "com.example.uhf.app-main-36:/menu/main.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-hdpi_webtext.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-hdpi/webtext.png"
+        "merged": "com.example.uhf.app-debug-34:/layout_fragment_blank.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/fragment_blank.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_popwindow_filter.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/popwindow_filter.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_button_bg_gray.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/button_bg_gray.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_button_bg_down2.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/button_bg_down2.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_baseline_add_alert_24.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/baseline_add_alert_24.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-hdpi_ic_launcher.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-hdpi/ic_launcher.png"
+        "merged": "com.example.uhf.app-debug-34:/drawable_va_usuario.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/va_usuario.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-mdpi_audio.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-mdpi/audio.png"
+        "merged": "com.example.uhf.app-debug-34:/layout_uhf_dialog_frequency.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/uhf_dialog_frequency.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_fragment_t_a_greaderprodu.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/fragment_t_a_greaderprodu.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xhdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_uhf_write_fragment.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/uhf_write_fragment.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_baseline_check_circle_24.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/baseline_check_circle_24.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/raw_serror.ogg.flat",
-        "source": "com.example.uhf.app-main-43:/raw/serror.ogg"
+        "merged": "com.example.uhf.app-debug-34:/raw_serror.ogg.flat",
+        "source": "com.example.uhf.app-main-36:/raw/serror.ogg"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "com.example.uhf.app-debug-34:/anim_slide_left_in.xml.flat",
+        "source": "com.example.uhf.app-main-36:/anim/slide_left_in.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-hdpi_estral_foreground.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-hdpi/estral_foreground.webp"
+        "merged": "com.example.uhf.app-debug-34:/drawable_button_bg_down3.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/button_bg_down3.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_item_list_goods_show_list_bg.9.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/item_list_goods_show_list_bg.9.png"
+        "merged": "com.example.uhf.app-debug-34:/layout_fragment_block_write.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/fragment_block_write.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_list_item.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/list_item.xml"
+        "merged": "com.example.uhf.app-debug-34:/layout_listtag_items.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/listtag_items.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xxxhdpi_estral.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xxxhdpi/estral.webp"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xxhdpi_estral_round.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xxhdpi/estral_round.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_button_bg_down3.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/button_bg_down3.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_item_list_goods_show_list_bg.9.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/item_list_goods_show_list_bg.9.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/anim_slide_left_in.xml.flat",
-        "source": "com.example.uhf.app-main-43:/anim/slide_left_in.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable-mdpi_ic_launcher.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-mdpi/ic_launcher.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xhdpi_estral_round.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xhdpi/estral_round.webp"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "com.example.uhf.app-debug-34:/layout_uhf_kill_fragment.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/uhf_kill_fragment.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-xhdpi_ic_launcher.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-xhdpi/ic_launcher.png"
+        "merged": "com.example.uhf.app-debug-34:/drawable_button_bg3.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/button_bg3.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_notificacion.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/notificacion.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_activity_login.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/activity_login.xml"
+        "merged": "com.example.uhf.app-debug-34:/layout_activity_uhfset.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/activity_uhfset.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_rectangle_bg.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/rectangle_bg.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xhdpi_estral_foreground.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xhdpi/estral_foreground.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_baseline_check_circle_24.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/baseline_check_circle_24.xml"
+        "merged": "com.example.uhf.app-debug-34:/layout_fragment_temperature.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/fragment_temperature.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xhdpi_estral_foreground.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xhdpi/estral_foreground.webp"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xxxhdpi_estral.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xxxhdpi/estral.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-mdpi_paste.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-mdpi/paste.png"
+        "merged": "com.example.uhf.app-debug-34:/layout_uhf_readtag_fragment.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/uhf_readtag_fragment.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xxhdpi_estral_foreground.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xxhdpi/estral_foreground.webp"
+        "merged": "com.example.uhf.app-debug-34:/layout_uhf_dialog_lock_code.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/uhf_dialog_lock_code.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_uhf_lock_fragment.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/uhf_lock_fragment.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_notificacion.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/notificacion.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_pop_menu_bg.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/pop_menu_bg.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_card_normal.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/card_normal.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/anim_grow_from_topleft_to_bottomright.xml.flat",
-        "source": "com.example.uhf.app-main-43:/anim/grow_from_topleft_to_bottomright.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xxhdpi_estral_foreground.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xxhdpi/estral_foreground.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_check_text_color2.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/check_text_color2.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-mdpi_estral_foreground.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-mdpi/estral_foreground.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-mdpi_video.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-mdpi/video.png"
+        "merged": "com.example.uhf.app-debug-34:/layout_activity_main.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/activity_main.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-mdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_listtag_items.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/listtag_items.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_button_bg_down2.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/button_bg_down2.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/menu_main.xml.flat",
-        "source": "com.example.uhf.app-main-43:/menu/main.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-mdpi_estral_round.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-mdpi/estral_round.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_card_press.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/card_press.xml"
+        "merged": "com.example.uhf.app-debug-34:/anim_slide_right_in.xml.flat",
+        "source": "com.example.uhf.app-main-36:/anim/slide_right_in.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_button_bg_up3.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/button_bg_up3.xml"
+        "merged": "com.example.uhf.app-debug-34:/layout_item_text1.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/item_text1.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_fragment_temperature.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/fragment_temperature.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-hdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_fragment_deactivate.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/fragment_deactivate.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-hdpi_estral_foreground.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-hdpi/estral_foreground.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "com.example.uhf.app-debug-34:/drawable_uponelevel.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/uponelevel.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_button_bg3.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/button_bg3.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-anydpi-v26_estral.xml.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-anydpi-v26/estral.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_uhf_read_fragment.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/uhf_read_fragment.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable-xxhdpi_ic_launcher.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_fragment_block_write.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/fragment_block_write.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_button_bg_gray.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/button_bg_gray.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xxxhdpi_estral_round.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xxxhdpi/estral_round.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_activity_uhfset.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/activity_uhfset.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_menu_bg_selected.9.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/menu_bg_selected.9.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_check_text_color.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/check_text_color.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable-mdpi_audio.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-mdpi/audio.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_button_bg.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/button_bg.xml"
+        "merged": "com.example.uhf.app-debug-34:/layout_uhf_write_fragment.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/uhf_write_fragment.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-mdpi_image.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-mdpi/image.png"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-hdpi_estral.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-hdpi/estral.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_fragment_uhfupgrade.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/fragment_uhfupgrade.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_button_bg_up2.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/button_bg_up2.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-hdpi_close.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-hdpi/close.png"
+        "merged": "com.example.uhf.app-debug-34:/drawable-hdpi_ic_launcher.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-hdpi/ic_launcher.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/anim_slide_right_in.xml.flat",
-        "source": "com.example.uhf.app-main-43:/anim/slide_right_in.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_gradiant.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/gradiant.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.uhf.app-debug-34:/layout_fragment_block_permalock.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/fragment_block_permalock.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-xxhdpi_ic_launcher.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-xxhdpi/ic_launcher.png"
+        "merged": "com.example.uhf.app-debug-34:/layout_popwindow_filter.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/popwindow_filter.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-mdpi_text.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-mdpi/text.png"
+        "merged": "com.example.uhf.app-debug-34:/drawable-mdpi_folder.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-mdpi/folder.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xxxhdpi_estral_foreground.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xxxhdpi/estral_foreground.webp"
+        "merged": "com.example.uhf.app-debug-34:/anim_slide_left_out.xml.flat",
+        "source": "com.example.uhf.app-main-36:/anim/slide_left_out.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "com.example.uhf.app-debug-34:/layout_fragment_uhfupgrade.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/fragment_uhfupgrade.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-anydpi-v26_estral_round.xml.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-anydpi-v26/estral_round.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_rb_bg.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/rb_bg.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-mdpi_webtext.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-mdpi/webtext.png"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-anydpi-v26_estral_round.xml.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-anydpi-v26/estral_round.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-mdpi/ic_launcher_foreground.webp"
+        "merged": "com.example.uhf.app-debug-34:/anim_grow_from_topleft_to_bottomright.xml.flat",
+        "source": "com.example.uhf.app-main-36:/anim/grow_from_topleft_to_bottomright.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xxxhdpi_estral_round.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xxxhdpi/estral_round.webp"
+        "merged": "com.example.uhf.app-debug-34:/layout_uhf_read_fragment.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/uhf_read_fragment.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-mdpi_packed.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-mdpi/packed.png"
+        "merged": "com.example.uhf.app-debug-34:/drawable-mdpi_webtext.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-mdpi/webtext.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-hdpi_estral.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-hdpi/estral.webp"
+        "merged": "com.example.uhf.app-debug-34:/layout_fragment_deactivate.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/fragment_deactivate.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_fragment_gpio.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/fragment_gpio.xml"
+        "merged": "com.example.uhf.app-debug-34:/layout_fragment_t_a_greaderprodu.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/fragment_t_a_greaderprodu.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_fragment_main.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/fragment_main.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable-hdpi_close.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-hdpi/close.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/anim_slide_left_out.xml.flat",
-        "source": "com.example.uhf.app-main-43:/anim/slide_left_out.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_card_normal.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/card_normal.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_button_bg_up3.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/button_bg_up3.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_uhf_readtag_fragment.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/uhf_readtag_fragment.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_rectangle_bg.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/rectangle_bg.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_alto.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/alto.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_button_bg_down.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/button_bg_down.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xhdpi_estral.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xhdpi/estral.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_uhf_dialog_frequency.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/uhf_dialog_frequency.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_actionbar_back.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/actionbar_back.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_uponelevel.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/uponelevel.png"
+        "merged": "com.example.uhf.app-debug-34:/drawable_check_text_color2.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/check_text_color2.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/anim_slide_right_out.xml.flat",
-        "source": "com.example.uhf.app-main-43:/anim/slide_right_out.xml"
+        "merged": "com.example.uhf.app-debug-34:/layout_uhf_tag_ant_msg_fragment.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/uhf_tag_ant_msg_fragment.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_goroot.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/goroot.png"
+        "merged": "com.example.uhf.app-debug-34:/drawable_password.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/password.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_menu_bg_selected.9.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/menu_bg_selected.9.png"
+        "merged": "com.example.uhf.app-debug-34:/drawable-mdpi_video.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-mdpi/video.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable-mdpi_ic_launcher.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable-mdpi/ic_launcher.png"
+        "merged": "com.example.uhf.app-debug-34:/drawable_button_bg_up.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/button_bg_up.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_alto.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/alto.xml"
+        "merged": "com.example.uhf.app-debug-34:/anim_slide_right_out.xml.flat",
+        "source": "com.example.uhf.app-main-36:/anim/slide_right_out.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_item_text1.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/item_text1.xml"
+        "merged": "com.example.uhf.app-debug-34:/layout_list_item.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/list_item.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_alerta.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/alerta.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable-mdpi_image.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-mdpi/image.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xxhdpi/ic_launcher_foreground.webp"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_activity_main.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/activity_main.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_rectangle_bg2.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/rectangle_bg2.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/raw_barcodebeep.ogg.flat",
-        "source": "com.example.uhf.app-main-43:/raw/barcodebeep.ogg"
+        "merged": "com.example.uhf.app-debug-34:/drawable_goroot.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/goroot.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_rectangle_bg2.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/rectangle_bg2.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_check_text_color.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/check_text_color.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-hdpi_estral_round.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-hdpi/estral_round.webp"
+        "merged": "com.example.uhf.app-debug-34:/raw_barcodebeep.ogg.flat",
+        "source": "com.example.uhf.app-main-36:/raw/barcodebeep.ogg"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_button_bg_up.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/button_bg_up.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_estral2.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/estral2.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
+        "merged": "com.example.uhf.app-debug-34:/drawable_button_bg.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/button_bg.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-mdpi_estral_foreground.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-mdpi/estral_foreground.webp"
+        "merged": "com.example.uhf.app-debug-34:/layout_fragment_main.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/fragment_main.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-anydpi-v26_estral.xml.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-anydpi-v26/estral.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_alerta.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/alerta.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_rb_bg.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/rb_bg.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xxxhdpi_estral_foreground.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xxxhdpi/estral_foreground.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_uhf_tag_ant_msg_fragment.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/uhf_tag_ant_msg_fragment.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xxhdpi_estral.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xxhdpi/estral.webp"
+        "merged": "com.example.uhf.app-debug-34:/drawable-hdpi_webtext.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-hdpi/webtext.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "com.example.uhf.app-debug-34:/drawable_button_bg_down.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/button_bg_down.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-mdpi_estral_round.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-mdpi/estral_round.webp"
+        "merged": "com.example.uhf.app-debug-34:/drawable-mdpi_paste.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-mdpi/paste.png"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_estral2.png.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/estral2.png"
+        "merged": "com.example.uhf.app-debug-34:/drawable_button_bg2.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/button_bg2.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xhdpi/ic_launcher_foreground.webp"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_actionbar_back.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/actionbar_back.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_button_bg_up2.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/button_bg_up2.xml"
+        "merged": "com.example.uhf.app-debug-34:/layout_fragment_gpio.xml.flat",
+        "source": "com.example.uhf.app-main-36:/layout/fragment_gpio.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/drawable_password.xml.flat",
-        "source": "com.example.uhf.app-main-43:/drawable/password.xml"
+        "merged": "com.example.uhf.app-debug-34:/mipmap-xhdpi_estral_round.webp.flat",
+        "source": "com.example.uhf.app-main-36:/mipmap-xhdpi/estral_round.webp"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xhdpi_estral.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xhdpi/estral.webp"
+        "merged": "com.example.uhf.app-debug-34:/drawable_pop_menu_bg.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/pop_menu_bg.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/layout_uhf_dialog_lock_code.xml.flat",
-        "source": "com.example.uhf.app-main-43:/layout/uhf_dialog_lock_code.xml"
+        "merged": "com.example.uhf.app-debug-34:/drawable_card_press.xml.flat",
+        "source": "com.example.uhf.app-main-36:/drawable/card_press.xml"
     },
     {
-        "merged": "com.example.uhf.app-debug-41:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.uhf.app-main-43:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "com.example.uhf.app-debug-34:/drawable-mdpi_text.png.flat",
+        "source": "com.example.uhf.app-main-36:/drawable-mdpi/text.png"
     }
 ]

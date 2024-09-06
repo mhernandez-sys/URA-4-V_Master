@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.uhf.app-mergeDebugResources-39:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
+            "outputFile": "com.example.uhf.app-mergeDebugResources-32:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
             "map": [
                 {
                     "source": "C:\\Users\\vamaf\\.gradle\\caches\\transforms-4\\48c7becc614ba897fe22a328d1469ada\\transformed\\material-1.11.0\\res\\values-h320dp-port-v13\\values-h320dp-port-v13.xml",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.uhf.app-mergeDebugResources-39:/values-zh/values-zh.xml",
+            "outputFile": "com.example.uhf.app-mergeDebugResources-32:/values-zh/values-zh.xml",
             "map": [
                 {
                     "source": "C:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\src\\main\\res\\values-zh\\messages.xml",
