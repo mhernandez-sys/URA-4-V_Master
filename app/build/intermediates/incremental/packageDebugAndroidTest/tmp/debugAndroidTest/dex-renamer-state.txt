@@ -1,6 +1,6 @@
-#Fri Sep 06 16:25:55 CST 2024
-base.0=C\:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
-base.1=C\:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\7\\classes.dex
+#Mon Sep 09 11:01:41 CST 2024
+base.0=C\:\\Users\\emanu\\GIT URA4\\URA-4-V_Master\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
+base.1=C\:\\Users\\emanu\\GIT URA4\\URA-4-V_Master\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\7\\classes.dex
 path.0=0/classes.dex
 path.1=7/classes.dex
 renamed.0=classes.dex

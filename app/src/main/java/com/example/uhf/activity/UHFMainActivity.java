@@ -135,7 +135,7 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent1, PendingIntent.FLAG_MUTABLE);
 
         //Configurar el tiempo en el que se deseas se ejecute la accion
-        long tiempoEnMilisegundos = System.currentTimeMillis() + 2000;
+        long tiempoEnMilisegundos = System.currentTimeMillis() + 1000;
         alarmManager.set(AlarmManager.RTC_WAKEUP, tiempoEnMilisegundos, pendingIntent);
     }
 
