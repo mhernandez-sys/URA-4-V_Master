@@ -338,7 +338,6 @@ public class TAGreaderprodu extends KeyDownFragment {
             ///ProgressBar("E28011606000020EB7OC5DBB+001804BA0460B527A68B52F4+E28011606000020EB70C4CB3+");
             //ProgressBar2("'E280116060000208EBCEA56E', 'E280116060000209924145E4', 'E280116060000209924145E5'");
             //1111222233334444924145E2',
-
         }
     }
 
@@ -662,7 +661,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         // Llamar al web service utilizando WebServiceManager
         webServiceManager.callWebService("ProcesarGuia", properties, result -> {
 
-          // Ocultar el ProgresDialog
+            // Ocultar el ProgresDialog
             progressDialog.dismiss();
             isProgressing = false;
 
@@ -672,91 +671,97 @@ public class TAGreaderprodu extends KeyDownFragment {
                 String Encontrados = "";
                 String Esperados = "";
                 String Guia = "";
-                String BanderaDes ="";
-                StringBuilder Num_Paquete= new StringBuilder();
+                String BanderaDes = "";
+                StringBuilder Num_Paquete = new StringBuilder();
 
-                    //Limpiar las listas antes de agregar los nuevos datos
-//                    tagList.clear();
-//                    tempDatas.clear();
-//                    adapter.notifyDataSetChanged();
+                // Limpiar las listas antes de agregar los nuevos datos
+                tagList.clear();
+                tempDatas.clear();
+                adapter.notifyDataSetChanged();
 
-                    //Recorrer cada objeto del array JSON
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                // Recorrer cada objeto del array JSON
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                        //Extraer valores individuales
-                        String k_Guia = jsonObject.optString("K_Guia", "");
-                        String NPaquete = jsonObject.optString("NumPaquete", "");
-                        String EPC = jsonObject.optString("EPC", "");
-                        String Partida_Estral = jsonObject.optString("Partida_Estral", "");
-                        String Descripcion = jsonObject.optString("Descripcion", "");
-                        String Cantidad = jsonObject.optString("Cantidad", "");
-                        Num_Paquete.append(NPaquete).append(",");
+                    // Extraer valores individuales
+                    String k_Guia = jsonObject.optString("K_Guia", "");
+                    String NPaquete = jsonObject.optString("NumPaquete", "");
+                    String EPC = jsonObject.optString("EPC", "");
+                    String Partida_Estral = jsonObject.optString("Partida_Estral", "");
+                    String Descripcion = jsonObject.optString("Descripcion", "");
+                    String Cantidad = jsonObject.optString("Cantidad", "");
+                    Num_Paquete.append(NPaquete).append(",");
 
-
-                        if (Descripcion.contains("Articulo no reconocido"))  {
-                         BanderaDes = "1";
-                        }
-
-                        //Comprobar si el objeto actual tiene los valores adicionales
-                        if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
-                            Encontrados = jsonObject.optString("CantidadEncontrada", "0");
-                            Esperados = jsonObject.optString("art_esperados", "0");
-                            Guia = jsonObject.optString("k_Guia", "0");
-                            String mensajes = "Guía:" + Guia + " / Encontrados: " + Encontrados + " / Esperados: " + Esperados;
-                        }
-
-
-                        // Verificar si el EPC es válido
-                        if (EPC.isEmpty()) {
-                            Toast.makeText(getContext(), "Este EPC no existe: " + EPCTAG, Toast.LENGTH_SHORT).show();
-                            continue;
-                        }
-
-                        // Crear un mapa con los valores procesados y agregarlo a las listas
-                        map = new HashMap<>();
-                        map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
-                        map.put(TAG_COUNT, Cantidad);
-                        map.put(TAG_RSSI, k_Guia); //Estos dos son para el numero de paquete
-                        // Añadir los datos a la lista de tags si el EPC es válido
-                        if (!EPC.isEmpty()) {
-                            tagList.add(map);
-                            tempDatas.add(Descripcion);
-                            tv_count.setText(String.valueOf(adapter.getCount()));///En esta parte se le agrega el epc que no han sido leidos
-                        }
-                    }
-                    // Actualizar el adaptador para reflejar los cambios
-                    adapter.notifyDataSetChanged();
-                    Et_Pedidos.setText(Num_Paquete);
-
-                    reanudarHilo();
-                    //LimpiarValores();
-                    Et_ArtEsp.setText(Esperados);
-                    TxtEmbarque.setText(Guia);
-                    Et_Bodegas.setText(Encontrados);
-                    int dato1 = Integer.parseInt(Encontrados);
-                    int dato2 = Integer.parseInt(Esperados);
-                    if (dato1 == dato2 && !BanderaDes.equals("1")) {
-                        iniciarAnimacionParpadeo(1);
-                    } else if (dato1 < dato2) {
-                        iniciarAnimacionParpadeo(2);
-                    } else if (BanderaDes.equals("1")) {
-                        iniciarAnimacionParpadeo(3);
+                    // Verificar si la descripción contiene "Artículo no reconocido"
+                    if (Descripcion.contains("Articulo no reconocido"))  {
+                        BanderaDes = "1";
+                        // Mostrar mensaje de advertencia
+                        Toast.makeText(getContext(), "Error: Artículo no reconocido en la guía.", Toast.LENGTH_SHORT).show();
                     }
 
-                    // Esperar 5 segundos antes de limpiar los valores
-                    new Handler().postDelayed(() -> {
-                        LimpiarValores(); // Llama a la función para limpiar los valores3
-                    }, 5000); // 5000 milisegundos = 5 segundos
+                    // Comprobar si el objeto actual tiene los valores adicionales
+                    if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
+                        Encontrados = jsonObject.optString("CantidadEncontrada", "0");
+                        Esperados = jsonObject.optString("art_esperados", "0");
+                        Guia = jsonObject.optString("K_Guia", "0");
+                        String mensajes = "Guía: " + Guia + " / Encontrados: " + Encontrados + " / Esperados: " + Esperados;
+                    }
 
+                    // Verificar si el EPC es válido
+                    if (EPC.isEmpty()) {
+                        Toast.makeText(getContext(), "Este EPC no existe: " + EPCTAG, Toast.LENGTH_SHORT).show();
+                        continue;
+                    }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getContext(), "Error al procesar los datos JSON: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    LimpiarValores();
-                    reanudarHilo();
-
+                    // Crear un mapa con los valores procesados y agregarlo a las listas
+                    map = new HashMap<>();
+                    map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
+                    map.put(TAG_COUNT, Cantidad);
+                    map.put(TAG_RSSI, k_Guia); // Estos dos son para el numero de paquete
+                    // Añadir los datos a la lista de tags si el EPC es válido
+                    if (!EPC.isEmpty()) {
+                        tagList.add(map);
+                        tempDatas.add(Descripcion);
+                        tv_count.setText(String.valueOf(adapter.getCount()));  // En esta parte se le agrega el EPC que no han sido leídos
+                    }
                 }
+
+                // Actualizar el adaptador para reflejar los cambios
+                adapter.notifyDataSetChanged();
+                Et_Pedidos.setText(Num_Paquete);
+
+                reanudarHilo();
+                Et_ArtEsp.setText(Esperados);
+                TxtEmbarque.setText(Guia);
+                Et_Bodegas.setText(Encontrados);
+                int dato1 = Integer.parseInt(Encontrados);
+                int dato2 = Integer.parseInt(Esperados);
+
+                // Manejo de las condiciones para la animación
+                if (dato1 == dato2 && !BanderaDes.equals("1")) {
+                    iniciarAnimacionParpadeo(1);
+                } else if (dato1 < dato2) {
+                    iniciarAnimacionParpadeo(2);
+                } else if (BanderaDes.equals("1")) {
+                    iniciarAnimacionParpadeo(3);
+                }
+
+                // Esperar 5 segundos antes de limpiar los valores
+                new Handler().postDelayed(() -> {
+                    LimpiarValores(); // Llama a la función para limpiar los valores
+                }, 5000); // 5000 milisegundos = 5 segundos
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Error al procesar los datos JSON: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                LimpiarValores();
+                reanudarHilo();
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Error en la conversión de datos numéricos: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                LimpiarValores();
+                reanudarHilo();
+            }
         });
     }
 }
