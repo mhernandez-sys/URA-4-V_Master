@@ -338,7 +338,9 @@ public class TAGreaderprodu extends KeyDownFragment {
             //enviarNotificacion();
             mensajesocket();
             ///ProgressBar("E28011606000020EB7OC5DBB+001804BA0460B527A68B52F4+E28011606000020EB70C4CB3+");
-            ProgressBar2("'1111222233334444924145E2','E280116060000208EBCEA56E', 'E280116060000209924145E4', 'E280116060000209924145E5'");
+            //ProgressBar2("'E280116060000208EBCEA56E', 'E280116060000209924145E4', 'E280116060000209924145E5'");
+            //1111222233334444924145E2',
+
         }
     }
 
@@ -813,13 +815,6 @@ public class TAGreaderprodu extends KeyDownFragment {
 
           // Ocultar el ProgresDialog
             progressDialog.dismiss();
-
-            if (result.equals("[]") || result.contains("Error") || result.contains("Time out") || result.contains("Failed to connect to")) {
-                //Mensaje que visuliza los resultados
-                Toast.makeText(getContext(), "Tags no reconocidos, se reinicia el conteo", Toast.LENGTH_SHORT).show();
-                reanudarHilo();
-                LimpiarValores();
-            }else {
                 String Encontrados = "";
                 String Esperados = "";
                 String Guia = "";
@@ -890,10 +885,14 @@ public class TAGreaderprodu extends KeyDownFragment {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(getContext(), "Error al procesar los datos JSON: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     LimpiarValores();
                     reanudarHilo();
                 }
-            }
+                finally {
+                    // Ocultar el ProgresDialog
+                    progressDialog.dismiss();
+                }
         });
     }
 
