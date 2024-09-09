@@ -1,37 +1,37 @@
-com.example.uhf.app-jetified-startup-runtime-1.1.1-0 C:\Users\emanu\.gradle\caches\transforms-4\0311a180dec429fa3e4f686329f07aa0\transformed\jetified-startup-runtime-1.1.1\res
-com.example.uhf.app-cardview-1.0.0-1 C:\Users\emanu\.gradle\caches\transforms-4\0623051f3db104e81bf9f16802cf0a6c\transformed\cardview-1.0.0\res
-com.example.uhf.app-jetified-core-ktx-1.13.1-2 C:\Users\emanu\.gradle\caches\transforms-4\19e4ffebba64101e379e5ed9a4b86276\transformed\jetified-core-ktx-1.13.1\res
-com.example.uhf.app-jetified-appcompat-resources-1.7.0-3 C:\Users\emanu\.gradle\caches\transforms-4\2cc0d374ddcd691e3214d8ddb01f7041\transformed\jetified-appcompat-resources-1.7.0\res
-com.example.uhf.app-coordinatorlayout-1.1.0-4 C:\Users\emanu\.gradle\caches\transforms-4\2d21a93a587199a20cb5a0316b7873ac\transformed\coordinatorlayout-1.1.0\res
-com.example.uhf.app-jetified-viewpager2-1.0.0-5 C:\Users\emanu\.gradle\caches\transforms-4\2db90e85561b35918c2e7e030491bd07\transformed\jetified-viewpager2-1.0.0\res
-com.example.uhf.app-core-1.13.1-6 C:\Users\emanu\.gradle\caches\transforms-4\31f79945dc5728530cb47319111dd858\transformed\core-1.13.1\res
-com.example.uhf.app-media-1.0.0-7 C:\Users\emanu\.gradle\caches\transforms-4\384b8fa8325425a74c2fa9b81f515c6d\transformed\media-1.0.0\res
-com.example.uhf.app-material-1.11.0-8 C:\Users\emanu\.gradle\caches\transforms-4\48c7becc614ba897fe22a328d1469ada\transformed\material-1.11.0\res
-com.example.uhf.app-jetified-emoji2-views-helper-1.3.0-9 C:\Users\emanu\.gradle\caches\transforms-4\530b1ba83a0ffc63f96999705299d690\transformed\jetified-emoji2-views-helper-1.3.0\res
-com.example.uhf.app-constraintlayout-2.1.4-10 C:\Users\emanu\.gradle\caches\transforms-4\6648f4cf8f04b6e500da10e9ee2fb209\transformed\constraintlayout-2.1.4\res
-com.example.uhf.app-jetified-lifecycle-viewmodel-savedstate-2.6.2-11 C:\Users\emanu\.gradle\caches\transforms-4\678c36c1188ce75af7cb82b37686f3d8\transformed\jetified-lifecycle-viewmodel-savedstate-2.6.2\res
-com.example.uhf.app-jetified-annotation-experimental-1.4.0-12 C:\Users\emanu\.gradle\caches\transforms-4\6f5256b378f4e37a3600efa5647b219d\transformed\jetified-annotation-experimental-1.4.0\res
-com.example.uhf.app-jetified-profileinstaller-1.3.1-13 C:\Users\emanu\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\res
-com.example.uhf.app-transition-1.2.0-14 C:\Users\emanu\.gradle\caches\transforms-4\74d32624984472818ea97db48001d4d1\transformed\transition-1.2.0\res
-com.example.uhf.app-core-runtime-2.2.0-15 C:\Users\emanu\.gradle\caches\transforms-4\758e2f52bb9301dc5a82d49c8cc3c55d\transformed\core-runtime-2.2.0\res
-com.example.uhf.app-drawerlayout-1.1.1-16 C:\Users\emanu\.gradle\caches\transforms-4\78695c712cf340d01e59791ec0392d42\transformed\drawerlayout-1.1.1\res
-com.example.uhf.app-recyclerview-1.1.0-17 C:\Users\emanu\.gradle\caches\transforms-4\9adeae7b422319ab396a0bd599a63389\transformed\recyclerview-1.1.0\res
-com.example.uhf.app-lifecycle-livedata-core-2.6.2-18 C:\Users\emanu\.gradle\caches\transforms-4\a1b935c8e870814f24f248caa30381fb\transformed\lifecycle-livedata-core-2.6.2\res
-com.example.uhf.app-jetified-activity-1.8.0-19 C:\Users\emanu\.gradle\caches\transforms-4\a235f2cdfde9189e00765974bf45f842\transformed\jetified-activity-1.8.0\res
-com.example.uhf.app-fragment-1.5.4-20 C:\Users\emanu\.gradle\caches\transforms-4\a48b5b0c8705dfe4ceef4f50cb1eb8ec\transformed\fragment-1.5.4\res
-com.example.uhf.app-jetified-DeviceAPI_ver20230228_release-21 C:\Users\emanu\.gradle\caches\transforms-4\a63e74ac170604992beb58bc612d1ddf\transformed\jetified-DeviceAPI_ver20230228_release\res
-com.example.uhf.app-appcompat-1.7.0-22 C:\Users\emanu\.gradle\caches\transforms-4\a979d64d21bab69e39152e1881336a21\transformed\appcompat-1.7.0\res
-com.example.uhf.app-jetified-lifecycle-process-2.6.2-23 C:\Users\emanu\.gradle\caches\transforms-4\c4724f2a6b36c8f62c8685de574a55e9\transformed\jetified-lifecycle-process-2.6.2\res
-com.example.uhf.app-lifecycle-runtime-2.6.2-24 C:\Users\emanu\.gradle\caches\transforms-4\ccb6c4fcb61c0beccf0e05223fedb39f\transformed\lifecycle-runtime-2.6.2\res
-com.example.uhf.app-lifecycle-livedata-2.6.2-25 C:\Users\emanu\.gradle\caches\transforms-4\d79991f752394f888a907c93079ee4c8\transformed\lifecycle-livedata-2.6.2\res
-com.example.uhf.app-jetified-emoji2-1.3.0-26 C:\Users\emanu\.gradle\caches\transforms-4\da86583de97947863bae2c3b7936c0e6\transformed\jetified-emoji2-1.3.0\res
-com.example.uhf.app-jetified-savedstate-1.2.1-27 C:\Users\emanu\.gradle\caches\transforms-4\e0b3f6b87e2badf895840f156c23a4af\transformed\jetified-savedstate-1.2.1\res
-com.example.uhf.app-lifecycle-viewmodel-2.6.2-28 C:\Users\emanu\.gradle\caches\transforms-4\fda5c5e9a4c0019cbcb335fdb95d3fc8\transformed\lifecycle-viewmodel-2.6.2\res
-com.example.uhf.app-pngs-29 C:\Users\emanu\GIT URA4\URA-4-V_Master\app\build\generated\res\pngs\debug
-com.example.uhf.app-res-30 C:\Users\emanu\GIT URA4\URA-4-V_Master\app\build\generated\res\processDebugGoogleServices
-com.example.uhf.app-resValues-31 C:\Users\emanu\GIT URA4\URA-4-V_Master\app\build\generated\res\resValues\debug
-com.example.uhf.app-packageDebugResources-32 C:\Users\emanu\GIT URA4\URA-4-V_Master\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.example.uhf.app-packageDebugResources-33 C:\Users\emanu\GIT URA4\URA-4-V_Master\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.example.uhf.app-debug-34 C:\Users\emanu\GIT URA4\URA-4-V_Master\app\build\intermediates\merged_res\debug\mergeDebugResources
-com.example.uhf.app-debug-35 C:\Users\emanu\GIT URA4\URA-4-V_Master\app\src\debug\res
-com.example.uhf.app-main-36 C:\Users\emanu\GIT URA4\URA-4-V_Master\app\src\main\res
+com.example.uhf.app-jetified-startup-runtime-1.1.1-0 C:\Users\vamaf\.gradle\caches\transforms-4\0311a180dec429fa3e4f686329f07aa0\transformed\jetified-startup-runtime-1.1.1\res
+com.example.uhf.app-cardview-1.0.0-1 C:\Users\vamaf\.gradle\caches\transforms-4\0623051f3db104e81bf9f16802cf0a6c\transformed\cardview-1.0.0\res
+com.example.uhf.app-jetified-core-ktx-1.13.1-2 C:\Users\vamaf\.gradle\caches\transforms-4\19e4ffebba64101e379e5ed9a4b86276\transformed\jetified-core-ktx-1.13.1\res
+com.example.uhf.app-jetified-appcompat-resources-1.7.0-3 C:\Users\vamaf\.gradle\caches\transforms-4\2cc0d374ddcd691e3214d8ddb01f7041\transformed\jetified-appcompat-resources-1.7.0\res
+com.example.uhf.app-coordinatorlayout-1.1.0-4 C:\Users\vamaf\.gradle\caches\transforms-4\2d21a93a587199a20cb5a0316b7873ac\transformed\coordinatorlayout-1.1.0\res
+com.example.uhf.app-jetified-viewpager2-1.0.0-5 C:\Users\vamaf\.gradle\caches\transforms-4\2db90e85561b35918c2e7e030491bd07\transformed\jetified-viewpager2-1.0.0\res
+com.example.uhf.app-core-1.13.1-6 C:\Users\vamaf\.gradle\caches\transforms-4\31f79945dc5728530cb47319111dd858\transformed\core-1.13.1\res
+com.example.uhf.app-media-1.0.0-7 C:\Users\vamaf\.gradle\caches\transforms-4\384b8fa8325425a74c2fa9b81f515c6d\transformed\media-1.0.0\res
+com.example.uhf.app-material-1.11.0-8 C:\Users\vamaf\.gradle\caches\transforms-4\48c7becc614ba897fe22a328d1469ada\transformed\material-1.11.0\res
+com.example.uhf.app-jetified-emoji2-views-helper-1.3.0-9 C:\Users\vamaf\.gradle\caches\transforms-4\530b1ba83a0ffc63f96999705299d690\transformed\jetified-emoji2-views-helper-1.3.0\res
+com.example.uhf.app-constraintlayout-2.1.4-10 C:\Users\vamaf\.gradle\caches\transforms-4\6648f4cf8f04b6e500da10e9ee2fb209\transformed\constraintlayout-2.1.4\res
+com.example.uhf.app-jetified-lifecycle-viewmodel-savedstate-2.6.2-11 C:\Users\vamaf\.gradle\caches\transforms-4\678c36c1188ce75af7cb82b37686f3d8\transformed\jetified-lifecycle-viewmodel-savedstate-2.6.2\res
+com.example.uhf.app-jetified-annotation-experimental-1.4.0-12 C:\Users\vamaf\.gradle\caches\transforms-4\6f5256b378f4e37a3600efa5647b219d\transformed\jetified-annotation-experimental-1.4.0\res
+com.example.uhf.app-jetified-profileinstaller-1.3.1-13 C:\Users\vamaf\.gradle\caches\transforms-4\6fa8278ff5098e65c9930b32bc5f3b04\transformed\jetified-profileinstaller-1.3.1\res
+com.example.uhf.app-transition-1.2.0-14 C:\Users\vamaf\.gradle\caches\transforms-4\74d32624984472818ea97db48001d4d1\transformed\transition-1.2.0\res
+com.example.uhf.app-core-runtime-2.2.0-15 C:\Users\vamaf\.gradle\caches\transforms-4\758e2f52bb9301dc5a82d49c8cc3c55d\transformed\core-runtime-2.2.0\res
+com.example.uhf.app-drawerlayout-1.1.1-16 C:\Users\vamaf\.gradle\caches\transforms-4\78695c712cf340d01e59791ec0392d42\transformed\drawerlayout-1.1.1\res
+com.example.uhf.app-recyclerview-1.1.0-17 C:\Users\vamaf\.gradle\caches\transforms-4\9adeae7b422319ab396a0bd599a63389\transformed\recyclerview-1.1.0\res
+com.example.uhf.app-lifecycle-livedata-core-2.6.2-18 C:\Users\vamaf\.gradle\caches\transforms-4\a1b935c8e870814f24f248caa30381fb\transformed\lifecycle-livedata-core-2.6.2\res
+com.example.uhf.app-jetified-activity-1.8.0-19 C:\Users\vamaf\.gradle\caches\transforms-4\a235f2cdfde9189e00765974bf45f842\transformed\jetified-activity-1.8.0\res
+com.example.uhf.app-fragment-1.5.4-20 C:\Users\vamaf\.gradle\caches\transforms-4\a48b5b0c8705dfe4ceef4f50cb1eb8ec\transformed\fragment-1.5.4\res
+com.example.uhf.app-jetified-DeviceAPI_ver20230228_release-21 C:\Users\vamaf\.gradle\caches\transforms-4\a63e74ac170604992beb58bc612d1ddf\transformed\jetified-DeviceAPI_ver20230228_release\res
+com.example.uhf.app-appcompat-1.7.0-22 C:\Users\vamaf\.gradle\caches\transforms-4\a979d64d21bab69e39152e1881336a21\transformed\appcompat-1.7.0\res
+com.example.uhf.app-jetified-lifecycle-process-2.6.2-23 C:\Users\vamaf\.gradle\caches\transforms-4\c4724f2a6b36c8f62c8685de574a55e9\transformed\jetified-lifecycle-process-2.6.2\res
+com.example.uhf.app-lifecycle-runtime-2.6.2-24 C:\Users\vamaf\.gradle\caches\transforms-4\ccb6c4fcb61c0beccf0e05223fedb39f\transformed\lifecycle-runtime-2.6.2\res
+com.example.uhf.app-lifecycle-livedata-2.6.2-25 C:\Users\vamaf\.gradle\caches\transforms-4\d79991f752394f888a907c93079ee4c8\transformed\lifecycle-livedata-2.6.2\res
+com.example.uhf.app-jetified-emoji2-1.3.0-26 C:\Users\vamaf\.gradle\caches\transforms-4\da86583de97947863bae2c3b7936c0e6\transformed\jetified-emoji2-1.3.0\res
+com.example.uhf.app-jetified-savedstate-1.2.1-27 C:\Users\vamaf\.gradle\caches\transforms-4\e0b3f6b87e2badf895840f156c23a4af\transformed\jetified-savedstate-1.2.1\res
+com.example.uhf.app-lifecycle-viewmodel-2.6.2-28 C:\Users\vamaf\.gradle\caches\transforms-4\fda5c5e9a4c0019cbcb335fdb95d3fc8\transformed\lifecycle-viewmodel-2.6.2\res
+com.example.uhf.app-pngs-29 C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\build\generated\res\pngs\debug
+com.example.uhf.app-res-30 C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\build\generated\res\processDebugGoogleServices
+com.example.uhf.app-resValues-31 C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\build\generated\res\resValues\debug
+com.example.uhf.app-packageDebugResources-32 C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.uhf.app-packageDebugResources-33 C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.uhf.app-debug-34 C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.example.uhf.app-debug-35 C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\debug\res
+com.example.uhf.app-main-36 C:\Users\vamaf\AndroidStudioProjects\Version Master2 Estral URA4 GITHUB\uhf-a4-demo\app\src\main\res
