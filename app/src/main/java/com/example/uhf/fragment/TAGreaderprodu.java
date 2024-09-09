@@ -64,11 +64,9 @@ public class TAGreaderprodu extends KeyDownFragment {
     private boolean loopFlag = false;
     private int inventoryFlag = 1;
     public ArrayList<HashMap<String, String>> tagList;
-    private String NAMESPACE = "";
-    private String URL = "";
-    private String METHOD_NAME = "";
-    private String SOAP_ACTION = "";
     private WebServiceManager webServiceManager;
+
+    private boolean isProgressing = false;
 
     SimpleAdapter adapter;
     Button BtClear;
@@ -528,160 +526,6 @@ public class TAGreaderprodu extends KeyDownFragment {
         readTag();
     }
 
-    public void ProgressBar(final String EPCTag) {
-
-        String res = "";
-        if (EPCTag.isEmpty()) {
-            mostrarToast("No se detecto ningun TAG \n" +
-                    "Realizar una comprobacion de TAGS");
-            return;
-        }
-        String ultimocaracter = EPCTag.substring(0, EPCTag.length() - 1);
-        String Tags = ultimocaracter;
-        Thread nt = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                NAMESPACE = "http://tag_android.org/";
-                URL = "http://192.168.1.83/TAGSSERver.asmx";
-                METHOD_NAME = "ProcesarTAGS";
-                SOAP_ACTION = NAMESPACE + METHOD_NAME;
-                String res = "";
-
-                try {
-                    //Se crea el objeto SOAP
-                    SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-                    //Se gregan las propiedades que se van a enviar
-                    request.addProperty("EPCTag", Tags);
-
-                    SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-                    envelope.dotNet = true;
-                    envelope.setOutputSoapObject(request);
-
-                    HttpTransportSE transporte = new HttpTransportSE(URL);
-                    transporte.call(SOAP_ACTION, envelope);
-
-                    SoapPrimitive resultado_xml = (SoapPrimitive) envelope.getResponse();
-                    res = resultado_xml.toString();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    res = "Error: " + e.getMessage();
-                }
-                final String finalRes = res;
-                mContext.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            if (finalRes.equals("Embarque no encontrado")) {
-                                mostrarToast("Embarque no encontrado");
-                                LimpiarValores();
-                                reanudarHilo();
-                            } else {
-
-                                String[] partes = finalRes.split("\\+");
-                                String art_encontrados = partes[1];
-                                String art_esperados = partes[0];
-                                String cadena = partes[2];
-                                String[] caracter1 = cadena.split("\\?");
-                                String numpiezas = partes[3];
-                                String[] caracter2 = numpiezas.split("\\¿");
-                                String embarque = partes[4];
-                                String etiqueta = partes[5];
-                                String pedidos = partes[6];
-                                String[] caracter3 = pedidos.split("\\-");
-
-                                Et_ArtEsp.setText(art_esperados);
-                                TXTART_ENC.setText(art_encontrados);
-                                TxtEmbarque.setText(embarque);
-
-                                if (etiqueta.equals("1")) {
-                                    iniciarAnimacionParpadeo(1);
-                                } else if (etiqueta.equals("2")) {
-                                    iniciarAnimacionParpadeo(2);
-                                } else if (etiqueta.equals("3")) {
-                                    iniciarAnimacionParpadeo(3);
-                                }
-
-                                OpcionSelect2(pedidos);
-
-                                tagList.clear();
-                                tempDatas.clear();
-                                adapter.notifyDataSetChanged();
-
-                                for (int i = 0; i < caracter1.length; i++) {
-                                    String variable = caracter1[i];
-                                    String variable1 = caracter2[i];
-                                    int index = checkIsExist(variable);
-                                    map = new HashMap<>();
-                                    map.put(TAG_EPC, variable); //Este es el EPC que se imprime en la pantalla
-                                    map.put(TAG_COUNT, variable1); //Esta es para el conteo de los productoas
-                                    //map.put(TAG_RSSI, rssi); //Estos dos son para el numero de paquete
-                                    //map.put(TAG_ANT, ant);
-                                    //El index determina si el epc ha sido leido, si no lo imprime y en caso contrario lo salta
-                                    if (index == -1) {
-                                        ///En esta funcion se le debe  deagregar los epcs y almacenarlos en una variable publica para posteriormente mandar la al web service
-                                        tagList.add(map);
-                                        tempDatas.add(variable);
-                                        tv_count.setText(String.valueOf(adapter.getCount()));///En esta parte se le agrega el epc que no han sido leidos
-                                    }
-                                }
-                                tv_totalNum.setText(art_encontrados);
-                                adapter.notifyDataSetChanged();
-                            }
-                            //Termina el else
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            //mensajes("");
-                        }
-                    }
-                });
-            }
-        });
-        nt.start();
-    }
-
-    private void OpcionSelect2(String respuesta) {
-
-        // Aquí debes implementar la lógica para procesar la respuesta y asignar a diferentes variables
-        // Por ejemplo, asumiendo que la respuesta está en un formato separado por comas:
-        // Aquí debes implementar la lógica para procesar la respuesta y asignar a diferentes variables
-        // Por ejemplo, asumiendo que la respuesta está en un formato separado por comas:
-        char caracterAEliminar = '}'; // Por ejemplo, eliminar la coma
-        char caracterAEliminar2 = ']'; // Por ejemplo, eliminar la coma
-        // Reemplazar el carácter con una cadena vacía
-        ///Con esta linea se elimina el parametro } recordar que lleva comillas sinples
-        String cadenaSinCaracter = respuesta.replace(String.valueOf(caracterAEliminar), "");
-        String cadenaSinCaracter2 = cadenaSinCaracter.replace(String.valueOf(caracterAEliminar2), "");
-
-        String[] caracter2 = cadenaSinCaracter2.split("\\-");
-        String pedidos = caracter2[0];
-        String bodegas = caracter2[1];
-        String partidas = caracter2[2];
-
-        if (pedidos.contains(",")) {
-            pedidos = procesartextos(pedidos, 1);
-            Et_Pedidos.setText(pedidos);
-        } else {
-            pedidos = procesartextos(pedidos, 2);
-            Et_Pedidos.setText(pedidos);
-        }
-
-        if (bodegas.contains(",")) {
-            procesartextos(bodegas, 1);
-        } else {
-            bodegas = procesartextos(bodegas, 2);
-            Et_Bodegas.setText(bodegas);
-        }
-        if (partidas.contains(",")) {
-            partidas = procesartextos(partidas, 1);
-            Et_Partidas.setText(partidas);
-        } else {
-            partidas = procesartextos(partidas, 2);
-            Et_Partidas.setText(partidas);
-        }
-    }
-
     public static String procesartextos(String nombre, int pedido) {
         String resultado = "";
 
@@ -800,6 +644,11 @@ public class TAGreaderprodu extends KeyDownFragment {
 
     private void ProgressBar2(String EPCTAG) {
 
+        if (isProgressing) {
+            return;
+        }
+        isProgressing = true;
+
         // Crea y muestra el ProgresDialog
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Procesando...");
@@ -815,18 +664,21 @@ public class TAGreaderprodu extends KeyDownFragment {
 
           // Ocultar el ProgresDialog
             progressDialog.dismiss();
+            isProgressing = false;
+
+            try {
+                JSONArray jsonArray = new JSONArray(result);
+
                 String Encontrados = "";
                 String Esperados = "";
                 String Guia = "";
                 String BanderaDes ="";
                 StringBuilder Num_Paquete= new StringBuilder();
-                try {
-                    JSONArray jsonArray = new JSONArray(result);
 
                     //Limpiar las listas antes de agregar los nuevos datos
-                    tagList.clear();
-                    tempDatas.clear();
-                    adapter.notifyDataSetChanged();
+//                    tagList.clear();
+//                    tempDatas.clear();
+//                    adapter.notifyDataSetChanged();
 
                     //Recorrer cada objeto del array JSON
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -852,10 +704,15 @@ public class TAGreaderprodu extends KeyDownFragment {
                             Esperados = jsonObject.optString("art_esperados", "0");
                             Guia = jsonObject.optString("k_Guia", "0");
                             String mensajes = "Guía:" + Guia + " / Encontrados: " + Encontrados + " / Esperados: " + Esperados;
-                            Et_ArtEsp.setText(Encontrados);
-                            TxtEmbarque.setText(Guia);
-                            Et_Bodegas.setText(Esperados);
                         }
+
+
+                        // Verificar si el EPC es válido
+                        if (EPC.isEmpty()) {
+                            Toast.makeText(getContext(), "Este EPC no existe: " + EPCTAG, Toast.LENGTH_SHORT).show();
+                            continue;
+                        }
+
                         // Crear un mapa con los valores procesados y agregarlo a las listas
                         map = new HashMap<>();
                         map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
@@ -872,7 +729,11 @@ public class TAGreaderprodu extends KeyDownFragment {
                     adapter.notifyDataSetChanged();
                     Et_Pedidos.setText(Num_Paquete);
 
-
+                    reanudarHilo();
+                    //LimpiarValores();
+                    Et_ArtEsp.setText(Esperados);
+                    TxtEmbarque.setText(Guia);
+                    Et_Bodegas.setText(Encontrados);
                     int dato1 = Integer.parseInt(Encontrados);
                     int dato2 = Integer.parseInt(Esperados);
                     if (dato1 == dato2 && !BanderaDes.equals("1")) {
@@ -883,17 +744,19 @@ public class TAGreaderprodu extends KeyDownFragment {
                         iniciarAnimacionParpadeo(3);
                     }
 
+                    // Esperar 5 segundos antes de limpiar los valores
+                    new Handler().postDelayed(() -> {
+                        LimpiarValores(); // Llama a la función para limpiar los valores3
+                    }, 5000); // 5000 milisegundos = 5 segundos
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(getContext(), "Error al procesar los datos JSON: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     LimpiarValores();
                     reanudarHilo();
-                }
-                finally {
-                    // Ocultar el ProgresDialog
-                    progressDialog.dismiss();
+
                 }
         });
     }
-
 }
