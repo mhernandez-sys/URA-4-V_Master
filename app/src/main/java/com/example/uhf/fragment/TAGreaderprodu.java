@@ -1,5 +1,6 @@
 package com.example.uhf.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -59,13 +60,13 @@ public class TAGreaderprodu extends KeyDownFragment {
     private int previousState = -1; // Inicializar con un valor que no puede ser un estado válido
     RFIDWithUHFA4 rfidWithUHFA4 = null;
     //    private final Semaphore semaphore = new Semaphore(1);
-    private static final String TAG = "UHFReadTagFragment";
+    private static String TAG = "UHFReadTagFragment";
     private boolean loopFlag = false;
     private int inventoryFlag = 1;
     public ArrayList<HashMap<String, String>> tagList;
     private WebServiceManager webServiceManager;
-    // Definir la variable de control
-    private boolean isProgressBarCalled = false;
+
+    private boolean isProgressing = false;
 
     SimpleAdapter adapter;
     Button BtClear;
@@ -251,20 +252,25 @@ public class TAGreaderprodu extends KeyDownFragment {
             //Se recupera el valor almacenado en el dispositivo
             int timer;
             timer = 10;
-            if (dTime >= timer && !isProgressBarCalled) { // Verificar la bandera
+            if (dTime >= timer) {
+                //String valorembarque = TxtEmbarque.getSelectedItem().toString();
                 stopInventory();
-                // Remover la última coma de la cadena EPC
+                String contador = tv_count.getText().toString();
+                // Remover la última coma
                 if (CadenaEPCS.length() > 0) {
                     CadenaEPCS = CadenaEPCS.substring(0, CadenaEPCS.length() - 1);
                 }
-                // Llamar a ProgressBar2 solo una vez
                 ProgressBar2(CadenaEPCS);
-                //isProgressBarCalled = true; // Actualizar la bandera para evitar llamadas múltiples
+                if (map == null) {
+                    LimpiarValores();
+                    reanudarHilo();
+                }
             }
         }
     }
 
     public class BtClearClickListener implements View.OnClickListener {
+
         @Override
         public void onClick(View v) {
             LimpiarValores();
@@ -329,7 +335,10 @@ public class TAGreaderprodu extends KeyDownFragment {
             readTag();
             //enviarNotificacion();
             mensajesocket();
-            //ProgressBar2("'1111222233334444924145E2','E280116060000208EBCEA56E', 'E280116060000209924145E4', 'E280116060000209924145E5'");
+            ///ProgressBar("E28011606000020EB7OC5DBB+001804BA0460B527A68B52F4+E28011606000020EB70C4CB3+");
+            //ProgressBar2("'E280116060000208EBCEA56E', 'E280116060000209924145E4', 'E280116060000209924145E5'");
+            //1111222233334444924145E2',
+
         }
     }
 
@@ -344,8 +353,9 @@ public class TAGreaderprodu extends KeyDownFragment {
         {
             BtInventory.setBackgroundColor(getResources().getColor(R.color.txtblue));
             switch (inventoryFlag) {
-                case 0:// un solo paso
+                case 0:// 单步
                     //En el caso 0 es cuando se lee de un tag en un tag
+
                     mStartTime = System.currentTimeMillis();
                     UHFTAGInfo uhftagInfo = mContext.mReader.inventorySingleTag();
                     if (uhftagInfo != null) {
@@ -370,6 +380,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                     } else {
                         mContext.mReader.stopInventory();
                         UIHelper.ToastMessage(mContext, R.string.uhf_msg_inventory_open_fail);
+
                     }
                     break;
                 default:
@@ -515,6 +526,36 @@ public class TAGreaderprodu extends KeyDownFragment {
         readTag();
     }
 
+    public static String procesartextos(String nombre, int pedido) {
+        String resultado = "";
+
+        if (pedido == 1) {
+            String[] Matriz = nombre.split(",");
+
+            for (int i = 0; i < Matriz.length; i++) {
+                String variable = Matriz[i];
+                String[] partes1 = variable.split(":");
+                String variable1 = partes1[1];
+                ///En esta parte se le quitan las comillas
+                String[] partes2 = variable1.split("\"");
+                String variable2 = String.join("", partes2);
+                resultado += variable2 + ",";
+            }
+            String ultimocaracter = resultado.substring(0, resultado.length() - 1);
+            resultado = ultimocaracter;
+
+        } else if (pedido == 2) {
+            String variable = nombre;
+            String[] partes1 = variable.split(":");
+            String variable1 = partes1[1];
+            ///En esta parte se le quitan las comillas
+            String[] partes2 = variable1.split("\"");
+            String variable2 = String.join("", partes2);
+            resultado = variable2;
+        }
+        return resultado;
+    }
+
     private void iniciarAnimacionParpadeo(final int Activacion) {
         AlphaAnimation parpadeo = new AlphaAnimation(1f, 0f); // De totalmente visible a totalmente invisible
         parpadeo.setDuration(500); // Duración de cada fase del parpadeo en milisegundos
@@ -602,29 +643,42 @@ public class TAGreaderprodu extends KeyDownFragment {
     }
 
     private void ProgressBar2(String EPCTAG) {
+
+        if (isProgressing) {
+            return;
+        }
+        isProgressing = true;
+
+        // Crea y muestra el ProgresDialog
+        ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Procesando...");
+        progressDialog.setCancelable(false); // Evita que el usuario pueda cancelar el diálogo
+        progressDialog.show();
+
         // Crear el mapa de propiedades para enviar
         Map<String, String> properties = new HashMap<>();
         properties.put("EPCTAG", EPCTAG);
+
         // Llamar al web service utilizando WebServiceManager
         webServiceManager.callWebService("ProcesarGuia", properties, result -> {
-            if (result.equals("[]") || result.contains("Error") || result.contains("Time out") || result.contains("Failed to connect to")) {
-                //Mensaje que visuliza los resultados
-                Toast.makeText(getContext(), "Tags no reconocidos, se reinicia el conteo", Toast.LENGTH_SHORT).show();
-                reanudarHilo();
-                LimpiarValores();
-            }else {
+
+          // Ocultar el ProgresDialog
+            progressDialog.dismiss();
+            isProgressing = false;
+
+            try {
+                JSONArray jsonArray = new JSONArray(result);
+
                 String Encontrados = "";
                 String Esperados = "";
                 String Guia = "";
                 String BanderaDes ="";
                 StringBuilder Num_Paquete= new StringBuilder();
-                try {
-                    JSONArray jsonArray = new JSONArray(result);
 
                     //Limpiar las listas antes de agregar los nuevos datos
-                    tagList.clear();
-                    tempDatas.clear();
-                    adapter.notifyDataSetChanged();
+//                    tagList.clear();
+//                    tempDatas.clear();
+//                    adapter.notifyDataSetChanged();
 
                     //Recorrer cada objeto del array JSON
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -650,10 +704,15 @@ public class TAGreaderprodu extends KeyDownFragment {
                             Esperados = jsonObject.optString("art_esperados", "0");
                             Guia = jsonObject.optString("k_Guia", "0");
                             String mensajes = "Guía:" + Guia + " / Encontrados: " + Encontrados + " / Esperados: " + Esperados;
-                            Et_ArtEsp.setText(Encontrados);
-                            TxtEmbarque.setText(Guia);
-                            Et_Bodegas.setText(Esperados);
                         }
+
+
+                        // Verificar si el EPC es válido
+                        if (EPC.isEmpty()) {
+                            Toast.makeText(getContext(), "Este EPC no existe: " + EPCTAG, Toast.LENGTH_SHORT).show();
+                            continue;
+                        }
+
                         // Crear un mapa con los valores procesados y agregarlo a las listas
                         map = new HashMap<>();
                         map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
@@ -670,7 +729,11 @@ public class TAGreaderprodu extends KeyDownFragment {
                     adapter.notifyDataSetChanged();
                     Et_Pedidos.setText(Num_Paquete);
 
-
+                    reanudarHilo();
+                    //LimpiarValores();
+                    Et_ArtEsp.setText(Esperados);
+                    TxtEmbarque.setText(Guia);
+                    Et_Bodegas.setText(Encontrados);
                     int dato1 = Integer.parseInt(Encontrados);
                     int dato2 = Integer.parseInt(Esperados);
                     if (dato1 == dato2 && !BanderaDes.equals("1")) {
@@ -681,13 +744,19 @@ public class TAGreaderprodu extends KeyDownFragment {
                         iniciarAnimacionParpadeo(3);
                     }
 
+                    // Esperar 5 segundos antes de limpiar los valores
+                    new Handler().postDelayed(() -> {
+                        LimpiarValores(); // Llama a la función para limpiar los valores3
+                    }, 5000); // 5000 milisegundos = 5 segundos
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(getContext(), "Error al procesar los datos JSON: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     LimpiarValores();
                     reanudarHilo();
+
                 }
-            }
         });
     }
-
 }
