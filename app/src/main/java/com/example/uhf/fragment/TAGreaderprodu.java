@@ -666,6 +666,17 @@ public class TAGreaderprodu extends KeyDownFragment {
             isProgressing = false;
 
             try {
+                // Verificar si el resultado contiene un mensaje de error
+                JSONObject jsonObjectResult = new JSONObject(result);
+                if (jsonObjectResult.has("Error")) {
+                    // Obtener el mensaje de error y mostrarlo
+                    String errorMessage = jsonObjectResult.getString("Error");
+                    Toast.makeText(getContext(), "Error: " + errorMessage, Toast.LENGTH_LONG).show();
+                    LimpiarValores();  // Limpiar valores en caso de error
+                    reanudarHilo();    // Reanudar el hilo si corresponde
+                    return;  // Salir del método ya que no hay más que procesar
+                }
+
                 JSONArray jsonArray = new JSONArray(result);
 
                 String Encontrados = "";
