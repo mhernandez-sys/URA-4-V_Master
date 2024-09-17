@@ -73,6 +73,9 @@ import android.content.Context;
 
 import android.support.v4.app.INotificationSideChannel;
 
+import android.content.Context;
+import android.os.PowerManager;
+import android.os.Bundle;
 /**
  * UHF使用demo
  * <p>
@@ -86,7 +89,10 @@ import android.support.v4.app.INotificationSideChannel;
  * @author wushengjun
  * 更新于 2016年8月9日
  */
+
 public class UHFMainActivity extends BaseTabFragmentActivity {
+
+    private PowerManager.WakeLock wakeLock;
 
     private final static String TAG = "MainActivity";
     private FragmentTabHost mTabHost;
@@ -108,6 +114,15 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        // Obtener el PowerManager y crear un WakeLock
+        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyApp::WakeLockTag");
+
+        // Adquirir el WakeLock
+        wakeLock.acquire();
+
         creaciondecanal();
         Log.e("zp_add", "-------UHFMainActivity  1--------");
         if (BuildConfig.DEBUG) {
@@ -167,6 +182,10 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
 
     @Override
     protected void onDestroy() {
+        // Liberar el WakeLock cuando la actividad se destruya
+        if (wakeLock != null && wakeLock.isHeld()) {
+            wakeLock.release();
+        }
         free();
         super.onDestroy();
     }
@@ -231,11 +250,6 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
 
         return false;
     }
-
-
-    /**
-     * 读取成功模板声音播放
-     */
     public void playSound() {
         if(isBuzzer) {
              mReader.buzzer();
@@ -256,103 +270,6 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
             }
         }
     }
-
-    public void llenarTxtEmbarque(Spinner spinner, final String Activa){
-
-
-        NAMESPACE = "http://tag_android.org/";
-        URL = "http://192.168.1.65/TAGSSERver.asmx";
-        METHOD_NAME = "Embarques";
-        SOAP_ACTION = NAMESPACE + METHOD_NAME;
-        String res = "";
-
-        Thread nt = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                String NAMESPACE = "http://tag_android.org/";
-                String URL = "http://192.168.1.65/TAGSSERver.asmx";
-                String METHOD_NAME = "Embarques";
-                String SOAP_ACTION = NAMESPACE + METHOD_NAME;
-                String res = "";
-                try {
-                    //Se crea el objeto SOAP
-                    SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-                    //Se gregan las propiedades que se van a enviar
-                    //Se gregan las propiedades que se van a enviar
-                    request.addProperty("Activa", Activa);
-
-                    SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-                    envelope.dotNet = true;
-                    envelope.setOutputSoapObject(request);
-
-                    HttpTransportSE transporte = new HttpTransportSE(URL);
-                    transporte.call(SOAP_ACTION, envelope);
-
-                    SoapPrimitive resultado_xml = (SoapPrimitive) envelope.getResponse();
-                    res = resultado_xml.toString();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    res = "Error: " + e.getMessage();
-                }
-                final String finalRes = res;
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        procesarRespuesta1(finalRes,spinner);
-                    }
-                });
-            }
-        });
-        nt.start();
-    }
-
-    private void procesarRespuesta1(String respuesta, Spinner spinner) {
-        ArrayListOrden.clear();
-        // Aquí debes implementar la lógica para procesar la respuesta y asignar a diferentes variables
-        // Por ejemplo, asumiendo que la respuesta está en un formato separado por comas:
-        char caracterAEliminar = '}'; // Por ejemplo, eliminar la coma
-        char caracterAEliminar2 = ']'; // Por ejemplo, eliminar la coma
-        // Reemplazar el carácter con una cadena vacía
-        ///Con esta linea se elimina el parametro } recordar que lleva comillas sinples
-        String cadenaSinCaracter = respuesta.replace(String.valueOf(caracterAEliminar), "");
-        String cadenaSinCaracter2 = cadenaSinCaracter.replace(String.valueOf(caracterAEliminar2), "");
-
-        String[] partes = cadenaSinCaracter2.split(",");
-        String[] matriziOrden = new String[partes.length];
-
-        for (int i = 0; i < partes.length ; i++) {
-            String variable = partes[i];
-            //Con split se dividen las cadenas cada que se encuentra un parametro grupal
-            String[] partes1 = variable.split(":");
-            String variable1 = partes1[1];
-            ///En esta parte se le quitan las comillas
-            String[] partes2 = variable1.split("\"");
-            String variable2 = String.join("", partes2);
-            ///Se almacena el resulatdoi final en la matriz
-            matriziOrden[i] = variable2;
-        }
-
-        VMDatos vmDatos = new ViewModelProvider(this).get(VMDatos.class);
-        ArrayList<String> Orden = new ArrayList<>();
-        // Ejemplo de un ciclo for para agregar elementos al ArrayList
-        ArrayListOrden.add("Selecione una opcion");
-        int tamaño= partes.length;
-        for (int i = 0; i < tamaño; i++) {
-            String elemento = matriziOrden[i];
-            ArrayListOrden.add(elemento);
-        }
-        List<String> datos = ArrayListOrden;
-        vmDatos.getArrayListOrden().setValue(ArrayListOrden);
-        // Utiliza el contexto del spinner o el contexto de la aplicación
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(spinner.getContext(), android.R.layout.simple_spinner_item, datos);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Establecer el adaptador en el Spinner
-        spinner.setAdapter(adapter);
-    }
-
     public void OpcionesConfiguracion(final String Parametro, final String Actualizar) {
 
         String res = "";
@@ -413,12 +330,7 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
         });
         nt.start();
     }
-
     public void mensajes(final String cadena){
         Toast.makeText(this, cadena, Toast.LENGTH_LONG).show();
-
     }
-
-
-
 }

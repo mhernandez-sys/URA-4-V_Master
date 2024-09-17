@@ -51,14 +51,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 import com.rscja.deviceapi.exception.ConfigurationException;
 
 public class TAGreaderprodu extends KeyDownFragment {
 
     // Declarar una variable booleana para controlar el estado del hilo
-    private boolean hiloActivo = true;
-    // Variable para almacenar el estado anterior del GPIO
-    private int previousState = -1; // Inicializar con un valor que no puede ser un estado válido
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private Future<?> futureTask;
+    private boolean hiloActivo = false;
+    private int previousState = -1; // Estado anterior inicializado
     RFIDWithUHFA4 rfidWithUHFA4 = null;
     //    private final Semaphore semaphore = new Semaphore(1);
     private static String TAG = "UHFReadTagFragment";
@@ -98,7 +101,6 @@ public class TAGreaderprodu extends KeyDownFragment {
     private int totalNum;
     private List<String> tempDatas;
 
-    ExecutorService executorService = null;
     boolean isStop = false;
 
     private Handler handler = new Handler(Looper.getMainLooper()) {
@@ -153,13 +155,9 @@ public class TAGreaderprodu extends KeyDownFragment {
         MSAlertaActivo.setVisibility(View.GONE);
         webServiceManager = new WebServiceManager(requireContext());
 
-        Thread gpioThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                monitorizarCambiosGPIO();
-            }
-        });
-        gpioThread.start();
+        iniciarHilo();
+
+
     }
 
     private void inits(View view) {
@@ -185,6 +183,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         BtInventory.setOnClickListener(new TAGreaderprodu.BtInventoryClickListener());
         //initFilter(view); // 初始化过滤
         clearData();
+
     }
 
     @Override
@@ -265,7 +264,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                 ProgressBar(CadenaEPCS);
                 if (map == null) {
                     LimpiarValores();
-                    reanudarHilo();
+                    iniciarHilo();
                 }
             }
         }
@@ -276,7 +275,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         @Override
         public void onClick(View v) {
             LimpiarValores();
-            reanudarHilo();
+            iniciarHilo();
         }
     }
 
@@ -585,9 +584,9 @@ public class TAGreaderprodu extends KeyDownFragment {
             // Esperar un tiempo antes de la próxima verificación
             try {
                 Thread.sleep(1000); // Puedes ajustar el tiempo según sea necesario
-
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt(); // Interrumpir el hilo
+                break; // Salir del bucle si se interrumpe el hilo
             }
         }
     }
@@ -609,8 +608,8 @@ public class TAGreaderprodu extends KeyDownFragment {
             if (currentState != previousState) {
                 // Si hay un cambio, mostrar el mensaje
                 mostrarToast("Cambio detectado en GPIO: " + currentState);
-                //String valor = tv_time.getText().toString();
-                if (currentState == 1) {
+
+                if (currentState == 0) {
                     detenerHilo();
                     readTag();
                 }
@@ -618,6 +617,20 @@ public class TAGreaderprodu extends KeyDownFragment {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void iniciarHilo() {
+        if (futureTask == null || futureTask.isDone()) {
+            hiloActivo = true;
+            futureTask = executorService.submit(this::monitorizarCambiosGPIO);
+        }
+    }
+
+    public void detenerHilo() {
+        hiloActivo = false;
+        if (futureTask != null && !futureTask.isDone()) {
+            futureTask.cancel(true);
         }
     }
 
@@ -630,25 +643,16 @@ public class TAGreaderprodu extends KeyDownFragment {
         });
     }
 
-    // Método para detener el hilo
-    private void detenerHilo() {
-        hiloActivo = false;
-    }
-
-    // Método para reanudar el hilo
-    private void reanudarHilo() {
-        hiloActivo = true;
-        // Crear y comenzar un nuevo hilo para la monitorización
-        Thread nuevoHilo = new Thread(this::monitorizarCambiosGPIO);
-        nuevoHilo.start();
-    }
-
 
     public void ProgressBar(String EPCTAG) {
 
+
         if (EPCTAG.isEmpty()) {
+            iniciarHilo();
+            LimpiarValores();
             return;
         }
+        // Mostrar el ProgresDialog
         if (isProgressing) {
             return;
         }
@@ -682,7 +686,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                 // Esperar 5 segundos antes de limpiar los valores
                 new Handler().postDelayed(() -> {
                     LimpiarValores(); // Llama a la función para limpiar los valores
-                    reanudarHilo();
+                    iniciarHilo();
                 }, 5000); // 5000 milisegundos = 5 segundos
 
                 return;
@@ -713,10 +717,11 @@ public class TAGreaderprodu extends KeyDownFragment {
                 if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
                     Encontrados = jsonObject.optString("CantidadEncontrada", "0");
                     Esperados = jsonObject.optString("art_esperados", "0");
-                    Guia = jsonObject.optString("K_Guia", "0");
+                    Guia = jsonObject.optString("k_Guia", "0");
                     Bandera = jsonObject.optString("Bandera", "0");
                     String mensajes = "Guía: " + Guia + " / Encontrados: " + Encontrados + " / Esperados: " + Esperados;
                 }
+
                 // Crear un mapa con los valores procesados y agregarlo a las listas
                 map = new HashMap<>();
                 map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
@@ -748,7 +753,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                 // Esperar 5 segundos antes de limpiar los valores
                 new Handler().postDelayed(() -> {
                     LimpiarValores(); // Llama a la función para limpiar los valores
-                    reanudarHilo();
+                    iniciarHilo();
                 }, 5000); // 5000 milisegundos = 5 segundos
 
             }
