@@ -14,7 +14,7 @@ public class Enviar extends AsyncTask<String, Void, Void> {
         String mensaje = strings[0];  // Usar strings, no voids
 
         try {
-            S = new Socket("192.168.1.65", 5051);
+            S = new Socket("192.168.1.3", 5051);
             PW = new PrintWriter(S.getOutputStream());
             PW.write(mensaje);
             PW.flush();

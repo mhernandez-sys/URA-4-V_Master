@@ -1,6 +1,7 @@
 package com.example.uhf.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -50,14 +51,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 import com.rscja.deviceapi.exception.ConfigurationException;
 
 public class TAGreaderprodu extends KeyDownFragment {
 
     // Declarar una variable booleana para controlar el estado del hilo
-    private boolean hiloActivo = true;
-    // Variable para almacenar el estado anterior del GPIO
-    private int previousState = -1; // Inicializar con un valor que no puede ser un estado válido
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private Future<?> futureTask;
+    private boolean hiloActivo = false;
+    private int previousState = -1; // Estado anterior inicializado
     RFIDWithUHFA4 rfidWithUHFA4 = null;
     //    private final Semaphore semaphore = new Semaphore(1);
     private static String TAG = "UHFReadTagFragment";
@@ -65,6 +69,7 @@ public class TAGreaderprodu extends KeyDownFragment {
     private int inventoryFlag = 1;
     public ArrayList<HashMap<String, String>> tagList;
     private WebServiceManager webServiceManager;
+    private int i = 0;
 
     private boolean isProgressing = false;
 
@@ -96,7 +101,6 @@ public class TAGreaderprodu extends KeyDownFragment {
     private int totalNum;
     private List<String> tempDatas;
 
-    ExecutorService executorService = null;
     boolean isStop = false;
 
     private Handler handler = new Handler(Looper.getMainLooper()) {
@@ -151,13 +155,9 @@ public class TAGreaderprodu extends KeyDownFragment {
         MSAlertaActivo.setVisibility(View.GONE);
         webServiceManager = new WebServiceManager(requireContext());
 
-        Thread gpioThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                monitorizarCambiosGPIO();
-            }
-        });
-        gpioThread.start();
+        iniciarHilo();
+
+
     }
 
     private void inits(View view) {
@@ -183,6 +183,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         BtInventory.setOnClickListener(new TAGreaderprodu.BtInventoryClickListener());
         //initFilter(view); // 初始化过滤
         clearData();
+
     }
 
     @Override
@@ -260,10 +261,10 @@ public class TAGreaderprodu extends KeyDownFragment {
                 if (CadenaEPCS.length() > 0) {
                     CadenaEPCS = CadenaEPCS.substring(0, CadenaEPCS.length() - 1);
                 }
-                ProgressBar2(CadenaEPCS);
+                ProgressBar(CadenaEPCS);
                 if (map == null) {
                     LimpiarValores();
-                    reanudarHilo();
+                    iniciarHilo();
                 }
             }
         }
@@ -274,7 +275,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         @Override
         public void onClick(View v) {
             LimpiarValores();
-            reanudarHilo();
+            iniciarHilo();
         }
     }
 
@@ -583,9 +584,9 @@ public class TAGreaderprodu extends KeyDownFragment {
             // Esperar un tiempo antes de la próxima verificación
             try {
                 Thread.sleep(1000); // Puedes ajustar el tiempo según sea necesario
-
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt(); // Interrumpir el hilo
+                break; // Salir del bucle si se interrumpe el hilo
             }
         }
     }
@@ -607,15 +608,29 @@ public class TAGreaderprodu extends KeyDownFragment {
             if (currentState != previousState) {
                 // Si hay un cambio, mostrar el mensaje
                 mostrarToast("Cambio detectado en GPIO: " + currentState);
-                String valor = tv_time.getText().toString();
-                if (currentState == 1 && valor.equals("0s")) {
-                    readTag();
+
+                if (currentState == 0) {
                     detenerHilo();
+                    readTag();
                 }
                 previousState = currentState; // Actualizar el estado anterior
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void iniciarHilo() {
+        if (futureTask == null || futureTask.isDone()) {
+            hiloActivo = true;
+            futureTask = executorService.submit(this::monitorizarCambiosGPIO);
+        }
+    }
+
+    public void detenerHilo() {
+        hiloActivo = false;
+        if (futureTask != null && !futureTask.isDone()) {
+            futureTask.cancel(true);
         }
     }
 
@@ -628,21 +643,16 @@ public class TAGreaderprodu extends KeyDownFragment {
         });
     }
 
-    // Método para detener el hilo
-    private void detenerHilo() {
-        hiloActivo = false;
-    }
 
-    // Método para reanudar el hilo
-    private void reanudarHilo() {
-        hiloActivo = true;
-        // Crear y comenzar un nuevo hilo para la monitorización
-        Thread nuevoHilo = new Thread(this::monitorizarCambiosGPIO);
-        nuevoHilo.start();
-    }
+    public void ProgressBar(String EPCTAG) {
 
-    private void ProgressBar2(String EPCTAG) {
 
+        if (EPCTAG.isEmpty()) {
+            iniciarHilo();
+            LimpiarValores();
+            return;
+        }
+        // Mostrar el ProgresDialog
         if (isProgressing) {
             return;
         }
@@ -652,127 +662,101 @@ public class TAGreaderprodu extends KeyDownFragment {
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Procesando...");
         progressDialog.setCancelable(false); // Evita que el usuario pueda cancelar el diálogo
+        mostrarToast(EPCTAG);
         progressDialog.show();
 
         // Crear el mapa de propiedades para enviar
         Map<String, String> properties = new HashMap<>();
         properties.put("EPCTAG", EPCTAG);
 
-        // Llamar al web service utilizando WebServiceManager
-        webServiceManager.callWebService("ProcesarGuia", properties, result -> {
 
+        webServiceManager.callWebService("ProcesarGuia", properties, result -> {
             // Ocultar el ProgresDialog
             progressDialog.dismiss();
             isProgressing = false;
+            // Limpiar las listas antes de agregar los nuevos datos
+            tagList.clear();
+            tempDatas.clear();
+            adapter.notifyDataSetChanged();
 
-            try {
-                // Verificar si el resultado contiene un mensaje de error
-                JSONObject jsonObjectResult = new JSONObject(result);
-                if (jsonObjectResult.has("Error")) {
-                    // Obtener el mensaje de error y mostrarlo
-                    String errorMessage = jsonObjectResult.getString("Error");
-                    Toast.makeText(getContext(), "Error: " + errorMessage, Toast.LENGTH_LONG).show();
-                    LimpiarValores();  // Limpiar valores en caso de error
-                    reanudarHilo();    // Reanudar el hilo si corresponde
-                    return;  // Salir del método ya que no hay más que procesar
+            if (result.contains("Error") || result.contains("Time out")) {
+                iniciarAnimacionParpadeo(3);
+                mostrarToast("No se pudo determinar la guía para el EPCTAG proporcionado.");
+                // Esperar 5 segundos antes de limpiar los valores
+                new Handler().postDelayed(() -> {
+                    LimpiarValores(); // Llama a la función para limpiar los valores
+                    iniciarHilo();
+                }, 5000); // 5000 milisegundos = 5 segundos
+
+                return;
+            }
+
+            JSONArray jsonArray = new JSONArray(result);
+
+            String Encontrados = "";
+            String Esperados = "";
+            String Guia = "";
+            String Bandera = "";
+            StringBuilder Num_Paquete = new StringBuilder();
+
+            // Recorrer cada objeto del array JSON
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                // Extraer valores individuales
+                String k_Guia = jsonObject.optString("K_Guia", "");
+                String NPaquete = jsonObject.optString("NumPaquete", "");
+                String EPC = jsonObject.optString("EPC", "");
+                String Partida_Estral = jsonObject.optString("Partida_Estral", "");
+                String Descripcion = jsonObject.optString("Descripcion", "");
+                String Cantidad = jsonObject.optString("Cantidad", "");
+                Num_Paquete.append(NPaquete).append(",");
+
+                // Comprobar si el objeto actual tiene los valores adicionales
+                if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
+                    Encontrados = jsonObject.optString("CantidadEncontrada", "0");
+                    Esperados = jsonObject.optString("art_esperados", "0");
+                    Guia = jsonObject.optString("k_Guia", "0");
+                    Bandera = jsonObject.optString("Bandera", "0");
+                    String mensajes = "Guía: " + Guia + " / Encontrados: " + Encontrados + " / Esperados: " + Esperados;
                 }
 
-                JSONArray jsonArray = new JSONArray(result);
+                // Crear un mapa con los valores procesados y agregarlo a las listas
+                map = new HashMap<>();
+                map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
+                map.put(TAG_COUNT, Cantidad);
+                map.put(TAG_RSSI, k_Guia); // Estos dos son para el numero de paquete
 
-                String Encontrados = "";
-                String Esperados = "";
-                String Guia = "";
-                String BanderaDes = "";
-                StringBuilder Num_Paquete = new StringBuilder();
-
-                // Limpiar las listas antes de agregar los nuevos datos
-                tagList.clear();
-                tempDatas.clear();
-                adapter.notifyDataSetChanged();
-
-                // Recorrer cada objeto del array JSON
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                    // Extraer valores individuales
-                    String k_Guia = jsonObject.optString("K_Guia", "");
-                    String NPaquete = jsonObject.optString("NumPaquete", "");
-                    String EPC = jsonObject.optString("EPC", "");
-                    String Partida_Estral = jsonObject.optString("Partida_Estral", "");
-                    String Descripcion = jsonObject.optString("Descripcion", "");
-                    String Cantidad = jsonObject.optString("Cantidad", "");
-                    Num_Paquete.append(NPaquete).append(",");
-
-                    // Verificar si la descripción contiene "Artículo no reconocido"
-                    if (Descripcion.contains("Articulo no reconocido"))  {
-                        BanderaDes = "1";
-                        // Mostrar mensaje de advertencia
-                        Toast.makeText(getContext(), "Error: Artículo no reconocido en la guía.", Toast.LENGTH_SHORT).show();
-                    }
-
-                    // Comprobar si el objeto actual tiene los valores adicionales
-                    if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
-                        Encontrados = jsonObject.optString("CantidadEncontrada", "0");
-                        Esperados = jsonObject.optString("art_esperados", "0");
-                        Guia = jsonObject.optString("K_Guia", "0");
-                        String mensajes = "Guía: " + Guia + " / Encontrados: " + Encontrados + " / Esperados: " + Esperados;
-                    }
-
-                    // Verificar si el EPC es válido
-                    if (EPC.isEmpty()) {
-                        Toast.makeText(getContext(), "Este EPC no existe: " + EPCTAG, Toast.LENGTH_SHORT).show();
-                        continue;
-                    }
-
-                    // Crear un mapa con los valores procesados y agregarlo a las listas
-                    map = new HashMap<>();
-                    map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
-                    map.put(TAG_COUNT, Cantidad);
-                    map.put(TAG_RSSI, k_Guia); // Estos dos son para el numero de paquete
-                    // Añadir los datos a la lista de tags si el EPC es válido
-                    if (!EPC.isEmpty()) {
-                        tagList.add(map);
-                        tempDatas.add(Descripcion);
-                        tv_count.setText(String.valueOf(adapter.getCount()));  // En esta parte se le agrega el EPC que no han sido leídos
-                    }
+                // Añadir los datos a la lista de tags si el EPC es válido
+                if (!EPC.isEmpty()) {
+                    tagList.add(map);
+                    tempDatas.add(Descripcion);
+                    tv_count.setText(String.valueOf(adapter.getCount()));  // En esta parte se le agrega el EPC que no han sido leídos
                 }
-
                 // Actualizar el adaptador para reflejar los cambios
                 adapter.notifyDataSetChanged();
-                Et_Pedidos.setText(Num_Paquete);
-
-                reanudarHilo();
                 Et_ArtEsp.setText(Esperados);
                 TxtEmbarque.setText(Guia);
                 Et_Bodegas.setText(Encontrados);
-                int dato1 = Integer.parseInt(Encontrados);
-                int dato2 = Integer.parseInt(Esperados);
 
                 // Manejo de las condiciones para la animación
-                if (dato1 == dato2 && !BanderaDes.equals("1")) {
-                    iniciarAnimacionParpadeo(1);
-                } else if (dato1 < dato2) {
-                    iniciarAnimacionParpadeo(2);
-                } else if (BanderaDes.equals("1")) {
-                    iniciarAnimacionParpadeo(3);
-                }
+                    if (Bandera.equals("1")) {
+                        iniciarAnimacionParpadeo(1);
+                    } else if (Bandera.equals("2")) {
+                        iniciarAnimacionParpadeo(2);
+                    } else if (Bandera.equals("3")) {
+                        iniciarAnimacionParpadeo(3);
+                    }
+
 
                 // Esperar 5 segundos antes de limpiar los valores
                 new Handler().postDelayed(() -> {
                     LimpiarValores(); // Llama a la función para limpiar los valores
+                    iniciarHilo();
                 }, 5000); // 5000 milisegundos = 5 segundos
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-                Toast.makeText(getContext(), "Error al procesar los datos JSON: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                LimpiarValores();
-                reanudarHilo();
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                Toast.makeText(getContext(), "Error en la conversión de datos numéricos: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                LimpiarValores();
-                reanudarHilo();
             }
+
         });
     }
 }
