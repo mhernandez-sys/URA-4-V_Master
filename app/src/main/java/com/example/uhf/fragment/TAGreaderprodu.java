@@ -1,6 +1,7 @@
 package com.example.uhf.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -38,6 +39,11 @@ import com.rscja.deviceapi.entity.UHFTAGInfo;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,7 +52,6 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
 
 import com.rscja.deviceapi.exception.ConfigurationException;
 
@@ -59,11 +64,12 @@ public class TAGreaderprodu extends KeyDownFragment {
     private int previousState = -1; // Estado anterior inicializado
     RFIDWithUHFA4 rfidWithUHFA4 = null;
     //    private final Semaphore semaphore = new Semaphore(1);
-    private static final String TAG = "UHFReadTagFragment";
+    private static String TAG = "UHFReadTagFragment";
     private boolean loopFlag = false;
     private int inventoryFlag = 1;
     public ArrayList<HashMap<String, String>> tagList;
     private WebServiceManager webServiceManager;
+    private int i = 0;
 
     private boolean isProgressing = false;
 
@@ -97,7 +103,7 @@ public class TAGreaderprodu extends KeyDownFragment {
 
     boolean isStop = false;
 
-    private final Handler handler = new Handler(Looper.getMainLooper()) {
+    private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
 
@@ -132,49 +138,53 @@ public class TAGreaderprodu extends KeyDownFragment {
         }
         mContext = (UHFMainActivity) getActivity();
         executorService = Executors.newFixedThreadPool(20);
-        Et_ArtEsp =  getView().findViewById(R.id.Et_ArtEsp);
-        Et_Pedidos = getView().findViewById(R.id.Et_Pedidos);
-        Et_Bodegas = getView().findViewById(R.id.Et_Bodegas);
-        Et_Partidas = getView().findViewById(R.id.Et_Partidas);
-        TXTART_ENC = getView().findViewById(R.id.TXTART_ENC);
-        TxtEmbarque = getView().findViewById(R.id.TxtEmbarque);
+        Et_ArtEsp = (TextView) getView().findViewById(R.id.Et_ArtEsp);
+        Et_Pedidos = (TextView) getView().findViewById(R.id.Et_Pedidos);
+        Et_Bodegas = (TextView) getView().findViewById(R.id.Et_Bodegas);
+        Et_Partidas = (TextView) getView().findViewById(R.id.Et_Partidas);
+        TXTART_ENC = (TextView) getView().findViewById(R.id.TXTART_ENC);
+        TxtEmbarque = (TextView) getView().findViewById(R.id.TxtEmbarque);
         //mContext.llenarspinnerembarque(spinnerEmbarque, "0");
-        PB_Ariculos = getView().findViewById(R.id.PB_Ariculos);
+        PB_Ariculos = (ProgressBar) getView().findViewById(R.id.PB_Ariculos);
         PB_Ariculos.setProgress(0);
-        MSAlerta = getView().findViewById(R.id.MSAlerta);
-        MSAlertaincompletos = getView().findViewById(R.id.MSAlertaincompletos);
-        MSAlertaActivo = getView().findViewById(R.id.MSAlertaActivo);
+        MSAlerta = (TextView) getView().findViewById(R.id.MSAlerta);
+        MSAlertaincompletos = (TextView) getView().findViewById(R.id.MSAlertaincompletos);
+        MSAlertaActivo = (TextView) getView().findViewById(R.id.MSAlertaActivo);
         MSAlerta.setVisibility(View.GONE);
         MSAlertaincompletos.setVisibility(View.GONE);
         MSAlertaActivo.setVisibility(View.GONE);
         webServiceManager = new WebServiceManager(requireContext());
+
         iniciarHilo();
+
+
     }
 
     private void inits(View view) {
-        BtClear = view.findViewById(R.id.BtClear1);
-        tv_count = view.findViewById(R.id.tv_count);
-        tv_totalNum = view.findViewById(R.id.tv_totalNum);
-        tv_time = view.findViewById(R.id.tv_time);
-        RgInventory = view.findViewById(R.id.RgInventory);
+        BtClear = (Button) view.findViewById(R.id.BtClear1);
+        tv_count = (TextView) view.findViewById(R.id.tv_count);
+        tv_totalNum = (TextView) view.findViewById(R.id.tv_totalNum);
+        tv_time = (TextView) view.findViewById(R.id.tv_time);
+        RgInventory = (RadioGroup) view.findViewById(R.id.RgInventory);
         // etTime = (EditText) view.findViewById(R.id.etTime);
 
-        RbInventorySingle = view.findViewById(R.id.RbInventorySingle);
-        RbInventoryLoop = view.findViewById(R.id.RbInventoryLoop);
+        RbInventorySingle = (RadioButton) view.findViewById(R.id.RbInventorySingle);
+        RbInventoryLoop = (RadioButton) view.findViewById(R.id.RbInventoryLoop);
+
         tagList = new ArrayList<>();
         tempDatas = new ArrayList<>();
-        BtInventory = view.findViewById(R.id.BtInventory1);
-        LvTags = view.findViewById(R.id.LvTags);
+        BtInventory = (Button) view.findViewById(R.id.BtInventory1);
+        LvTags = (ListView) view.findViewById(R.id.LvTags);
         adapter = new SimpleAdapter(getContext(), tagList, R.layout.listtag_items,
                 new String[]{TAG_EPC, TAG_LEN, TAG_COUNT, TAG_RSSI, TAG_ANT},
                 new int[]{R.id.TvTagUii, R.id.TvTagLen, R.id.TvTagCount, R.id.TvTagRssi, R.id.TvAnt});
         LvTags.setAdapter(adapter);
+
         BtClear.setOnClickListener(new TAGreaderprodu.BtClearClickListener());
         //RgInventory.setOnCheckedChangeListener(new TAGreaderprodu.RgInventoryCheckedListener());
         BtInventory.setOnClickListener(new TAGreaderprodu.BtInventoryClickListener());
         //initFilter(view); // 初始化过滤
         clearData();
-
     }
 
     @Override
@@ -247,8 +257,9 @@ public class TAGreaderprodu extends KeyDownFragment {
             if (dTime >= timer) {
                 //String valorembarque = TxtEmbarque.getSelectedItem().toString();
                 stopInventory();
+                String contador = tv_count.getText().toString();
                 // Remover la última coma
-                if (!CadenaEPCS.isEmpty()) {
+                if (CadenaEPCS.length() > 0) {
                     CadenaEPCS = CadenaEPCS.substring(0, CadenaEPCS.length() - 1);
                 }
                 ProgressBar(CadenaEPCS);
@@ -322,19 +333,20 @@ public class TAGreaderprodu extends KeyDownFragment {
     public class BtInventoryClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            detenerHilo();
-            readTag();
+            //detenerHilo();
+         //   readTag();
             //enviarNotificacion();
             mensajesocket();
             ///ProgressBar("E28011606000020EB7OC5DBB+001804BA0460B527A68B52F4+E28011606000020EB70C4CB3+");
-            //1111222233334444924145E2',
+            //ProgressBar2("'E280116060000208EBCEA56E', 'E280116060000209924145E4', 'E280116060000209924145E5'");
+            //1111222233334444924145E2'.
         }
     }
 
-    ///Esta es la funcion Maestro
+    ///Esta es la función para el Maestro
     private void mensajesocket() {
         Enviar enviar = new Enviar();
-        enviar.execute("Estral ejecutar programa");
+        enviar.enviarMensaje("Estral ejecutar programa");
     }
 
     private void readTag() {
@@ -344,7 +356,6 @@ public class TAGreaderprodu extends KeyDownFragment {
             switch (inventoryFlag) {
                 case 0:// 单步
                     //En el caso 0 es cuando se lee de un tag en un tag
-
                     mStartTime = System.currentTimeMillis();
                     UHFTAGInfo uhftagInfo = mContext.mReader.inventorySingleTag();
                     if (uhftagInfo != null) {
@@ -375,7 +386,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                 default:
                     break;
             }
-        } else {// detener el reconocimiento
+        } else { // detener el reconocimiento
             stopInventory();
             //    setTotalTime();
         }
@@ -396,21 +407,30 @@ public class TAGreaderprodu extends KeyDownFragment {
     private synchronized void stopInventory() {
         if (loopFlag && !isStop) {
             isStop = true;
-            executorService.execute(() -> {
-                if (mContext.mReader.stopInventory()) {
-                    SystemClock.sleep(200);
-                    mContext.runOnUiThread(() -> {
-                        BtInventory.setText(mContext.getString(R.string.btInventory));
-                        BtClear.setBackgroundColor(getResources().getColor(R.color.txtblue));
-                        loopFlag = false;
-                        setViewEnabled(true);
-                    });
-                } else {
-                    mContext.runOnUiThread(() -> {
-                        UIHelper.ToastMessage(mContext, R.string.uhf_msg_inventory_stop_fail);
-                        loopFlag = false;
-                        setViewEnabled(true);
-                    });
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    if (mContext.mReader.stopInventory()) {
+                        SystemClock.sleep(200);
+                        mContext.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                BtInventory.setText(mContext.getString(R.string.btInventory));
+                                BtClear.setBackgroundColor(getResources().getColor(R.color.txtblue));
+                                loopFlag = false;
+                                setViewEnabled(true);
+                            }
+                        });
+                    } else {
+                        mContext.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                UIHelper.ToastMessage(mContext, R.string.uhf_msg_inventory_stop_fail);
+                                loopFlag = false;
+                                setViewEnabled(true);
+                            }
+                        });
+                    }
                 }
             });
         }
@@ -506,6 +526,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         readTag();
     }
 
+
     private void iniciarAnimacionParpadeo(final int Activacion) {
         AlphaAnimation parpadeo = new AlphaAnimation(1f, 0f); // De totalmente visible a totalmente invisible
         parpadeo.setDuration(500); // Duración de cada fase del parpadeo en milisegundos
@@ -593,7 +614,10 @@ public class TAGreaderprodu extends KeyDownFragment {
         });
     }
 
+
     public void ProgressBar(String EPCTAG) {
+
+
         if (EPCTAG.isEmpty()) {
             iniciarHilo();
             LimpiarValores();
@@ -616,10 +640,12 @@ public class TAGreaderprodu extends KeyDownFragment {
         Map<String, String> properties = new HashMap<>();
         properties.put("EPCTAG", EPCTAG);
 
+
         webServiceManager.callWebService("ProcesarGuia", properties, result -> {
             // Ocultar el ProgresDialog
             progressDialog.dismiss();
             isProgressing = false;
+
             // Limpiar las listas antes de agregar los nuevos datos
             tagList.clear();
             tempDatas.clear();
@@ -633,10 +659,12 @@ public class TAGreaderprodu extends KeyDownFragment {
                     LimpiarValores(); // Llama a la función para limpiar los valores
                     iniciarHilo();
                 }, 5000); // 5000 milisegundos = 5 segundos
+
                 return;
             }
 
             JSONArray jsonArray = new JSONArray(result);
+
             String Encontrados = "";
             String Esperados = "";
             String Guia = "";
@@ -651,6 +679,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                 String k_Guia = jsonObject.optString("K_Guia", "");
                 String NPaquete = jsonObject.optString("NumPaquete", "");
                 String EPC = jsonObject.optString("EPC", "");
+                String Partida_Estral = jsonObject.optString("Partida_Estral", "");
                 String Descripcion = jsonObject.optString("Descripcion", "");
                 String Cantidad = jsonObject.optString("Cantidad", "");
                 Num_Paquete.append(NPaquete).append(",");
@@ -683,24 +712,23 @@ public class TAGreaderprodu extends KeyDownFragment {
                 Et_Bodegas.setText(Encontrados);
 
                 // Manejo de las condiciones para la animación
-                switch (Bandera) {
-                    case "1":
+                    if (Bandera.equals("1")) {
                         iniciarAnimacionParpadeo(1);
-                        break;
-                    case "2":
+                    } else if (Bandera.equals("2")) {
                         iniciarAnimacionParpadeo(2);
-                        break;
-                    case "3":
+                    } else if (Bandera.equals("3")) {
                         iniciarAnimacionParpadeo(3);
-                        break;
-                }
+                    }
+
+
                 // Esperar 5 segundos antes de limpiar los valores
                 new Handler().postDelayed(() -> {
                     LimpiarValores(); // Llama a la función para limpiar los valores
                     iniciarHilo();
                 }, 5000); // 5000 milisegundos = 5 segundos
+
             }
 
         });
     }
-}   
+}
