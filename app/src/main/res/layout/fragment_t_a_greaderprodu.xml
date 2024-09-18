@@ -203,7 +203,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/green"
                     android:gravity="center"
-                    android:text="TODOS LOS ARTICULOS ENCONTRADOS"
+                    android:text="TODOS LOS ARTICULOS FUERON ENCONTRADOS"
                     android:textColor="@color/black"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/baseline_check_circle_24"
