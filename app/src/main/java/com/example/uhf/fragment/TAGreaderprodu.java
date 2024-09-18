@@ -170,6 +170,7 @@ public class TAGreaderprodu extends KeyDownFragment {
 
         RbInventorySingle = (RadioButton) view.findViewById(R.id.RbInventorySingle);
         RbInventoryLoop = (RadioButton) view.findViewById(R.id.RbInventoryLoop);
+
         tagList = new ArrayList<>();
         tempDatas = new ArrayList<>();
         BtInventory = (Button) view.findViewById(R.id.BtInventory1);
@@ -178,12 +179,12 @@ public class TAGreaderprodu extends KeyDownFragment {
                 new String[]{TAG_EPC, TAG_LEN, TAG_COUNT, TAG_RSSI, TAG_ANT},
                 new int[]{R.id.TvTagUii, R.id.TvTagLen, R.id.TvTagCount, R.id.TvTagRssi, R.id.TvAnt});
         LvTags.setAdapter(adapter);
+
         BtClear.setOnClickListener(new TAGreaderprodu.BtClearClickListener());
         //RgInventory.setOnCheckedChangeListener(new TAGreaderprodu.RgInventoryCheckedListener());
         BtInventory.setOnClickListener(new TAGreaderprodu.BtInventoryClickListener());
         //initFilter(view); // 初始化过滤
         clearData();
-
     }
 
     @Override
@@ -332,20 +333,20 @@ public class TAGreaderprodu extends KeyDownFragment {
     public class BtInventoryClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            detenerHilo();
-            readTag();
+            //detenerHilo();
+         //   readTag();
             //enviarNotificacion();
             mensajesocket();
             ///ProgressBar("E28011606000020EB7OC5DBB+001804BA0460B527A68B52F4+E28011606000020EB70C4CB3+");
             //ProgressBar2("'E280116060000208EBCEA56E', 'E280116060000209924145E4', 'E280116060000209924145E5'");
-            //1111222233334444924145E2',
+            //1111222233334444924145E2'.
         }
     }
 
-    ///Esta es la funcion Maestro
+    ///Esta es la función para el Maestro
     private void mensajesocket() {
         Enviar enviar = new Enviar();
-        enviar.execute("Estral ejecutar programa");
+        enviar.enviarMensaje("Estral ejecutar programa");
     }
 
     private void readTag() {
@@ -355,7 +356,6 @@ public class TAGreaderprodu extends KeyDownFragment {
             switch (inventoryFlag) {
                 case 0:// 单步
                     //En el caso 0 es cuando se lee de un tag en un tag
-
                     mStartTime = System.currentTimeMillis();
                     UHFTAGInfo uhftagInfo = mContext.mReader.inventorySingleTag();
                     if (uhftagInfo != null) {
@@ -386,7 +386,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                 default:
                     break;
             }
-        } else {// detener el reconocimiento
+        } else { // detener el reconocimiento
             stopInventory();
             //    setTotalTime();
         }
@@ -526,35 +526,6 @@ public class TAGreaderprodu extends KeyDownFragment {
         readTag();
     }
 
-    public static String procesartextos(String nombre, int pedido) {
-        String resultado = "";
-
-        if (pedido == 1) {
-            String[] Matriz = nombre.split(",");
-
-            for (int i = 0; i < Matriz.length; i++) {
-                String variable = Matriz[i];
-                String[] partes1 = variable.split(":");
-                String variable1 = partes1[1];
-                ///En esta parte se le quitan las comillas
-                String[] partes2 = variable1.split("\"");
-                String variable2 = String.join("", partes2);
-                resultado += variable2 + ",";
-            }
-            String ultimocaracter = resultado.substring(0, resultado.length() - 1);
-            resultado = ultimocaracter;
-
-        } else if (pedido == 2) {
-            String variable = nombre;
-            String[] partes1 = variable.split(":");
-            String variable1 = partes1[1];
-            ///En esta parte se le quitan las comillas
-            String[] partes2 = variable1.split("\"");
-            String variable2 = String.join("", partes2);
-            resultado = variable2;
-        }
-        return resultado;
-    }
 
     private void iniciarAnimacionParpadeo(final int Activacion) {
         AlphaAnimation parpadeo = new AlphaAnimation(1f, 0f); // De totalmente visible a totalmente invisible
