@@ -346,7 +346,10 @@ public class TAGreaderprodu extends KeyDownFragment {
     ///Esta es la función para el Maestro
     private void mensajesocket() {
         Enviar enviar = new Enviar();
-        enviar.enviarMensaje("Estral ejecutar programa");
+
+        List<String> direcciones = List.of("192.168.1.28", "192.168.1.29");
+        List<Integer> puertos = List.of(5052,5052);
+        enviar.enviarMensaje("Estral ejecutar programa", direcciones, puertos); //aqui entra el mensaje a executor
     }
 
     private void readTag() {
@@ -528,26 +531,59 @@ public class TAGreaderprodu extends KeyDownFragment {
 
 
     private void iniciarAnimacionParpadeo(final int Activacion) {
-        AlphaAnimation parpadeo = new AlphaAnimation(1f, 0f); // De totalmente visible a totalmente invisible
-        parpadeo.setDuration(500); // Duración de cada fase del parpadeo en milisegundos
-        parpadeo.setRepeatMode(Animation.REVERSE);
-        parpadeo.setRepeatCount(5);
-        if (Activacion == 1) {
-            ///Activar la etiqueta de embarque completo
-            MSAlertaActivo.setVisibility(View.VISIBLE);
-            // Asignar la animación al ImageView
-            MSAlertaActivo.startAnimation(parpadeo);
-        } else if (Activacion == 2) {
-            ///A
-            MSAlertaincompletos.setVisibility(View.VISIBLE);
-            // Asignar la animación al ImageView
-            MSAlertaincompletos.startAnimation(parpadeo);
-        } else {
-            MSAlerta.setVisibility(View.VISIBLE);
-            // Asignar la animación al ImageView
-            MSAlerta.startAnimation(parpadeo);
+        AlphaAnimation parpadeo;
+        int duracion;
+        int repeticiones;
+
+        // Configurar la animación según el valor de Activacion
+        switch (Activacion) {
+            case 1:
+                parpadeo = new AlphaAnimation(1f, 0f); // Visible a invisible
+                duracion = 500; // Duración rápida
+                repeticiones = 5; // 5 repeticiones
+                MSAlertaActivo.setVisibility(View.VISIBLE);
+                MSAlertaActivo.startAnimation(parpadeo);
+                break;
+
+            case 2:
+                parpadeo = new AlphaAnimation(0.7f, 0f); // Ligero parpadeo
+                duracion = 700; // Duración media
+                repeticiones = 3; // 3 repeticiones
+                MSAlertaincompletos.setVisibility(View.VISIBLE);
+                MSAlertaincompletos.startAnimation(parpadeo);
+                break;
+
+            case 3:
+                parpadeo = new AlphaAnimation(1f, 0.3f); // Parpadeo con menor transparencia
+                duracion = 1000; // Duración lenta
+                repeticiones = 8; // 8 repeticiones
+                MSAlerta.setVisibility(View.VISIBLE);
+                MSAlerta.startAnimation(parpadeo);
+                break;
+
+            case 4:
+                parpadeo = new AlphaAnimation(1f, 0.1f); // Parpadeo de alto contraste
+                duracion = 300; // Duración muy rápida
+                repeticiones = 10; // 10 repeticiones
+                MSAlerta.setVisibility(View.VISIBLE);
+                MSAlerta.startAnimation(parpadeo);
+                break;
+
+            default:
+                parpadeo = new AlphaAnimation(1f, 0.5f); // Suave parpadeo
+                duracion = 600; // Duración media
+                repeticiones = 4; // 4 repeticiones
+                MSAlerta.setVisibility(View.VISIBLE);
+                MSAlerta.startAnimation(parpadeo);
+                break;
         }
+
+        // Aplicar la configuración común a la animación
+        parpadeo.setDuration(duracion);
+        parpadeo.setRepeatMode(Animation.REVERSE);
+        parpadeo.setRepeatCount(repeticiones);
     }
+
 
     public void monitorizarCambiosGPIO() {
         while (hiloActivo) {
@@ -651,17 +687,18 @@ public class TAGreaderprodu extends KeyDownFragment {
             tempDatas.clear();
             adapter.notifyDataSetChanged();
 
-            if (result.contains("Error") || result.contains("Time out")) {
-                iniciarAnimacionParpadeo(3);
-                mostrarToast("No se pudo determinar la guía para el EPCTAG proporcionado.");
-                // Esperar 5 segundos antes de limpiar los valores
-                new Handler().postDelayed(() -> {
-                    LimpiarValores(); // Llama a la función para limpiar los valores
-                    iniciarHilo();
-                }, 5000); // 5000 milisegundos = 5 segundos
+            try {
+                if (result.contains("Error") || result.contains("Time out")) {
+                    mostrarToast("No se pudo determinar la guía para el EPCTAG proporcionado.");
+                    // Esperar 5 segundos antes de limpiar los valores
+                    new Handler().postDelayed(() -> {
+                        LimpiarValores(); // Llama a la función para limpiar los valores
+                        iniciarHilo();
+                    }, 5000); // 5000 milisegundos = 5 segundos
 
-                return;
-            }
+                    return;
+
+                }
 
             JSONArray jsonArray = new JSONArray(result);
 
@@ -719,6 +756,9 @@ public class TAGreaderprodu extends KeyDownFragment {
                     } else if (Bandera.equals("3")) {
                         iniciarAnimacionParpadeo(3);
                     }
+//                    else if (Bandera.equals("4")) {
+//                        iniciarAnimacionParpadeo(4);
+//                    }
 
 
                 // Esperar 5 segundos antes de limpiar los valores
@@ -727,6 +767,17 @@ public class TAGreaderprodu extends KeyDownFragment {
                     iniciarHilo();
                 }, 5000); // 5000 milisegundos = 5 segundos
 
+            }
+            }catch (Exception e) {
+                e.printStackTrace();
+                mostrarToast(result);
+                iniciarAnimacionParpadeo(4);
+                // Esperar 5 segundos antes de limpiar los valores
+                new Handler().postDelayed(() -> {
+                    LimpiarValores(); // Llama a la función para limpiar los valores
+                    iniciarHilo();
+                }, 5000); // 5000 milisegundos = 5 segundos
+                return;
             }
 
         });
