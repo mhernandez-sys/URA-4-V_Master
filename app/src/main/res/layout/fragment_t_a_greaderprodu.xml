@@ -394,7 +394,8 @@
                 android:background="@color/txtblue"
                 android:text="@string/btClear"
                 android:textColor="@color/white"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                tools:ignore="VisualLintButtonSize" />
 
         </LinearLayout>
     </LinearLayout>

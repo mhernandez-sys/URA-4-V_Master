@@ -253,11 +253,10 @@ public class TAGreaderprodu extends KeyDownFragment {
             //int time = 9999999; //Valor original
             //Se recupera el valor almacenado en el dispositivo
             int timer;
-            timer = 10;
-            if (dTime >= timer) {
+            timer = 18;
+            if (dTime >= timer && dTime<=20) {
                 //String valorembarque = TxtEmbarque.getSelectedItem().toString();
                 stopInventory();
-                String contador = tv_count.getText().toString();
                 // Remover la última coma
                 if (CadenaEPCS.length() > 0) {
                     CadenaEPCS = CadenaEPCS.substring(0, CadenaEPCS.length() - 1);
@@ -272,7 +271,6 @@ public class TAGreaderprodu extends KeyDownFragment {
     }
 
     public class BtClearClickListener implements View.OnClickListener {
-
         @Override
         public void onClick(View v) {
             LimpiarValores();
@@ -337,21 +335,16 @@ public class TAGreaderprodu extends KeyDownFragment {
             readTag();
             //enviarNotificacion();
             mensajesocket();
-            ///ProgressBar("E28011606000020EB7OC5DBB+001804BA0460B527A68B52F4+E28011606000020EB70C4CB3+");
-            //ProgressBar2("'E280116060000208EBCEA56E', 'E280116060000209924145E4', 'E280116060000209924145E5'");
-            //1111222233334444924145E2'.
+            //ProgressBar("'E28011606000020DBBE57DEF','E28011606000020DBBE57CE0','E28011606000020DBBE57CE1','E28011606000020DBBE57CE2','E28011606000020DBBE57CE4','E28011606000020DBBE57CE3','E28011606000020DBBE585E3','E28011606000020DBBE57CEE'");
         }
     }
 
-    ///Esta es la función para el Maestro
     private void mensajesocket() {
         Enviar enviar = new Enviar();
-
-        List<String> direcciones = List.of("192.168.1.28", "192.168.1.29");
+        List<String> direcciones = List.of("192.168.1.28", "192.168.1.31");
         List<Integer> puertos = List.of(5052,5052);
-        enviar.enviarMensaje("Estral ejecutar programa", direcciones, puertos); //aqui entra el mensaje a executor
-    }
-
+        enviar.enviarMensaje("Estral ejecutar programa", direcciones, puertos); //aqui entra el mensaje a executor
+}
     private void readTag() {
         if (BtInventory.getText().equals(mContext.getString(R.string.btInventory)))//Si el boton es igual a iniciar
         {
@@ -531,59 +524,26 @@ public class TAGreaderprodu extends KeyDownFragment {
 
 
     private void iniciarAnimacionParpadeo(final int Activacion) {
-        AlphaAnimation parpadeo;
-        int duracion;
-        int repeticiones;
-
-        // Configurar la animación según el valor de Activacion
-        switch (Activacion) {
-            case 1:
-                parpadeo = new AlphaAnimation(1f, 0f); // Visible a invisible
-                duracion = 500; // Duración rápida
-                repeticiones = 5; // 5 repeticiones
-                MSAlertaActivo.setVisibility(View.VISIBLE);
-                MSAlertaActivo.startAnimation(parpadeo);
-                break;
-
-            case 2:
-                parpadeo = new AlphaAnimation(0.7f, 0f); // Ligero parpadeo
-                duracion = 700; // Duración media
-                repeticiones = 3; // 3 repeticiones
-                MSAlertaincompletos.setVisibility(View.VISIBLE);
-                MSAlertaincompletos.startAnimation(parpadeo);
-                break;
-
-            case 3:
-                parpadeo = new AlphaAnimation(1f, 0.3f); // Parpadeo con menor transparencia
-                duracion = 1000; // Duración lenta
-                repeticiones = 8; // 8 repeticiones
-                MSAlerta.setVisibility(View.VISIBLE);
-                MSAlerta.startAnimation(parpadeo);
-                break;
-
-            case 4:
-                parpadeo = new AlphaAnimation(1f, 0.1f); // Parpadeo de alto contraste
-                duracion = 300; // Duración muy rápida
-                repeticiones = 10; // 10 repeticiones
-                MSAlerta.setVisibility(View.VISIBLE);
-                MSAlerta.startAnimation(parpadeo);
-                break;
-
-            default:
-                parpadeo = new AlphaAnimation(1f, 0.5f); // Suave parpadeo
-                duracion = 600; // Duración media
-                repeticiones = 4; // 4 repeticiones
-                MSAlerta.setVisibility(View.VISIBLE);
-                MSAlerta.startAnimation(parpadeo);
-                break;
-        }
-
-        // Aplicar la configuración común a la animación
-        parpadeo.setDuration(duracion);
+        AlphaAnimation parpadeo = new AlphaAnimation(1f, 0f); // De totalmente visible a totalmente invisible
+        parpadeo.setDuration(500); // Duración de cada fase del parpadeo en milisegundos
         parpadeo.setRepeatMode(Animation.REVERSE);
-        parpadeo.setRepeatCount(repeticiones);
+        parpadeo.setRepeatCount(5);
+        if (Activacion == 1) {
+            ///Activar la etiqueta de embarque completo
+            MSAlertaActivo.setVisibility(View.VISIBLE);
+            // Asignar la animación al ImageView
+            MSAlertaActivo.startAnimation(parpadeo);
+        } else if (Activacion == 2) {
+            ///A
+            MSAlertaincompletos.setVisibility(View.VISIBLE);
+            // Asignar la animación al ImageView
+            MSAlertaincompletos.startAnimation(parpadeo);
+        } else {
+            MSAlerta.setVisibility(View.VISIBLE);
+            // Asignar la animación al ImageView
+            MSAlerta.startAnimation(parpadeo);
+        }
     }
-
 
     public void monitorizarCambiosGPIO() {
         while (hiloActivo) {
@@ -619,6 +579,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                 if (currentState == 0) {
                     detenerHilo();
                     readTag();
+                    mensajesocket();
                 }
                 previousState = currentState; // Actualizar el estado anterior
             }
@@ -652,8 +613,6 @@ public class TAGreaderprodu extends KeyDownFragment {
 
 
     public void ProgressBar(String EPCTAG) {
-
-
         if (EPCTAG.isEmpty()) {
             iniciarHilo();
             LimpiarValores();
@@ -664,7 +623,6 @@ public class TAGreaderprodu extends KeyDownFragment {
             return;
         }
         isProgressing = true;
-
         // Crea y muestra el ProgresDialog
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Procesando...");
@@ -676,9 +634,9 @@ public class TAGreaderprodu extends KeyDownFragment {
         Map<String, String> properties = new HashMap<>();
         properties.put("EPCTAG", EPCTAG);
 
+        webServiceManager.callWebService("ProcesarGuia_Maestro", properties, result -> {
 
-        webServiceManager.callWebService("ProcesarGuia", properties, result -> {
-            // Ocultar el ProgresDialog
+            //Ocultar el ProgresDialog
             progressDialog.dismiss();
             isProgressing = false;
 
@@ -687,18 +645,16 @@ public class TAGreaderprodu extends KeyDownFragment {
             tempDatas.clear();
             adapter.notifyDataSetChanged();
 
-            try {
-                if (result.contains("Error") || result.contains("Time out")) {
-                    mostrarToast("No se pudo determinar la guía para el EPCTAG proporcionado.");
-                    // Esperar 5 segundos antes de limpiar los valores
-                    new Handler().postDelayed(() -> {
-                        LimpiarValores(); // Llama a la función para limpiar los valores
-                        iniciarHilo();
-                    }, 5000); // 5000 milisegundos = 5 segundos
-
-                    return;
-
-                }
+            try{
+            if (result.toLowerCase().contains("error") || result.toLowerCase().contains("time out")) {
+                mostrarToast("No se pudo determinar la guía para el EPCTAG proporcionado.");
+                // Esperar 5 segundos antes de limpiar los valores
+                new Handler().postDelayed(() -> {
+                    LimpiarValores(); // Llama a la función para limpiar los valores
+                    iniciarHilo();
+                }, 5000); // 5000 milisegundos = 5 segundos
+                return;
+            }
 
             JSONArray jsonArray = new JSONArray(result);
 
@@ -716,7 +672,6 @@ public class TAGreaderprodu extends KeyDownFragment {
                 String k_Guia = jsonObject.optString("K_Guia", "");
                 String NPaquete = jsonObject.optString("NumPaquete", "");
                 String EPC = jsonObject.optString("EPC", "");
-                String Partida_Estral = jsonObject.optString("Partida_Estral", "");
                 String Descripcion = jsonObject.optString("Descripcion", "");
                 String Cantidad = jsonObject.optString("Cantidad", "");
                 Num_Paquete.append(NPaquete).append(",");
@@ -727,59 +682,57 @@ public class TAGreaderprodu extends KeyDownFragment {
                     Esperados = jsonObject.optString("art_esperados", "0");
                     Guia = jsonObject.optString("k_Guia", "0");
                     Bandera = jsonObject.optString("Bandera", "0");
-                    String mensajes = "Guía: " + Guia + " / Encontrados: " + Encontrados + " / Esperados: " + Esperados;
-                }
 
-                // Crear un mapa con los valores procesados y agregarlo a las listas
-                map = new HashMap<>();
-                map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
-                map.put(TAG_COUNT, Cantidad);
-                map.put(TAG_RSSI, k_Guia); // Estos dos son para el numero de paquete
+                }else {
+                    // Crear un mapa con los valores procesados y agregarlo a las listas
+                    map = new HashMap<>();
+                    map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
+                    map.put(TAG_COUNT, Cantidad);
+                    map.put(TAG_RSSI, k_Guia); // Estos dos son para el numero de paquete
 
-                // Añadir los datos a la lista de tags si el EPC es válido
-                if (!EPC.isEmpty()) {
-                    tagList.add(map);
-                    tempDatas.add(Descripcion);
-                    tv_count.setText(String.valueOf(adapter.getCount()));  // En esta parte se le agrega el EPC que no han sido leídos
-                }
-                // Actualizar el adaptador para reflejar los cambios
-                adapter.notifyDataSetChanged();
-                Et_ArtEsp.setText(Esperados);
-                TxtEmbarque.setText(Guia);
-                Et_Bodegas.setText(Encontrados);
-
-                // Manejo de las condiciones para la animación
-                    if (Bandera.equals("1")) {
-                        iniciarAnimacionParpadeo(1);
-                    } else if (Bandera.equals("2")) {
-                        iniciarAnimacionParpadeo(2);
-                    } else if (Bandera.equals("3")) {
-                        iniciarAnimacionParpadeo(3);
+                    // Añadir los datos a la lista de tags si el EPC es válido
+                    if (!EPC.isEmpty()) {
+                        tagList.add(map);
+                        tempDatas.add(Descripcion);
+                        tv_count.setText(String.valueOf(adapter.getCount()));  // En esta parte se le agrega el EPC que no han sido leídos
                     }
-//                    else if (Bandera.equals("4")) {
-//                        iniciarAnimacionParpadeo(4);
-//                    }
-
-
-                // Esperar 5 segundos antes de limpiar los valores
-                new Handler().postDelayed(() -> {
-                    LimpiarValores(); // Llama a la función para limpiar los valores
-                    iniciarHilo();
-                }, 5000); // 5000 milisegundos = 5 segundos
-
+                }
             }
-            }catch (Exception e) {
+
+            // Actualizar el adaptador para reflejar los cambios
+            adapter.notifyDataSetChanged();
+            Et_ArtEsp.setText(Esperados);
+            TxtEmbarque.setText(Guia);
+            Et_Bodegas.setText(Encontrados);
+
+            // Manejo de las condiciones para la animación
+            switch (Bandera) {
+                case "1":
+                    iniciarAnimacionParpadeo(1);
+                    break;
+                case "2":
+                    iniciarAnimacionParpadeo(2);
+                    break;
+                case "3":
+                    iniciarAnimacionParpadeo(3);
+                    break;
+            }
+
+            // Esperar 5 segundos antes de limpiar los valores
+            new Handler().postDelayed(() -> {
+                LimpiarValores(); // Llama a la función para limpiar los valores
+                iniciarHilo();
+            }, 5000); // 5000 milisegundos = 5 segundos
+
+            } catch (Exception e) {
                 e.printStackTrace();
                 mostrarToast(result);
-                iniciarAnimacionParpadeo(4);
                 // Esperar 5 segundos antes de limpiar los valores
                 new Handler().postDelayed(() -> {
                     LimpiarValores(); // Llama a la función para limpiar los valores
                     iniciarHilo();
-                }, 5000); // 5000 milisegundos = 5 segundos
-                return;
+                }, 2000); // 5000 milisegundos = 5 segundos
             }
-
         });
     }
 }

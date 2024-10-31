@@ -28,7 +28,7 @@ public class WebServiceManager {
             @Override
             protected String doInBackground(Void... voids) {
                 String NAMESPACE = "http://Estral.org/";
-                String URL = "http://192.168.1.35/Embarques/EmbarquesWS.asmx";
+                String URL = "http://192.168.1.31/Embarques/EmbarquesWS.asmx";
                 String SOAP_ACTION = NAMESPACE + METHOD_NAME;
                 String res = "";
                 int timeout = 5000; // 5000 milisegundos (5 segundos)

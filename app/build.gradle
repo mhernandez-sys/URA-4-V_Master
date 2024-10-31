@@ -63,7 +63,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.core:core:1.13.1'
-    implementation("com.google.code.gson:gson:2.8.9")
-    implementation fileTree(dir: 'C:\\Users\\vamaf\\AndroidStudioProjects\\Version Master2 Estral URA4 GITHUB\\uhf-a4-demo\\app\\libs', include: ['*.aar', '*.jar'], exclude: [])
-    implementation fileTree(dir: 'C:\\Users\\emanu\\GIT URA4\\URA-4-V_Master\\app\\libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation fileTree(dir: 'C:\\Users\\vamaf\\AndroidStudioProjects\\VersionMaster_Estral_URA4_GITHUB\\uhf-a4-demo\\app\\libs', include: ['*.aar', '*.jar'], exclude: [])
+
 }

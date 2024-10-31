@@ -1,10 +1,6 @@
 package com.example.uhf.activity;
 
-import android.os.AsyncTask;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.List;
@@ -12,7 +8,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Enviar {
-    private ExecutorService executor = Executors.newFixedThreadPool(5); // Cambia el número según cuántos dispositivos manejarás en paralelo
+    private final ExecutorService executor = Executors.newFixedThreadPool(5); // Cambia el número según cuántos dispositivos manejarás en paralelo
 
     // Método para enviar a una lista de dispositivos
     public void enviarMensaje(String mensaje, List<String> direcciones, List<Integer> puertos) {
