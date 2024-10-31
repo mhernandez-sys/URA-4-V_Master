@@ -253,11 +253,10 @@ public class TAGreaderprodu extends KeyDownFragment {
             //int time = 9999999; //Valor original
             //Se recupera el valor almacenado en el dispositivo
             int timer;
-            timer = 10;
-            if (dTime >= timer) {
+            timer = 18;
+            if (dTime >= timer && dTime<=20) {
                 //String valorembarque = TxtEmbarque.getSelectedItem().toString();
                 stopInventory();
-                String contador = tv_count.getText().toString();
                 // Remover la última coma
                 if (CadenaEPCS.length() > 0) {
                     CadenaEPCS = CadenaEPCS.substring(0, CadenaEPCS.length() - 1);
@@ -342,7 +341,7 @@ public class TAGreaderprodu extends KeyDownFragment {
 
     private void mensajesocket() {
         Enviar enviar = new Enviar();
-        List<String> direcciones = List.of("192.168.1.19", "192.168.1.29");
+        List<String> direcciones = List.of("192.168.1.28", "192.168.1.31");
         List<Integer> puertos = List.of(5052,5052);
         enviar.enviarMensaje("Estral ejecutar programa", direcciones, puertos); //aqui entra el mensaje a executor
 }
@@ -580,6 +579,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                 if (currentState == 0) {
                     detenerHilo();
                     readTag();
+                    mensajesocket();
                 }
                 previousState = currentState; // Actualizar el estado anterior
             }
@@ -635,6 +635,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         properties.put("EPCTAG", EPCTAG);
 
         webServiceManager.callWebService("ProcesarGuia_Maestro", properties, result -> {
+
             //Ocultar el ProgresDialog
             progressDialog.dismiss();
             isProgressing = false;
@@ -644,8 +645,8 @@ public class TAGreaderprodu extends KeyDownFragment {
             tempDatas.clear();
             adapter.notifyDataSetChanged();
 
-            if (result.contains("Error") || result.contains("Time out")) {
-                iniciarAnimacionParpadeo(3);
+            try{
+            if (result.toLowerCase().contains("error") || result.toLowerCase().contains("time out")) {
                 mostrarToast("No se pudo determinar la guía para el EPCTAG proporcionado.");
                 // Esperar 5 segundos antes de limpiar los valores
                 new Handler().postDelayed(() -> {
@@ -723,6 +724,15 @@ public class TAGreaderprodu extends KeyDownFragment {
                 iniciarHilo();
             }, 5000); // 5000 milisegundos = 5 segundos
 
+            } catch (Exception e) {
+                e.printStackTrace();
+                mostrarToast(result);
+                // Esperar 5 segundos antes de limpiar los valores
+                new Handler().postDelayed(() -> {
+                    LimpiarValores(); // Llama a la función para limpiar los valores
+                    iniciarHilo();
+                }, 2000); // 5000 milisegundos = 5 segundos
+            }
         });
     }
 }
