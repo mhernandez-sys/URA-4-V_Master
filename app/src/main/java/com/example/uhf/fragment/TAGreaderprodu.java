@@ -334,7 +334,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         @Override
         public void onClick(View v) {
             //detenerHilo();
-         //   readTag();
+            readTag();
             //enviarNotificacion();
             mensajesocket();
             ///ProgressBar("E28011606000020EB7OC5DBB+001804BA0460B527A68B52F4+E28011606000020EB70C4CB3+");
