@@ -65,7 +65,7 @@ array fileEndingWebText
 array i760cls
 array i760icon
 array i760name
-array tiempoejecucion
+array tiempojecucion
 attr? exampleColor
 attr? exampleDimension
 attr? exampleDrawable

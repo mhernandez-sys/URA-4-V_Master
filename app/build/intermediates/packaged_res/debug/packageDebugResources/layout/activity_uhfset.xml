@@ -364,7 +364,7 @@
                 android:hint="Tiempo de lectura"
                 android:inputType="text"
                 android:layout_marginRight="16dp"
-                android:entries="@array/tiempoejecucion"/>
+                android:entries="@array/tiempojecucion"/>
 
         </LinearLayout>
 
@@ -1170,9 +1170,5 @@
             android:showText="true"
             android:text="@string/buzzer"
             android:visibility="visible" />
-
-
     </LinearLayout>
-
-
 </ScrollView>

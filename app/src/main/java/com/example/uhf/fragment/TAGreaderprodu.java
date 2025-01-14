@@ -341,7 +341,7 @@ public class TAGreaderprodu extends KeyDownFragment {
 
     private void mensajesocket() {
         Enviar enviar = new Enviar();
-        List<String> direcciones = List.of("192.168.1.28", "192.168.1.31");
+        List<String> direcciones = List.of("192.168.1.50", "192.168.1.31");
         List<Integer> puertos = List.of(5052,5052);
         enviar.enviarMensaje("Estral ejecutar programa", direcciones, puertos); //aqui entra el mensaje a executor
 }
@@ -524,24 +524,48 @@ public class TAGreaderprodu extends KeyDownFragment {
 
 
     private void iniciarAnimacionParpadeo(final int Activacion) {
+        // Animación de parpadeo
         AlphaAnimation parpadeo = new AlphaAnimation(1f, 0f); // De totalmente visible a totalmente invisible
         parpadeo.setDuration(500); // Duración de cada fase del parpadeo en milisegundos
         parpadeo.setRepeatMode(Animation.REVERSE);
-        parpadeo.setRepeatCount(5);
-        if (Activacion == 1) {
-            ///Activar la etiqueta de embarque completo
-            MSAlertaActivo.setVisibility(View.VISIBLE);
-            // Asignar la animación al ImageView
-            MSAlertaActivo.startAnimation(parpadeo);
-        } else if (Activacion == 2) {
-            ///A
-            MSAlertaincompletos.setVisibility(View.VISIBLE);
-            // Asignar la animación al ImageView
-            MSAlertaincompletos.startAnimation(parpadeo);
-        } else {
-            MSAlerta.setVisibility(View.VISIBLE);
-            // Asignar la animación al ImageView
-            MSAlerta.startAnimation(parpadeo);
+        parpadeo.setRepeatCount(Animation.INFINITE);
+
+        switch (Activacion) {
+            case 1:
+                // Activar la etiqueta de embarque completo
+                MSAlertaActivo.setVisibility(View.VISIBLE);
+                MSAlertaActivo.startAnimation(parpadeo);
+                break;
+
+            case 2:
+                // Activar cuando el ambarque este incompleto
+                MSAlertaincompletos.setVisibility(View.VISIBLE);
+                MSAlertaincompletos.startAnimation(parpadeo);
+                break;
+
+            case 3:
+                //Activar cuando se detecte un tag que no pertenece a la guia
+                MSAlerta.setVisibility(View.VISIBLE);
+                MSAlerta.startAnimation(parpadeo);
+                break;
+
+            case 4:
+                //Activar cuando entre al catch
+                MSAlerta.setVisibility(View.VISIBLE);
+                MSAlertaincompletos.setVisibility(View.VISIBLE);
+                MSAlertaActivo.setVisibility(View.VISIBLE);
+                break;
+
+            case 5:
+                MSAlertaActivo.setVisibility(View.VISIBLE);
+                MSAlertaActivo.startAnimation(parpadeo);
+                MSAlerta.setVisibility(View.VISIBLE);
+                MSAlerta.startAnimation(parpadeo);
+                break;
+
+            default:
+                // Opcional: manejo para cualquier otro valor que no esté en los casos anteriores
+                break;
         }
     }
 
@@ -622,7 +646,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         if (isProgressing) {
             return;
         }
-        isProgressing = true;
+            isProgressing = true;
         // Crea y muestra el ProgresDialog
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Procesando...");
@@ -647,6 +671,7 @@ public class TAGreaderprodu extends KeyDownFragment {
 
             try{
             if (result.toLowerCase().contains("error") || result.toLowerCase().contains("time out")) {
+                iniciarAnimacionParpadeo(5);
                 mostrarToast("No se pudo determinar la guía para el EPCTAG proporcionado.");
                 // Esperar 5 segundos antes de limpiar los valores
                 new Handler().postDelayed(() -> {
@@ -727,6 +752,7 @@ public class TAGreaderprodu extends KeyDownFragment {
             } catch (Exception e) {
                 e.printStackTrace();
                 mostrarToast(result);
+                iniciarAnimacionParpadeo(4);
                 // Esperar 5 segundos antes de limpiar los valores
                 new Handler().postDelayed(() -> {
                     LimpiarValores(); // Llama a la función para limpiar los valores

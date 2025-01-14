@@ -213,18 +213,6 @@
         <item>USUARIO</item>
     </string-array>
 
-    <string-array name="tiempoejecucion">
-        <item>15s</item>
-        <item>20s</item>
-        <item>30s</item>
-        <item>40s</item>
-        <item>50s</item>
-        <item>1min</item>
-        <item>1:10min</item>
-        <item>1:20min</item>
-        <item>1:30min</item>
-        <item>1:40min</item>
-    </string-array>
 
 
     <string-array name="Orden">
@@ -1536,5 +1524,13 @@
     <string-array name="arrayInventoried">
         <item>A</item>
         <item>B</item>
+    </string-array>
+    <string-array name="tiempojecucion">
+        <item>15s</item>
+        <item>20s</item>
+        <item>30s</item>
+        <item>40s</item>
+        <item>50s</item>
+        <item>1min</item>
     </string-array>
 </resources>

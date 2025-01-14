@@ -141,7 +141,7 @@ int array fileEndingWebText 0x7f030038
 int array i760cls 0x7f030039
 int array i760icon 0x7f03003a
 int array i760name 0x7f03003b
-int array tiempoejecucion 0x7f03003c
+int array tiempojecucion 0x7f03003c
 int attr SharedValue 0x7f040000
 int attr SharedValueId 0x7f040001
 int attr actionBarDivider 0x7f040002

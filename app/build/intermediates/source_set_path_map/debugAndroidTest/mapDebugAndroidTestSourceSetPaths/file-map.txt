@@ -1,4 +1,4 @@
-com.example.uhf.test.app-androidTest-0 C:\Users\vamaf\AndroidStudioProjects\VersionMaster_Estral_URA4_GITHUB\uhf-a4-demo\app\build\generated\res\resValues\androidTest\debug
-com.example.uhf.test.app-mergeDebugAndroidTestResources-1 C:\Users\vamaf\AndroidStudioProjects\VersionMaster_Estral_URA4_GITHUB\uhf-a4-demo\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
-com.example.uhf.test.app-mergeDebugAndroidTestResources-2 C:\Users\vamaf\AndroidStudioProjects\VersionMaster_Estral_URA4_GITHUB\uhf-a4-demo\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
-com.example.uhf.test.app-debugAndroidTest-3 C:\Users\vamaf\AndroidStudioProjects\VersionMaster_Estral_URA4_GITHUB\uhf-a4-demo\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
+com.example.uhf.test.app-androidTest-0 C:\Users\emanu\GIT URA4\URA-4-V_Master\app\build\generated\res\resValues\androidTest\debug
+com.example.uhf.test.app-mergeDebugAndroidTestResources-1 C:\Users\emanu\GIT URA4\URA-4-V_Master\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.uhf.test.app-mergeDebugAndroidTestResources-2 C:\Users\emanu\GIT URA4\URA-4-V_Master\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.uhf.test.app-debugAndroidTest-3 C:\Users\emanu\GIT URA4\URA-4-V_Master\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

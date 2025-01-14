@@ -188,14 +188,6 @@
         <item>透明传输</item>
         <item>3DES加密传输</item>
     </string-array>
-    <string-array name="tiempoejecucion">
-        <item>15s</item>
-        <item>20s</item>
-        <item>30s</item>
-        <item>40s</item>
-        <item>50s</item>
-        <item>1min</item>
-    </string-array>
     <string name="America">美国</string>
     <string name="Brazil">巴西</string>
     <string name="China">中国</string>

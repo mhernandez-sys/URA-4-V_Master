@@ -743,17 +743,13 @@
         <item>@string/title_activity_volum</item>
         <item>@string/title_activity_light_and_psensor</item>
     </string-array>
-    <string-array name="tiempoejecucion">
+    <string-array name="tiempojecucion">
         <item>15s</item>
         <item>20s</item>
         <item>30s</item>
         <item>40s</item>
         <item>50s</item>
         <item>1min</item>
-        <item>1:10min</item>
-        <item>1:20min</item>
-        <item>1:30min</item>
-        <item>1:40min</item>
     </string-array>
     <color name="black">#000000</color>
     <color name="black1">#313a4d</color>
