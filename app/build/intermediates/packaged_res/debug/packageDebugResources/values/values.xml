@@ -943,7 +943,7 @@
     <string name="app_msg_Upgrade">Upgrading...\nDo not exit, lest damage hardware</string>
     <string name="app_msg_exit_confirm">Press again to exit the program</string>
     <string name="app_msg_init">init...</string>
-    <string name="app_name">Estral</string>
+    <string name="app_name">Estral_Master</string>
     <string name="app_picker_name">Applications</string>
     <string name="app_run_code_error">Application runtime exception</string>
     <string name="app_title">AppCenter</string>

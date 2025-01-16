@@ -5,7 +5,7 @@
     <string name="rfidVer">UHF module version</string>
     <string name="hwVer">Hardware version</string>
 
-    <string name="app_name">Estral</string>
+    <string name="app_name">Estral_Master</string>
     <string name="action_settings">Ajustes</string>
     <string name="action_about">Acerca de</string>
     <string name="title_inventory_time">Run time:</string>

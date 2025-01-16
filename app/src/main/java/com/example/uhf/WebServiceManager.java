@@ -13,7 +13,6 @@ import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.Map;
 
-
 public class WebServiceManager {
 
     private final Context mContext;
@@ -28,7 +27,7 @@ public class WebServiceManager {
             @Override
             protected String doInBackground(Void... voids) {
                 String NAMESPACE = "http://Estral.org/";
-                String URL = "http://192.168.1.31/Embarques/EmbarquesWS.asmx";
+                String URL = "http://192.168.1.53/Embarques/EmbarquesWS.asmx";
                 String SOAP_ACTION = NAMESPACE + METHOD_NAME;
                 String res = "";
                 int timeout = 5000; // 5000 milisegundos (5 segundos)
@@ -56,7 +55,6 @@ public class WebServiceManager {
                 }
                 return res;
             }
-
             @Override
             protected void onPostExecute(String result) {
                 Log.d("WebServiceManager", "WebService Result: " + result);

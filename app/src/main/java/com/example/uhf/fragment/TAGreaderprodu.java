@@ -1,9 +1,7 @@
 package com.example.uhf.fragment;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -24,7 +22,6 @@ import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.uhf.R;
 import com.example.uhf.WebServiceManager;
 import com.example.uhf.activity.Enviar;
@@ -35,16 +32,9 @@ import com.example.uhf.tools.UIHelper;
 import com.rscja.deviceapi.RFIDWithUHFA4;
 import com.rscja.deviceapi.entity.GPIStateEntity;
 import com.rscja.deviceapi.entity.UHFTAGInfo;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,11 +42,9 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
 import com.rscja.deviceapi.exception.ConfigurationException;
 
 public class TAGreaderprodu extends KeyDownFragment {
-
     // Declarar una variable booleana para controlar el estado del hilo
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
     private Future<?> futureTask;
@@ -64,12 +52,11 @@ public class TAGreaderprodu extends KeyDownFragment {
     private int previousState = -1; // Estado anterior inicializado
     RFIDWithUHFA4 rfidWithUHFA4 = null;
     //    private final Semaphore semaphore = new Semaphore(1);
-    private static String TAG = "UHFReadTagFragment";
+    private static final String TAG = "UHFReadTagFragment";
     private boolean loopFlag = false;
     private int inventoryFlag = 1;
     public ArrayList<HashMap<String, String>> tagList;
     private WebServiceManager webServiceManager;
-    private int i = 0;
 
     private boolean isProgressing = false;
 
@@ -100,13 +87,11 @@ public class TAGreaderprodu extends KeyDownFragment {
     public String CadenaEPCS = "";
     private int totalNum;
     private List<String> tempDatas;
-
     boolean isStop = false;
 
     private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
-
             if (msg.what == 1) {
                 UHFTAGInfo info = (UHFTAGInfo) msg.obj;
                 addDataToList(mergeTidEpc(info.getTid(), info.getEPC(), info.getUser()), info.getEPC(), info.getTid(), info.getUser(), info.getRssi(), info.getAnt());
@@ -138,26 +123,20 @@ public class TAGreaderprodu extends KeyDownFragment {
         }
         mContext = (UHFMainActivity) getActivity();
         executorService = Executors.newFixedThreadPool(20);
-        Et_ArtEsp = (TextView) getView().findViewById(R.id.Et_ArtEsp);
-        Et_Pedidos = (TextView) getView().findViewById(R.id.Et_Pedidos);
-        Et_Bodegas = (TextView) getView().findViewById(R.id.Et_Bodegas);
-        Et_Partidas = (TextView) getView().findViewById(R.id.Et_Partidas);
-        TXTART_ENC = (TextView) getView().findViewById(R.id.TXTART_ENC);
-        TxtEmbarque = (TextView) getView().findViewById(R.id.TxtEmbarque);
-        //mContext.llenarspinnerembarque(spinnerEmbarque, "0");
-        PB_Ariculos = (ProgressBar) getView().findViewById(R.id.PB_Ariculos);
-        PB_Ariculos.setProgress(0);
-        MSAlerta = (TextView) getView().findViewById(R.id.MSAlerta);
-        MSAlertaincompletos = (TextView) getView().findViewById(R.id.MSAlertaincompletos);
-        MSAlertaActivo = (TextView) getView().findViewById(R.id.MSAlertaActivo);
+        Et_ArtEsp = getView().findViewById(R.id.Et_ArtEsp);
+        Et_Pedidos =  getView().findViewById(R.id.Et_Pedidos);
+        Et_Bodegas =  getView().findViewById(R.id.Et_Bodegas);
+        Et_Partidas =  getView().findViewById(R.id.Et_Partidas);
+        TXTART_ENC =  getView().findViewById(R.id.TXTART_ENC);
+        TxtEmbarque =  getView().findViewById(R.id.TxtEmbarque);
+        MSAlerta = getView().findViewById(R.id.MSAlerta);
+        MSAlertaincompletos =  getView().findViewById(R.id.MSAlertaincompletos);
+        MSAlertaActivo =  getView().findViewById(R.id.MSAlertaActivo);
         MSAlerta.setVisibility(View.GONE);
         MSAlertaincompletos.setVisibility(View.GONE);
         MSAlertaActivo.setVisibility(View.GONE);
         webServiceManager = new WebServiceManager(requireContext());
-
         iniciarHilo();
-
-
     }
 
     private void inits(View view) {
@@ -183,14 +162,14 @@ public class TAGreaderprodu extends KeyDownFragment {
         BtClear.setOnClickListener(new TAGreaderprodu.BtClearClickListener());
         //RgInventory.setOnCheckedChangeListener(new TAGreaderprodu.RgInventoryCheckedListener());
         BtInventory.setOnClickListener(new TAGreaderprodu.BtInventoryClickListener());
-        //initFilter(view); // 初始化过滤
-        clearData();
+        //initFilter(view); // Inicializar filtrado
+
     }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         if (!isVisibleToUser) {
-            // 停止识别
+            // Dejar de identificar
             stopInventory();
         }
         super.setUserVisibleHint(isVisibleToUser);
@@ -253,8 +232,8 @@ public class TAGreaderprodu extends KeyDownFragment {
             //int time = 9999999; //Valor original
             //Se recupera el valor almacenado en el dispositivo
             int timer;
-            timer = 18;
-            if (dTime >= timer && dTime<=20) {
+            timer = 20;
+            if (dTime >= timer && dTime<=28) {
                 //String valorembarque = TxtEmbarque.getSelectedItem().toString();
                 stopInventory();
                 // Remover la última coma
@@ -275,23 +254,15 @@ public class TAGreaderprodu extends KeyDownFragment {
         public void onClick(View v) {
             LimpiarValores();
             iniciarHilo();
+            rfidWithUHFA4.output3Off();
+            rfidWithUHFA4.output1Off();
         }
-    }
-
-    private void clearData() {
-        totalNum = 0;
-        tv_count.setText("0");
-        tv_totalNum.setText("0");
-        tv_time.setText("0s");
-        tagList.clear();
-        tempDatas.clear();
-        adapter.notifyDataSetChanged();
     }
 
     private void LimpiarValores() {
         totalNum = 0;
         TxtEmbarque.setText("");
-        tv_count.setText("");
+        tv_count.setText("0");
         tv_totalNum.setText("");
         tv_time.setText("0s");
         Et_ArtEsp.setText("");
@@ -299,7 +270,6 @@ public class TAGreaderprodu extends KeyDownFragment {
         Et_Pedidos.setText("");
         Et_Partidas.setText("");
         Et_Bodegas.setText("");
-        PB_Ariculos.setProgress(0);
         MSAlerta.clearAnimation();
         MSAlerta.setVisibility(View.GONE);
         MSAlertaincompletos.clearAnimation();
@@ -331,20 +301,18 @@ public class TAGreaderprodu extends KeyDownFragment {
     public class BtInventoryClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            //detenerHilo();
             readTag();
-            //enviarNotificacion();
             mensajesocket();
-            //ProgressBar("'E28011606000020DBBE57DEF','E28011606000020DBBE57CE0','E28011606000020DBBE57CE1','E28011606000020DBBE57CE2','E28011606000020DBBE57CE4','E28011606000020DBBE57CE3','E28011606000020DBBE585E3','E28011606000020DBBE57CEE'");
         }
     }
 
     private void mensajesocket() {
         Enviar enviar = new Enviar();
-        List<String> direcciones = List.of("192.168.1.28", "192.168.1.31");
-        List<Integer> puertos = List.of(5052,5052);
-        enviar.enviarMensaje("Estral ejecutar programa", direcciones, puertos); //aqui entra el mensaje a executor
-}
+        List<String> direcciones = List.of("192.168.1.31", "192.168.1.53");
+        List<Integer> puertos = List.of(5053,5053);
+        enviar.enviarMensaje("Estral ejecutar programa", direcciones, puertos); //aqui entra el mensaje a executor
+    }
+
     private void readTag() {
         if (BtInventory.getText().equals(mContext.getString(R.string.btInventory)))//Si el boton es igual a iniciar
         {
@@ -376,7 +344,6 @@ public class TAGreaderprodu extends KeyDownFragment {
                     } else {
                         mContext.mReader.stopInventory();
                         UIHelper.ToastMessage(mContext, R.string.uhf_msg_inventory_open_fail);
-
                     }
                     break;
                 default:
@@ -384,7 +351,7 @@ public class TAGreaderprodu extends KeyDownFragment {
             }
         } else { // detener el reconocimiento
             stopInventory();
-            //    setTotalTime();
+            //setTotalTime();
         }
     }
 
@@ -403,30 +370,21 @@ public class TAGreaderprodu extends KeyDownFragment {
     private synchronized void stopInventory() {
         if (loopFlag && !isStop) {
             isStop = true;
-            executorService.execute(new Runnable() {
-                @Override
-                public void run() {
-                    if (mContext.mReader.stopInventory()) {
-                        SystemClock.sleep(200);
-                        mContext.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                BtInventory.setText(mContext.getString(R.string.btInventory));
-                                BtClear.setBackgroundColor(getResources().getColor(R.color.txtblue));
-                                loopFlag = false;
-                                setViewEnabled(true);
-                            }
-                        });
-                    } else {
-                        mContext.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                UIHelper.ToastMessage(mContext, R.string.uhf_msg_inventory_stop_fail);
-                                loopFlag = false;
-                                setViewEnabled(true);
-                            }
-                        });
-                    }
+            executorService.execute(() -> {
+                if (mContext.mReader.stopInventory()) {
+                    SystemClock.sleep(200);
+                    mContext.runOnUiThread(() -> {
+                        BtInventory.setText(mContext.getString(R.string.btInventory));
+                        BtClear.setBackgroundColor(getResources().getColor(R.color.txtblue));
+                        loopFlag = false;
+                        setViewEnabled(true);
+                    });
+                } else {
+                    mContext.runOnUiThread(() -> {
+                        UIHelper.ToastMessage(mContext, R.string.uhf_msg_inventory_stop_fail);
+                        loopFlag = false;
+                        setViewEnabled(true);
+                    });
                 }
             });
         }
@@ -481,7 +439,6 @@ public class TAGreaderprodu extends KeyDownFragment {
      */
     public int checkIsExist(String epc) {
         return binarySearch(tempDatas, epc);
-
     }
 
     class TagThread extends Thread {
@@ -522,7 +479,6 @@ public class TAGreaderprodu extends KeyDownFragment {
         readTag();
     }
 
-
     private void iniciarAnimacionParpadeo(final int Activacion) {
         AlphaAnimation parpadeo = new AlphaAnimation(1f, 0f); // De totalmente visible a totalmente invisible
         parpadeo.setDuration(500); // Duración de cada fase del parpadeo en milisegundos
@@ -562,20 +518,16 @@ public class TAGreaderprodu extends KeyDownFragment {
         try {
             // Obtener el estado actual del GPIO
             List<GPIStateEntity> list = rfidWithUHFA4.inputStatus();
-
             if (list == null) {
                 mostrarToast("No se pudo obtener");
                 return;
             }
-
             // Obtener el estado actual del GPIO
             int currentState = list.get(0).getGpiState();
-
             // Comparar con el estado anterior
             if (currentState != previousState) {
                 // Si hay un cambio, mostrar el mensaje
                 mostrarToast("Cambio detectado en GPIO: " + currentState);
-
                 if (currentState == 0) {
                     detenerHilo();
                     readTag();
@@ -591,6 +543,7 @@ public class TAGreaderprodu extends KeyDownFragment {
     public void iniciarHilo() {
         if (futureTask == null || futureTask.isDone()) {
             hiloActivo = true;
+            rfidWithUHFA4.output1Off();
             futureTask = executorService.submit(this::monitorizarCambiosGPIO);
         }
     }
@@ -603,14 +556,8 @@ public class TAGreaderprodu extends KeyDownFragment {
     }
 
     private void mostrarToast(final String mensaje) {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
-            }
-        });
+        getActivity().runOnUiThread(() -> Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show());
     }
-
 
     public void ProgressBar(String EPCTAG) {
         if (EPCTAG.isEmpty()) {
@@ -618,6 +565,7 @@ public class TAGreaderprodu extends KeyDownFragment {
             LimpiarValores();
             return;
         }
+
         // Mostrar el ProgresDialog
         if (isProgressing) {
             return;
@@ -635,104 +583,116 @@ public class TAGreaderprodu extends KeyDownFragment {
         properties.put("EPCTAG", EPCTAG);
 
         webServiceManager.callWebService("ProcesarGuia_Maestro", properties, result -> {
-
-            //Ocultar el ProgresDialog
+            // Ocultar el ProgressDialog si está activo
             progressDialog.dismiss();
             isProgressing = false;
 
-            // Limpiar las listas antes de agregar los nuevos datos
-            tagList.clear();
-            tempDatas.clear();
-            adapter.notifyDataSetChanged();
-
-            try{
-            if (result.toLowerCase().contains("error") || result.toLowerCase().contains("time out")) {
-                mostrarToast("No se pudo determinar la guía para el EPCTAG proporcionado.");
-                // Esperar 5 segundos antes de limpiar los valores
-                new Handler().postDelayed(() -> {
-                    LimpiarValores(); // Llama a la función para limpiar los valores
-                    iniciarHilo();
-                }, 5000); // 5000 milisegundos = 5 segundos
-                return;
-            }
-
-            JSONArray jsonArray = new JSONArray(result);
-
-            String Encontrados = "";
-            String Esperados = "";
-            String Guia = "";
-            String Bandera = "";
-            StringBuilder Num_Paquete = new StringBuilder();
-
-            // Recorrer cada objeto del array JSON
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                // Extraer valores individuales
-                String k_Guia = jsonObject.optString("K_Guia", "");
-                String NPaquete = jsonObject.optString("NumPaquete", "");
-                String EPC = jsonObject.optString("EPC", "");
-                String Descripcion = jsonObject.optString("Descripcion", "");
-                String Cantidad = jsonObject.optString("Cantidad", "");
-                Num_Paquete.append(NPaquete).append(",");
-
-                // Comprobar si el objeto actual tiene los valores adicionales
-                if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
-                    Encontrados = jsonObject.optString("CantidadEncontrada", "0");
-                    Esperados = jsonObject.optString("art_esperados", "0");
-                    Guia = jsonObject.optString("k_Guia", "0");
-                    Bandera = jsonObject.optString("Bandera", "0");
-
-                }else {
-                    // Crear un mapa con los valores procesados y agregarlo a las listas
-                    map = new HashMap<>();
-                    map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
-                    map.put(TAG_COUNT, Cantidad);
-                    map.put(TAG_RSSI, k_Guia); // Estos dos son para el numero de paquete
-
-                    // Añadir los datos a la lista de tags si el EPC es válido
-                    if (!EPC.isEmpty()) {
-                        tagList.add(map);
-                        tempDatas.add(Descripcion);
-                        tv_count.setText(String.valueOf(adapter.getCount()));  // En esta parte se le agrega el EPC que no han sido leídos
-                    }
+            try {
+                // Validar si el resultado es un error
+                if (result.toLowerCase().contains("error") || result.toLowerCase().contains("time out")) {
+                    mostrarToast("No se pudo determinar la guía para el EPCTAG proporcionado.");
+                    ejecutarAccionPostError();
+                    return;
                 }
-            }
 
-            // Actualizar el adaptador para reflejar los cambios
-            adapter.notifyDataSetChanged();
-            Et_ArtEsp.setText(Esperados);
-            TxtEmbarque.setText(Guia);
-            Et_Bodegas.setText(Encontrados);
+                // Procesar el resultado JSON
+                JSONArray jsonArray = new JSONArray(result);
+                procesarRespuestaJSON(jsonArray);
 
-            // Manejo de las condiciones para la animación
-            switch (Bandera) {
-                case "1":
-                    iniciarAnimacionParpadeo(1);
-                    break;
-                case "2":
-                    iniciarAnimacionParpadeo(2);
-                    break;
-                case "3":
-                    iniciarAnimacionParpadeo(3);
-                    break;
-            }
-
-            // Esperar 5 segundos antes de limpiar los valores
-            new Handler().postDelayed(() -> {
-                LimpiarValores(); // Llama a la función para limpiar los valores
-                iniciarHilo();
-            }, 5000); // 5000 milisegundos = 5 segundos
-
+            } catch (JSONException e) {
+                e.printStackTrace();
+                mostrarToast("Error al procesar los datos del servidor.");
+                ejecutarAccionPostError();
             } catch (Exception e) {
                 e.printStackTrace();
-                mostrarToast(result);
-                // Esperar 5 segundos antes de limpiar los valores
-                new Handler().postDelayed(() -> {
-                    LimpiarValores(); // Llama a la función para limpiar los valores
-                    iniciarHilo();
-                }, 2000); // 5000 milisegundos = 5 segundos
+                mostrarToast("Error inesperado: " + e.getMessage());
+                ejecutarAccionPostError();
             }
         });
     }
+    // Método para procesar la respuesta JSON
+    private void procesarRespuestaJSON(JSONArray jsonArray) throws JSONException {
+        String encontrados = "";
+        String esperados = "";
+        String guia = "";
+        String bandera = "";
+        StringBuilder numPaquete = new StringBuilder();
+        // Limpiar las listas antes de agregar los nuevos datos
+        tagList.clear();
+        tempDatas.clear();
+        adapter.notifyDataSetChanged();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+            // Procesar valores individuales
+            String kGuia = jsonObject.optString("K_Guia", "");
+            String nPaquete = jsonObject.optString("NumPaquete", "");
+            String epc = jsonObject.optString("EPC", "");
+            String descripcion = jsonObject.optString("Descripcion", "");
+            String cantidad = jsonObject.optString("Cantidad", "");
+
+            numPaquete.append(nPaquete).append(",");
+
+            // Validar claves adicionales
+            if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
+                encontrados = jsonObject.optString("CantidadEncontrada", "0");
+                esperados = jsonObject.optString("art_esperados", "0");
+                guia = jsonObject.optString("k_Guia", "0");
+                bandera = jsonObject.optString("Bandera", "0");
+            } else {
+                // Crear un mapa para las listas
+                // Crear un mapa con los valores procesados y agregarlo a las listas
+                map = new HashMap<>();
+                map.put(TAG_EPC, descripcion);
+                map.put(TAG_COUNT, cantidad);
+                map.put(TAG_RSSI, kGuia);
+
+                // Agregar datos a las listas
+                if (!epc.isEmpty()) {
+                    tagList.add(map);
+                    tempDatas.add(descripcion);
+                }
+            }
+        }
+
+        // Actualizar la interfaz
+        actualizarInterfaz(encontrados, esperados, guia, bandera);
+    }
+    // Método para actualizar la interfaz
+    private void actualizarInterfaz(String encontrados, String esperados, String guia, String bandera) {
+        adapter.notifyDataSetChanged();
+        Et_ArtEsp.setText(esperados);
+        TxtEmbarque.setText(guia);
+        Et_Bodegas.setText(encontrados);
+
+        // Manejo de las animaciones según la bandera
+        switch (bandera) {
+            case "1":
+                rfidWithUHFA4.outputWgData0On();
+                iniciarAnimacionParpadeo(1);
+                break;
+            case "2":
+                iniciarAnimacionParpadeo(2);
+                break;
+            case "3":
+                iniciarAnimacionParpadeo(3);
+                break;
+        }
+
+        // Acción posterior con retraso
+        new Handler().postDelayed(() -> {
+            LimpiarValores();
+            iniciarHilo();
+            rfidWithUHFA4.outputWgData0Off();
+        }, 5000); // 5 segundos
+    }
+
+    // Método para manejar errores
+    private void ejecutarAccionPostError() {
+        new Handler().postDelayed(() -> {
+            LimpiarValores();
+            iniciarHilo();
+        }, 5000); // 5 segundos
+    }
+
 }
