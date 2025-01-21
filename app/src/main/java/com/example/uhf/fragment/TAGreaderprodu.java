@@ -16,7 +16,6 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
@@ -44,7 +43,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import com.rscja.deviceapi.exception.ConfigurationException;
 
-public class TAGreaderprodu extends KeyDownFragment {
+public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarListener {
     // Declarar una variable booleana para controlar el estado del hilo
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
     private Future<?> futureTask;
@@ -67,8 +66,6 @@ public class TAGreaderprodu extends KeyDownFragment {
     RadioButton RbInventorySingle;
     RadioButton RbInventoryLoop;
     TextView Et_ArtEsp, Et_Pedidos, TXTART_ENC, Et_Partidas, Et_Bodegas, TxtEmbarque;
-    //EditText etTime;
-    ProgressBar PB_Ariculos;
     TextView MSAlerta, MSAlertaActivo, MSAlertaincompletos;
     Button BtInventory;
     ListView LvTags;
@@ -88,6 +85,8 @@ public class TAGreaderprodu extends KeyDownFragment {
     private int totalNum;
     private List<String> tempDatas;
     boolean isStop = false;
+   //Clase para amndar mensaje a Enviar
+    private Enviar enviar;
 
     private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
@@ -109,6 +108,22 @@ public class TAGreaderprodu extends KeyDownFragment {
         Log.i(TAG, "UHFReadTagFragmentProductos.onCreateVetTimeiew");
         View view = inflater.inflate(R.layout.fragment_t_a_greaderprodu, container, false);
         inits(view);
+        // Definir el listener
+        Enviar.EnviarListener listener = new Enviar.EnviarListener() {
+            @Override
+            public void onEnvioExitoso(String direccion, int puerto) {
+                System.out.println("Envío exitoso a " + direccion + ":" + puerto);
+            }
+
+            @Override
+            public void onEnvioFallido(String direccion, int puerto, Exception e) {
+                System.err.println("Fallo al enviar a " + direccion + ":" + puerto + " - " + e.getMessage());
+            }
+        };
+
+        // Crear la instancia de Enviar
+        enviar = new Enviar(5, 1000, 3, listener, getContext());
+
         return view;
     }
 
@@ -136,7 +151,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         MSAlertaincompletos.setVisibility(View.GONE);
         MSAlertaActivo.setVisibility(View.GONE);
         webServiceManager = new WebServiceManager(requireContext());
-        iniciarHilo();
+        //iniciarHilo();
     }
 
     private void inits(View view) {
@@ -243,7 +258,7 @@ public class TAGreaderprodu extends KeyDownFragment {
                 ProgressBar(CadenaEPCS);
                 if (map == null) {
                     LimpiarValores();
-                    iniciarHilo();
+                    //iniciarHilo();
                 }
             }
         }
@@ -253,7 +268,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         @Override
         public void onClick(View v) {
             LimpiarValores();
-            iniciarHilo();
+            //iniciarHilo();
             rfidWithUHFA4.output3Off();
             rfidWithUHFA4.output1Off();
         }
@@ -301,16 +316,9 @@ public class TAGreaderprodu extends KeyDownFragment {
     public class BtInventoryClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            readTag();
+            //readTag();
             mensajesocket();
         }
-    }
-
-    private void mensajesocket() {
-        Enviar enviar = new Enviar();
-        List<String> direcciones = List.of("192.168.1.31", "192.168.1.53");
-        List<Integer> puertos = List.of(5053,5053);
-        enviar.enviarMensaje("Estral ejecutar programa", direcciones, puertos); //aqui entra el mensaje a executor
     }
 
     private void readTag() {
@@ -561,7 +569,7 @@ public class TAGreaderprodu extends KeyDownFragment {
 
     public void ProgressBar(String EPCTAG) {
         if (EPCTAG.isEmpty()) {
-            iniciarHilo();
+            //iniciarHilo();
             LimpiarValores();
             return;
         }
@@ -682,7 +690,7 @@ public class TAGreaderprodu extends KeyDownFragment {
         // Acción posterior con retraso
         new Handler().postDelayed(() -> {
             LimpiarValores();
-            iniciarHilo();
+            //iniciarHilo();
             rfidWithUHFA4.outputWgData0Off();
         }, 5000); // 5 segundos
     }
@@ -691,8 +699,42 @@ public class TAGreaderprodu extends KeyDownFragment {
     private void ejecutarAccionPostError() {
         new Handler().postDelayed(() -> {
             LimpiarValores();
-            iniciarHilo();
+            //iniciarHilo();
         }, 5000); // 5 segundos
+    }
+
+    //Metodos para la clase enviar
+    private void mensajesocket() {
+        // Direcciones y puertos de los esclavos
+        List<String> direcciones = List.of("192.168.1.56");
+        List<Integer> puertos = List.of(5053);
+
+        // Enviar mensaje a los esclavos
+        enviar.enviarMensaje("Iniciar lectura", direcciones, puertos);
+
+    }
+
+    @Override
+    public void onEnvioExitoso(String direccion, int puerto) {
+        // Notificar éxito
+        System.out.println("Mensaje enviado con éxito a: " + direccion + ":" + puerto);
+        mostrarToast("Éxito en " + direccion + ":" + puerto);
+    }
+
+    @Override
+    public void onEnvioFallido(String direccion, int puerto, Exception e) {
+        // Notificar fallo
+        System.err.println("Fallo en el envío a: " + direccion + ":" + puerto + " - " + e.getMessage());
+        mostrarToast("Fallo en " + direccion + ":" + puerto);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Asegurarse de cerrar el pool de hilos al destruir el fragmento
+        if (enviar != null) {
+            enviar.cerrar();
+        }
     }
 
 }
