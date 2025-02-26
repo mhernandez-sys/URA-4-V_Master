@@ -341,8 +341,8 @@ public class TAGreaderprodu extends KeyDownFragment {
 
     private void mensajesocket() {
         Enviar enviar = new Enviar();
-        List<String> direcciones = List.of("192.168.1.50", "192.168.1.31");
-        List<Integer> puertos = List.of(5052,5052);
+        List<String> direcciones = List.of("192.168.1.31", "192.168.1.50");
+        List<Integer> puertos = List.of(5053,5053);
         enviar.enviarMensaje("Estral ejecutar programa", direcciones, puertos); //aqui entra el mensaje a executor
 }
     private void readTag() {
