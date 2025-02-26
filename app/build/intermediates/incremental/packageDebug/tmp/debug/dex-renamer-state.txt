@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #Wed Feb 26 12:15:19 CST 2025
 base.0=C\:\\Users\\emanu\\GIT URA4\\URA-4-V_Master\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\emanu\\GIT URA4\\URA-4-V_Master\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
@@ -9,6 +10,19 @@ base.6=C\:\\Users\\emanu\\GIT URA4\\URA-4-V_Master\\app\\build\\intermediates\\d
 base.7=C\:\\Users\\emanu\\GIT URA4\\URA-4-V_Master\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
 base.8=C\:\\Users\\emanu\\GIT URA4\\URA-4-V_Master\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\9\\classes.dex
 base.9=C\:\\Users\\emanu\\GIT URA4\\URA-4-V_Master\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+=======
+#Fri Jan 17 16:14:00 CST 2025
+base.0=C\:\\Users\\vamaf\\AndroidStudioProjects\\VersionMaster_Estral_URA4_GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\vamaf\\AndroidStudioProjects\\VersionMaster_Estral_URA4_GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\vamaf\\AndroidStudioProjects\\VersionMaster_Estral_URA4_GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
+base.3=C\:\\Users\\vamaf\\AndroidStudioProjects\\VersionMaster_Estral_URA4_GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
+base.4=C\:\\Users\\vamaf\\AndroidStudioProjects\\VersionMaster_Estral_URA4_GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
+base.5=C\:\\Users\\vamaf\\AndroidStudioProjects\\VersionMaster_Estral_URA4_GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
+base.6=C\:\\Users\\vamaf\\AndroidStudioProjects\\VersionMaster_Estral_URA4_GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
+base.7=C\:\\Users\\vamaf\\AndroidStudioProjects\\VersionMaster_Estral_URA4_GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
+base.8=C\:\\Users\\vamaf\\AndroidStudioProjects\\VersionMaster_Estral_URA4_GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\9\\classes.dex
+base.9=C\:\\Users\\vamaf\\AndroidStudioProjects\\VersionMaster_Estral_URA4_GITHUB\\uhf-a4-demo\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+>>>>>>> b79f39fc828964995e43b43f71916100a29b34c1
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=11/classes.dex

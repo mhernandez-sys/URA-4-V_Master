@@ -108,7 +108,7 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
     public String TiempoLectura;
     public String MY_CHANNEL_ID = "my_channel_id";
 
-    TextView Et_ArtEsp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,8 +138,6 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
 //------
         initUHF();
         checkReadWritePermission();
-        VMDatos vmDatos = new ViewModelProvider(this).get(VMDatos.class);
-
         //Activa el segundo plano para el servidor
         Intent intent = new Intent(this, Enviar.class);
         startService(intent);

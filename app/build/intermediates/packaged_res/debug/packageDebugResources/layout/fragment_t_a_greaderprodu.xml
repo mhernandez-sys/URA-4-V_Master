@@ -362,7 +362,7 @@
         <ListView
             android:id="@+id/LvTags"
             android:layout_width="match_parent"
-            android:layout_height="121dp" />
+            android:layout_height="180dp" />
 
         <LinearLayout
             android:id="@+id/layout12"
