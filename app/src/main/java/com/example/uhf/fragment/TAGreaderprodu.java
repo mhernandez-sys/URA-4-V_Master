@@ -578,7 +578,7 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
         if (isProgressing) {
             return;
         }
-            isProgressing = true;
+        isProgressing = true;
         // Crea y muestra el ProgresDialog
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Procesando...");
@@ -591,150 +591,104 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
         properties.put("EPCTAG", EPCTAG);
 
         webServiceManager.callWebService("ProcesarGuia_Maestro", properties, result -> {
-            // Ocultar el ProgressDialog si está activo
+
+            //Ocultar el ProgresDialog
             progressDialog.dismiss();
             isProgressing = false;
 
-            try {
-                // Validar si el resultado es un error
-                if (result.toLowerCase().contains("error") || result.toLowerCase().contains("time out")) {
-                    mostrarToast("No se pudo determinar la guía para el EPCTAG proporcionado.");
-                    ejecutarAccionPostError();
-                    return;
+            // Limpiar las listas antes de agregar los nuevos datos
+            tagList.clear();
+            tempDatas.clear();
+            adapter.notifyDataSetChanged();
+
+            try{
+            if (result.toLowerCase().contains("error") || result.toLowerCase().contains("time out")) {
+                mostrarToast("No se pudo determinar la guía para el EPCTAG proporcionado.");
+                // Esperar 5 segundos antes de limpiar los valores
+                new Handler().postDelayed(() -> {
+                    LimpiarValores(); // Llama a la función para limpiar los valores
+                    iniciarHilo();
+                }, 5000); // 5000 milisegundos = 5 segundos
+                return;
+            }
+
+            JSONArray jsonArray = new JSONArray(result);
+
+            String Encontrados = "";
+            String Esperados = "";
+            String Guia = "";
+            String Bandera = "";
+            StringBuilder Num_Paquete = new StringBuilder();
+
+            // Recorrer cada objeto del array JSON
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                // Extraer valores individuales
+                String k_Guia = jsonObject.optString("K_Guia", "");
+                String NPaquete = jsonObject.optString("NumPaquete", "");
+                String EPC = jsonObject.optString("EPC", "");
+                String Descripcion = jsonObject.optString("Descripcion", "");
+                String Cantidad = jsonObject.optString("Cantidad", "");
+                Num_Paquete.append(NPaquete).append(",");
+
+                // Comprobar si el objeto actual tiene los valores adicionales
+                if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
+                    Encontrados = jsonObject.optString("CantidadEncontrada", "0");
+                    Esperados = jsonObject.optString("art_esperados", "0");
+                    Guia = jsonObject.optString("k_Guia", "0");
+                    Bandera = jsonObject.optString("Bandera", "0");
+
+                }else {
+                    // Crear un mapa con los valores procesados y agregarlo a las listas
+                    map = new HashMap<>();
+                    map.put(TAG_EPC, Descripcion); // Este es el EPC que se imprime en la pantalla
+                    map.put(TAG_COUNT, Cantidad);
+                    map.put(TAG_RSSI, k_Guia); // Estos dos son para el numero de paquete
+
+                    // Añadir los datos a la lista de tags si el EPC es válido
+                    if (!EPC.isEmpty()) {
+                        tagList.add(map);
+                        tempDatas.add(Descripcion);
+                        tv_count.setText(String.valueOf(adapter.getCount()));  // En esta parte se le agrega el EPC que no han sido leídos
+                    }
                 }
+            }
 
-                // Procesar el resultado JSON
-                JSONArray jsonArray = new JSONArray(result);
-                procesarRespuestaJSON(jsonArray);
+            // Actualizar el adaptador para reflejar los cambios
+            adapter.notifyDataSetChanged();
+            Et_ArtEsp.setText(Esperados);
+            TxtEmbarque.setText(Guia);
+            Et_Bodegas.setText(Encontrados);
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-                mostrarToast("Error al procesar los datos del servidor.");
-                ejecutarAccionPostError();
+            // Manejo de las condiciones para la animación
+            switch (Bandera) {
+                case "1":
+                    iniciarAnimacionParpadeo(1);
+                    break;
+                case "2":
+                    iniciarAnimacionParpadeo(2);
+                    break;
+                case "3":
+                    iniciarAnimacionParpadeo(3);
+                    break;
+            }
+
+            // Esperar 5 segundos antes de limpiar los valores
+            new Handler().postDelayed(() -> {
+                LimpiarValores(); // Llama a la función para limpiar los valores
+                iniciarHilo();
+            }, 5000); // 5000 milisegundos = 5 segundos
+
             } catch (Exception e) {
                 e.printStackTrace();
-                mostrarToast("Error inesperado: " + e.getMessage());
-                ejecutarAccionPostError();
+                mostrarToast(result);
+                // Esperar 5 segundos antes de limpiar los valores
+                new Handler().postDelayed(() -> {
+                    LimpiarValores(); // Llama a la función para limpiar los valores
+                    iniciarHilo();
+                }, 2000); // 5000 milisegundos = 5 segundos
             }
         });
     }
-    // Método para procesar la respuesta JSON
-    private void procesarRespuestaJSON(JSONArray jsonArray) throws JSONException {
-        String encontrados = "";
-        String esperados = "";
-        String guia = "";
-        String bandera = "";
-        StringBuilder numPaquete = new StringBuilder();
-        // Limpiar las listas antes de agregar los nuevos datos
-        tagList.clear();
-        tempDatas.clear();
-        adapter.notifyDataSetChanged();
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-            // Procesar valores individuales
-            String kGuia = jsonObject.optString("K_Guia", "");
-            String nPaquete = jsonObject.optString("NumPaquete", "");
-            String epc = jsonObject.optString("EPC", "");
-            String descripcion = jsonObject.optString("Descripcion", "");
-            String cantidad = jsonObject.optString("Cantidad", "");
-
-            numPaquete.append(nPaquete).append(",");
-
-            // Validar claves adicionales
-            if (jsonObject.has("CantidadEncontrada") && jsonObject.has("art_esperados")) {
-                encontrados = jsonObject.optString("CantidadEncontrada", "0");
-                esperados = jsonObject.optString("art_esperados", "0");
-                guia = jsonObject.optString("k_Guia", "0");
-                bandera = jsonObject.optString("Bandera", "0");
-            } else {
-                // Crear un mapa para las listas
-                // Crear un mapa con los valores procesados y agregarlo a las listas
-                map = new HashMap<>();
-                map.put(TAG_EPC, descripcion);
-                map.put(TAG_COUNT, cantidad);
-                map.put(TAG_RSSI, kGuia);
-
-                // Agregar datos a las listas
-                if (!epc.isEmpty()) {
-                    tagList.add(map);
-                    tempDatas.add(descripcion);
-                }
-            }
-        }
-
-        // Actualizar la interfaz
-        actualizarInterfaz(encontrados, esperados, guia, bandera);
-    }
-    // Método para actualizar la interfaz
-    private void actualizarInterfaz(String encontrados, String esperados, String guia, String bandera) {
-        adapter.notifyDataSetChanged();
-        Et_ArtEsp.setText(esperados);
-        TxtEmbarque.setText(guia);
-        Et_Bodegas.setText(encontrados);
-
-        // Manejo de las animaciones según la bandera
-        switch (bandera) {
-            case "1":
-                rfidWithUHFA4.outputWgData0On();
-                iniciarAnimacionParpadeo(1);
-                break;
-            case "2":
-                iniciarAnimacionParpadeo(2);
-                break;
-            case "3":
-                iniciarAnimacionParpadeo(3);
-                break;
-        }
-
-        // Acción posterior con retraso
-        new Handler().postDelayed(() -> {
-            LimpiarValores();
-            //iniciarHilo();
-            rfidWithUHFA4.outputWgData0Off();
-        }, 5000); // 5 segundos
-    }
-
-    // Método para manejar errores
-    private void ejecutarAccionPostError() {
-        new Handler().postDelayed(() -> {
-            LimpiarValores();
-            //iniciarHilo();
-        }, 5000); // 5 segundos
-    }
-
-    //Metodos para la clase enviar
-    private void mensajesocket() {
-        // Direcciones y puertos de los esclavos
-        List<String> direcciones = List.of("192.168.1.56");
-        List<Integer> puertos = List.of(5053);
-
-        // Enviar mensaje a los esclavos
-        enviar.enviarMensaje("Iniciar lectura", direcciones, puertos);
-
-    }
-
-    @Override
-    public void onEnvioExitoso(String direccion, int puerto) {
-        // Notificar éxito
-        System.out.println("Mensaje enviado con éxito a: " + direccion + ":" + puerto);
-        mostrarToast("Éxito en " + direccion + ":" + puerto);
-    }
-
-    @Override
-    public void onEnvioFallido(String direccion, int puerto, Exception e) {
-        // Notificar fallo
-        System.err.println("Fallo en el envío a: " + direccion + ":" + puerto + " - " + e.getMessage());
-        mostrarToast("Fallo en " + direccion + ":" + puerto);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        // Asegurarse de cerrar el pool de hilos al destruir el fragmento
-        if (enviar != null) {
-            enviar.cerrar();
-        }
-    }
-
 }
