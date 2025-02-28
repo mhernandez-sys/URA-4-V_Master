@@ -69,7 +69,6 @@ public class BaseTabFragmentActivity extends FragmentActivity {
     }
 
     public void initUHF() {
-
         try {
             mReader = RFIDWithUHFA8.getInstance();
         } catch (Exception ex) {

@@ -2,24 +2,13 @@ package com.example.uhf.activity;
 
 import com.example.uhf.BuildConfig;
 import com.example.uhf.R;
-
 import com.example.uhf.fragment.GPIOFragment;
 import com.example.uhf.fragment.TAGreaderprodu;
-import com.example.uhf.fragment.UHFKillFragment;
-import com.example.uhf.fragment.UHFLockFragment;
-import com.example.uhf.fragment.UHFReadFragment;
 import com.example.uhf.fragment.UHFReadTagFragment;
 import com.example.uhf.fragment.UHFSetFragment;
-import com.example.uhf.fragment.UHFUpgradeFragment;
-import com.example.uhf.fragment.UHFWriteFragment;
-import com.example.uhf.activity.LoginActivity;
-
-
 import com.rscja.utility.StringUtility;
-
 import android.Manifest;
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -30,52 +19,16 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
 import android.util.Log;
-
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Button;
-import android.view.View;
-import android.app.Activity;
-import android.app.ActivityManager;
-import android.app.ActionBar;
-import android.view.View;
-import android.view.LayoutInflater;
-
-
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
-import org.ksoap2.transport.HttpsTransportSE;
-import org.xmlpull.v1.XmlPullParserException;
-
-
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTabHost;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.fragment.app.Fragment;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-
-import android.content.Context;
-
-import android.support.v4.app.INotificationSideChannel;
-
 import android.content.Context;
 import android.os.PowerManager;
-import android.os.Bundle;
 /**
  * UHF使用demo
  * <p>
@@ -98,13 +51,6 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
     private FragmentTabHost mTabHost;
     private FragmentManager fm;
     public boolean isBuzzer = true;
-    private String NAMESPACE = "";
-    private String URL = "";
-    private String METHOD_NAME = "";
-    private String SOAP_ACTION = "";
-    public ArrayList<String> miArrayList = new ArrayList<>();
-    public ArrayList<String> ArrayListOrden = new ArrayList<>();
-    public String artesperados = "";
     public String TiempoLectura;
     public String MY_CHANNEL_ID = "my_channel_id";
 
@@ -195,12 +141,6 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
 
     }
 
-    public void mensajes() {
-
-        Toast.makeText(UHFMainActivity.this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
-
-    }
-
     public void lanzarNotificacion() {
         int notificationID = 1;
         Uri sonido = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -239,7 +179,7 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
 
     public boolean vailHexInput(String str) {
 
-        if (str == null || str.length() == 0) {
+        if (str == null || str.isEmpty()) {
             return false;
         }
         if (str.length() % 2 == 0) {
@@ -267,68 +207,5 @@ public class UHFMainActivity extends BaseTabFragmentActivity {
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
             }
         }
-    }
-    public void OpcionesConfiguracion(final String Parametro, final String Actualizar) {
-
-        String res = "";
-
-        Thread nt = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                String NAMESPACE = "http://tag_android.org/";
-                String URL = "http://192.168.1.65/TAGSSERver.asmx";
-                String METHOD_NAME = "OpcionesConfiguracion";
-                String SOAP_ACTION = NAMESPACE + METHOD_NAME;
-                String res = "";
-
-                try {
-                    //Se crea el objeto SOAP
-                    SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-                    //Se gregan las propiedades que se van a enviar
-                    request.addProperty("Parametro", Parametro);
-                    request.addProperty("Actualizar", Actualizar);
-
-                    SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-                    envelope.dotNet = true;
-                    envelope.setOutputSoapObject(request);
-
-                    HttpTransportSE transporte = new HttpTransportSE(URL);
-                    transporte.call(SOAP_ACTION, envelope);
-
-                    SoapPrimitive resultado_xml = (SoapPrimitive) envelope.getResponse();
-                    res = resultado_xml.toString();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    res = "Error: " + e.getMessage();
-                }
-                final String finalRes = res;
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-
-                            if (finalRes.equals("1")) {
-                                mensajes("Timer modificado con exito ");
-                            } else if (finalRes.equals("2")) {
-                                mensajes("Valor EPC modificado con exito");
-                            }else {
-                                mensajes(finalRes);
-                            }
-                            //Termina el else
-                        }catch (Exception e){
-                            e.printStackTrace();
-                            mensajes(finalRes);
-                            TiempoLectura = finalRes;
-                        }
-                    }
-                });
-            }
-        });
-        nt.start();
-    }
-    public void mensajes(final String cadena){
-        Toast.makeText(this, cadena, Toast.LENGTH_LONG).show();
     }
 }

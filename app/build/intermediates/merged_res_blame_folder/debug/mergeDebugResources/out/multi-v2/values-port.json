@@ -4,7 +4,7 @@
             "outputFile": "com.example.uhf.app-mergeDebugResources-32:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\vamaf\\.gradle\\caches\\8.9\\transforms\\752c4ddde08dccdba775f5c97c131e88\\transformed\\appcompat-1.7.0\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\vamaf\\.gradle\\caches\\8.10.2\\transforms\\c9ed2add2a920e17a5822ace3398dbcd\\transformed\\appcompat-1.7.0\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

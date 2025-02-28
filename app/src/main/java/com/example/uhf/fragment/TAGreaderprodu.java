@@ -40,13 +40,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import com.rscja.deviceapi.exception.ConfigurationException;
 
 public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarListener {
     // Declarar una variable booleana para controlar el estado del hilo
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
-    private Future<?> futureTask;
     private boolean hiloActivo = false;
     private int previousState = -1; // Estado anterior inicializado
     RFIDWithUHFA4 rfidWithUHFA4 = null;
@@ -56,9 +56,7 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
     private int inventoryFlag = 1;
     public ArrayList<HashMap<String, String>> tagList;
     private WebServiceManager webServiceManager;
-
     private boolean isProgressing = false;
-
     SimpleAdapter adapter;
     Button BtClear;
     TextView tv_count, tv_totalNum, tv_time;
@@ -72,7 +70,6 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
     private UHFMainActivity mContext;
     private HashMap<String, String> map;
     private CheckBox cbFilter;
-
     public static final String TAG_EPCAndTidUser = "TAG_EPCAndTidUser";
     public static final String TAG_EPC = "tagEpc";
     public static final String TAG_TID = "tagTid";
@@ -87,6 +84,11 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
     boolean isStop = false;
    //Clase para amndar mensaje a Enviar
     private Enviar enviar;
+    //sirve para el monitoreo el cambio del GPIO
+    private ScheduledExecutorService scheduler;
+    //Numero de veces que se ha llamdao al WS
+    private static final int MAX_RETRIES = 3; // Número máximo de reintentos
+    private int retryCount = 0; // Contador de intentos
 
     private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
@@ -120,10 +122,8 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
                 System.err.println("Fallo al enviar a " + direccion + ":" + puerto + " - " + e.getMessage());
             }
         };
-
         // Crear la instancia de Enviar
-        enviar = new Enviar(5, 1000, 3, listener, getContext());
-
+        enviar = new Enviar(1, 1000, 3, listener, getContext());
         return view;
     }
 
@@ -151,24 +151,24 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
         MSAlertaincompletos.setVisibility(View.GONE);
         MSAlertaActivo.setVisibility(View.GONE);
         webServiceManager = new WebServiceManager(requireContext());
-        //iniciarHilo();
+        iniciarHilo();
     }
 
     private void inits(View view) {
-        BtClear = (Button) view.findViewById(R.id.BtClear1);
-        tv_count = (TextView) view.findViewById(R.id.tv_count);
-        tv_totalNum = (TextView) view.findViewById(R.id.tv_totalNum);
-        tv_time = (TextView) view.findViewById(R.id.tv_time);
-        RgInventory = (RadioGroup) view.findViewById(R.id.RgInventory);
+        BtClear = view.findViewById(R.id.BtClear1);
+        tv_count = view.findViewById(R.id.tv_count);
+        tv_totalNum = view.findViewById(R.id.tv_totalNum);
+        tv_time = view.findViewById(R.id.tv_time);
+        RgInventory = view.findViewById(R.id.RgInventory);
         // etTime = (EditText) view.findViewById(R.id.etTime);
 
-        RbInventorySingle = (RadioButton) view.findViewById(R.id.RbInventorySingle);
-        RbInventoryLoop = (RadioButton) view.findViewById(R.id.RbInventoryLoop);
+        RbInventorySingle = view.findViewById(R.id.RbInventorySingle);
+        RbInventoryLoop = view.findViewById(R.id.RbInventoryLoop);
 
         tagList = new ArrayList<>();
         tempDatas = new ArrayList<>();
-        BtInventory = (Button) view.findViewById(R.id.BtInventory1);
-        LvTags = (ListView) view.findViewById(R.id.LvTags);
+        BtInventory = view.findViewById(R.id.BtInventory1);
+        LvTags = view.findViewById(R.id.LvTags);
         adapter = new SimpleAdapter(getContext(), tagList, R.layout.listtag_items,
                 new String[]{TAG_EPC, TAG_LEN, TAG_COUNT, TAG_RSSI, TAG_ANT},
                 new int[]{R.id.TvTagUii, R.id.TvTagLen, R.id.TvTagCount, R.id.TvTagRssi, R.id.TvAnt});
@@ -178,7 +178,6 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
         //RgInventory.setOnCheckedChangeListener(new TAGreaderprodu.RgInventoryCheckedListener());
         BtInventory.setOnClickListener(new TAGreaderprodu.BtInventoryClickListener());
         //initFilter(view); // Inicializar filtrado
-
     }
 
     @Override
@@ -247,18 +246,18 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
             //int time = 9999999; //Valor original
             //Se recupera el valor almacenado en el dispositivo
             int timer;
-            timer = 20;
-            if (dTime >= timer && dTime<=28) {
+            timer = 120;
+            if (dTime >= timer && dTime <= 128) {
                 //String valorembarque = TxtEmbarque.getSelectedItem().toString();
                 stopInventory();
                 // Remover la última coma
-                if (CadenaEPCS.length() > 0) {
+                if (!CadenaEPCS.isEmpty()) {
                     CadenaEPCS = CadenaEPCS.substring(0, CadenaEPCS.length() - 1);
                 }
                 ProgressBar(CadenaEPCS);
                 if (map == null) {
                     LimpiarValores();
-                    //iniciarHilo();
+                    iniciarHilo();
                 }
             }
         }
@@ -316,7 +315,7 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
     public class BtInventoryClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            //readTag();
+            readTag();
             mensajesocket();
         }
     }
@@ -366,7 +365,6 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
     private void setViewEnabled(boolean enabled) {
         //RbInventorySingle.setEnabled(enabled);
         RbInventoryLoop.setEnabled(enabled);
-        //cbFilter.setEnabled(enabled);
         //btnSetFilter.setEnabled(enabled);
         BtClear.setEnabled(enabled);
         // BtClear.setBackgroundColor(getResources().getColor(R.color.txtblue));
@@ -443,12 +441,11 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
      * 判断EPC是否在列表中
      *
      * @param epc 索引
-     * @return
+     *
      */
     public int checkIsExist(String epc) {
         return binarySearch(tempDatas, epc);
     }
-
     class TagThread extends Thread {
         public void run() {
             UHFTAGInfo uhftagInfo;
@@ -498,27 +495,41 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
             // Asignar la animación al ImageView
             MSAlertaActivo.startAnimation(parpadeo);
         } else if (Activacion == 2) {
-            ///A
+            ///Articulos inocmpletos
             MSAlertaincompletos.setVisibility(View.VISIBLE);
             // Asignar la animación al ImageView
             MSAlertaincompletos.startAnimation(parpadeo);
-        } else {
+        }  else if (Activacion == 3) {
+            //Articulo desconocido
             MSAlerta.setVisibility(View.VISIBLE);
+            MSAlerta.startAnimation(parpadeo);
+        }else {
+            //Fallo de conexion
+            MSAlerta.setVisibility(View.VISIBLE);
+            MSAlertaActivo.setVisibility((View.VISIBLE));
             // Asignar la animación al ImageView
             MSAlerta.startAnimation(parpadeo);
+            MSAlertaActivo.startAnimation(parpadeo);
         }
     }
 
-    public void monitorizarCambiosGPIO() {
-        while (hiloActivo) {
-            GPIO_estatus();
-            // Esperar un tiempo antes de la próxima verificación
-            try {
-                Thread.sleep(1000); // Puedes ajustar el tiempo según sea necesario
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt(); // Interrumpir el hilo
-                break; // Salir del bucle si se interrumpe el hilo
-            }
+    public void iniciarHilo() {
+        if (scheduler == null || scheduler.isShutdown()) {
+            hiloActivo = true;
+            scheduler = Executors.newScheduledThreadPool(1);
+            rfidWithUHFA4.output1Off(); // Configuración inicial
+            scheduler.scheduleWithFixedDelay(() -> {
+                if (hiloActivo) {
+                    GPIO_estatus();
+                }
+            }, 0, 1, TimeUnit.SECONDS);
+        }
+    }
+
+    public void detenerHilo() {
+        hiloActivo = false;
+        if (scheduler != null && !scheduler.isShutdown()) {
+            scheduler.shutdownNow();
         }
     }
 
@@ -526,40 +537,31 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
         try {
             // Obtener el estado actual del GPIO
             List<GPIStateEntity> list = rfidWithUHFA4.inputStatus();
-            if (list == null) {
-                mostrarToast("No se pudo obtener");
+            if (list == null || list.isEmpty()) {
+                mostrarToast("No se pudo obtener el estado del GPIO o la lista está vacía");
                 return;
             }
-            // Obtener el estado actual del GPIO
+
+            // Obtener el estado actual del GPIO (verificar siempre que la lista tenga elementos)
             int currentState = list.get(0).getGpiState();
+
             // Comparar con el estado anterior
             if (currentState != previousState) {
-                // Si hay un cambio, mostrar el mensaje
                 mostrarToast("Cambio detectado en GPIO: " + currentState);
-                if (currentState == 0) {
-                    detenerHilo();
-                    readTag();
-                    mensajesocket();
-                }
+                onGPIOStateChange(currentState);
                 previousState = currentState; // Actualizar el estado anterior
             }
         } catch (Exception e) {
             e.printStackTrace();
+            mostrarToast("Error al obtener el estado del GPIO: " + e.getMessage());
         }
     }
 
-    public void iniciarHilo() {
-        if (futureTask == null || futureTask.isDone()) {
-            hiloActivo = true;
-            rfidWithUHFA4.output1Off();
-            futureTask = executorService.submit(this::monitorizarCambiosGPIO);
-        }
-    }
-
-    public void detenerHilo() {
-        hiloActivo = false;
-        if (futureTask != null && !futureTask.isDone()) {
-            futureTask.cancel(true);
+    private void onGPIOStateChange(int newState) {
+        if (newState == 0) {
+            detenerHilo(); // Detener el hilo si es necesario
+            readTag();     // Leer la etiqueta
+            mensajesocket(); // Enviar mensaje por socket
         }
     }
 
@@ -569,7 +571,7 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
 
     public void ProgressBar(String EPCTAG) {
         if (EPCTAG.isEmpty()) {
-            //iniciarHilo();
+            iniciarHilo();
             LimpiarValores();
             return;
         }
@@ -594,27 +596,37 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
             // Ocultar el ProgressDialog si está activo
             progressDialog.dismiss();
             isProgressing = false;
-
             try {
+                rfidWithUHFA4.outputWgData0Off();
                 // Validar si el resultado es un error
                 if (result.toLowerCase().contains("error") || result.toLowerCase().contains("time out")) {
-                    mostrarToast("No se pudo determinar la guía para el EPCTAG proporcionado.");
-                    ejecutarAccionPostError();
+                    //mostrarToast(result);
+                    if (retryCount < MAX_RETRIES) {
+                        retryCount++;
+                        //mostrarToast("Reintentando... Intento " + retryCount + " de " + MAX_RETRIES);
+                        webServiceManager.callWebService("ProcesarGuia_Esclavo", properties, this::ProgressBar);
+                    } else {
+                        mostrarToast("Sin conexion a intenet");
+                        iniciarAnimacionParpadeo(4);
+                    }
                     return;
                 }
-
+                // Restablecer el contador de reintentos en caso de éxito
+                retryCount = 0;
                 // Procesar el resultado JSON
                 JSONArray jsonArray = new JSONArray(result);
                 procesarRespuestaJSON(jsonArray);
-
             } catch (JSONException e) {
                 e.printStackTrace();
                 mostrarToast("Error al procesar los datos del servidor.");
-                ejecutarAccionPostError();
             } catch (Exception e) {
                 e.printStackTrace();
                 mostrarToast("Error inesperado: " + e.getMessage());
-                ejecutarAccionPostError();
+            }finally {
+                new Handler().postDelayed(() -> {
+                    LimpiarValores();
+                    iniciarHilo();
+                }, 10000); // 10 segundos
             }
         });
     }
@@ -676,7 +688,6 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
         // Manejo de las animaciones según la bandera
         switch (bandera) {
             case "1":
-                rfidWithUHFA4.outputWgData0On();
                 iniciarAnimacionParpadeo(1);
                 break;
             case "2":
@@ -686,32 +697,16 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
                 iniciarAnimacionParpadeo(3);
                 break;
         }
-
-        // Acción posterior con retraso
-        new Handler().postDelayed(() -> {
-            LimpiarValores();
-            //iniciarHilo();
-            rfidWithUHFA4.outputWgData0Off();
-        }, 5000); // 5 segundos
-    }
-
-    // Método para manejar errores
-    private void ejecutarAccionPostError() {
-        new Handler().postDelayed(() -> {
-            LimpiarValores();
-            //iniciarHilo();
-        }, 5000); // 5 segundos
     }
 
     //Metodos para la clase enviar
     private void mensajesocket() {
         // Direcciones y puertos de los esclavos
-        List<String> direcciones = List.of("192.168.1.56");
-        List<Integer> puertos = List.of(5053);
-
+        List<String> direcciones = List.of("192.168.1.44", "192.168.1.31");
+        List<Integer> puertos = List.of(5053, 5053);
         // Enviar mensaje a los esclavos
         enviar.enviarMensaje("Iniciar lectura", direcciones, puertos);
-
+        rfidWithUHFA4.outputWgData0On();
     }
 
     @Override
