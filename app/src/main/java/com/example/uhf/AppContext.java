@@ -29,7 +29,7 @@ public class AppContext extends Application {
     public float audioMaxVolumn = 0;// 返回当前AudioManager对象的最大音量值
     public float audioCurrentVolumn = 0;// 返回当前AudioManager对象的音量值
     HashMap<Integer, Integer> soundMap = new HashMap<Integer, Integer>();
-    private SoundPool soundPool;
+    private SoundPool soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 5);
     private AudioManager am;
     private static AppContext mApp;
     public static AppContext getInstance() {
@@ -53,7 +53,6 @@ public class AppContext extends Application {
             e.printStackTrace();
         }
         mApp = this;
-        soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 5);
         soundMap.put(1, soundPool.load(this, R.raw.barcodebeep, 1));
         soundMap.put(2, soundPool.load(this, R.raw.serror, 1));
         am = (AudioManager) this.getSystemService(AUDIO_SERVICE);// 实例化AudioManager对象

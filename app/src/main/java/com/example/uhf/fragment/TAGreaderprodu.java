@@ -40,10 +40,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
 import com.rscja.deviceapi.exception.ConfigurationException;
 
 public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarListener {
@@ -84,7 +82,7 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
     private int totalNum;
     private List<String> tempDatas;
     boolean isStop = false;
-    //Clase para amndar mensaje a Enviar
+   //Clase para amndar mensaje a Enviar
     private Enviar enviar;
     //sirve para el monitoreo el cambio del GPIO
     private ScheduledExecutorService scheduler;
@@ -269,7 +267,7 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
         @Override
         public void onClick(View v) {
             LimpiarValores();
-            iniciarHilo();
+            //iniciarHilo();
             rfidWithUHFA4.output3Off();
             rfidWithUHFA4.output1Off();
         }
@@ -318,7 +316,7 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
         @Override
         public void onClick(View v) {
             readTag();
-            //mensajesocket();
+            mensajesocket();
         }
     }
 
@@ -610,7 +608,6 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
                     } else {
                         mostrarToast("Sin conexion a intenet");
                         iniciarAnimacionParpadeo(4);
-                        ejecutarAccionPostError();
                     }
                     return;
                 }
@@ -622,11 +619,14 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
             } catch (JSONException e) {
                 e.printStackTrace();
                 mostrarToast("Error al procesar los datos del servidor.");
-                ejecutarAccionPostError();
             } catch (Exception e) {
                 e.printStackTrace();
                 mostrarToast("Error inesperado: " + e.getMessage());
-                ejecutarAccionPostError();
+            }finally {
+                new Handler().postDelayed(() -> {
+                    LimpiarValores();
+                    iniciarHilo();
+                }, 10000); // 10 segundos
             }
         });
     }
@@ -697,22 +697,12 @@ public class TAGreaderprodu extends KeyDownFragment implements Enviar.EnviarList
                 iniciarAnimacionParpadeo(3);
                 break;
         }
-        // Acción posterior con retraso
-        ejecutarAccionPostError();
-    }
-
-    // Método para manejar errores
-    private void ejecutarAccionPostError() {
-        new Handler().postDelayed(() -> {
-            LimpiarValores();
-            iniciarHilo();
-        }, 5000); // 5 segundos
     }
 
     //Metodos para la clase enviar
     private void mensajesocket() {
         // Direcciones y puertos de los esclavos
-        List<String> direcciones = List.of("192.168.1.31", "192.168.1.44");
+        List<String> direcciones = List.of("192.168.1.44", "192.168.1.31");
         List<Integer> puertos = List.of(5053, 5053);
         // Enviar mensaje a los esclavos
         enviar.enviarMensaje("Iniciar lectura", direcciones, puertos);

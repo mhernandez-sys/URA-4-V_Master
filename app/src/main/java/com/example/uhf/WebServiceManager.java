@@ -29,8 +29,8 @@ public class WebServiceManager {
                 String NAMESPACE = "http://Estral.org/";
                 String URL = "http://192.168.1.49/Embarques/EmbarquesWS.asmx";
                 String SOAP_ACTION = NAMESPACE + METHOD_NAME;
-                String res = "";
-                int timeout = 5000; // 5000 milisegundos (5 segundos)
+                String res;
+                int timeout = 35000; // 12000 milisegundos (8 segundos)
 
                 try {
                     SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
@@ -54,6 +54,7 @@ public class WebServiceManager {
                     res = "Error: " + e.getMessage();
                 }
                 return res;
+
             }
             @Override
             protected void onPostExecute(String result) {

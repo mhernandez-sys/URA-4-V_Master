@@ -384,23 +384,6 @@ public class UHFSetFragment extends KeyDownFragment implements OnClickListener {
                 setCW(flag, true);
             }
         });
-        btntiempoLectura.setOnClickListener(new OnClickListener() {
-            @Override
-                public void onClick(View v) {
-                        String etDato1= SP_timer.getSelectedItem().toString();
-                        mContext.OpcionesConfiguracion("2",etDato1);
-                }
-            }
-        );
-
-        btnEstructuraEPC.setOnClickListener(new OnClickListener() {
-            @Override
-                public void onClick(View v) {
-                String etDato1= ET_EstrucEPC.getText().toString();
-                mContext.OpcionesConfiguracion("3",etDato1);
-                }
-            }
-        );
 
         rb_Brazil = view.findViewById(R.id.rb_Brazil);
         rb_Brazil.setOnClickListener(this);
